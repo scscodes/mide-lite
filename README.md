@@ -1,7 +1,7 @@
 # mide-lite
 
 TL;DR
-- Drag and drop the `.mide-lite/` folder into your project root.
+- Drag and drop the `.mide-lite/` folder into your workspace root.
 - Use the supervisor persona to orchestrate workflows and agents.
 
 How it works
