@@ -73,6 +73,4 @@ This workflow leverages multiple specialized agents to review code from differen
 
 Final: WorkflowOutputContract aggregating all step outputs.
 
-## Memory Contribution
-
-Review patterns, quality metrics, and improvement strategies are stored for future reference and cross-project learning.
+ 

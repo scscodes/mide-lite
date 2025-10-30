@@ -80,6 +80,4 @@ This workflow leverages multiple specialized agents to audit different aspects o
 
 Final: WorkflowOutputContract aggregating all step outputs.
 
-## Memory Contribution
-
-Maintenance patterns, technical debt insights, and improvement strategies are stored for future reference and cross-project learning.
+ 

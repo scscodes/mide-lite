@@ -128,8 +128,7 @@ Structure output per `content/agents/_output_contract_template.md`.
 
 ---
 
-## Memory Contribution
-Capture critical patterns and fixes in artifacts for reuse.
+ 
 
 ## Review Checklist
 

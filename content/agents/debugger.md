@@ -175,8 +175,7 @@ Structure output per `content/agents/_output_contract_template.md`.
 
 ---
 
-## Memory Contribution
-Capture root-cause patterns and fixes in artifacts so they’re discoverable.
+ 
 
 ## Diagnostic Process
 

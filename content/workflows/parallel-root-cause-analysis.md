@@ -65,6 +65,4 @@ This workflow leverages multiple specialized agents to analyze the same issue fr
 
 Final: WorkflowOutputContract aggregating all step outputs.
 
-## Memory Contribution
-
-Each agent contributes findings to the shared memory pool, enabling future similar issues to benefit from this multi-perspective approach.
+ 

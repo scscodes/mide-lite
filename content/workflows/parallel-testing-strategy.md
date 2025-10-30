@@ -73,6 +73,4 @@ This workflow leverages multiple specialized agents to develop a comprehensive t
 
 Final: WorkflowOutputContract aggregating all step outputs.
 
-## Memory Contribution
-
-Testing patterns, strategies, and quality metrics are stored for future reference and cross-project learning.
+ 

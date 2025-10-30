@@ -73,6 +73,4 @@ This workflow conducts a thorough security assessment by analyzing threats from 
 
 Final: WorkflowOutputContract aggregating all step outputs.
 
-## Memory Contribution
-
-Security patterns, threat intelligence, and mitigation strategies are stored for future reference and cross-project learning.
+ 

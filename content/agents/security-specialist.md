@@ -128,8 +128,7 @@ Structure output per `content/agents/_output_contract_template.md`.
 
 ---
 
-## Memory Contribution
-Capture critical vulnerabilities, attack paths, and mitigations in artifacts for reuse.
+ 
 
 ## Security Analysis Techniques
 

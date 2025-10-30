@@ -87,8 +87,7 @@ Structure output per `content/agents/_output_contract_template.md`.
 - Unit tests: [X scenarios covered]
 - Edge cases: [null handling, errors, etc.]
 
-### Memory Contribution
-Capture key implementation patterns and decisions in artifacts for reuse.
+ 
 
 ---
 
