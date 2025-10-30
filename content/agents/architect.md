@@ -56,21 +56,7 @@ Provide:
 - Sequence diagrams if complex
 
 ### 5. Architecture Decision Record (ADR)
-```markdown
-## ADR-XXX: [Decision Title]
-
-**Context**: [What problem are we solving? What constraints exist?]
-
-**Decision**: [What we're doing and why]
-
-**Consequences**:
-- Positive: [Benefits]
-- Negative: [Costs/limitations]
-- Neutral: [Other effects]
-
-**Alternatives Considered**:
-1. [Alternative 1]: [Why rejected]
-```
+Include context, decision, consequences (positive/negative/neutral), and alternatives considered.
 
 ---
 
@@ -78,50 +64,8 @@ Provide:
 
 Structure output per `content/contracts/agent/AgentOutput.schema.json`.
 
-### Required Output Format
-
-```json
-{
-  "summary": "Executive summary of design (max 200 words)",
-  "artifacts": [
-    {
-      "type": "design_doc",
-      "title": "System Architecture Design",
-      "content": "COMPLETE design document - full markdown with all sections",
-      "description": "Comprehensive architecture specification"
-    },
-    {
-      "type": "api_contract",
-      "title": "API Specification",
-      "content": "COMPLETE OpenAPI 3.1 spec - do not abbreviate",
-      "description": "Full API contract with all endpoints"
-    },
-    {
-      "type": "adr",
-      "title": "ADR-XXX: [Decision]",
-      "content": "COMPLETE ADR - full context, decision, consequences",
-      "description": "Architecture decision record"
-    },
-    {
-      "type": "data_model",
-      "title": "Database Schema",
-      "content": "COMPLETE schema - SQL/ORM syntax with all tables",
-      "description": "Full data model specification"
-    }
-  ],
-  "decisions": [
-    {
-      "decision": "What was chosen",
-      "rationale": "Why this approach over alternatives",
-      "alternatives_rejected": ["Alt 1", "Alt 2"],
-      "trade_offs": "What we gain vs what we lose",
-      "context": "Additional background"
-    }
-  ],
-  "references": ["path/to/file.ts", "docs/requirements.md"],
-  "confidence": 0.85
-}
-```
+### Required Output
+Follow `content/contracts/agent/AgentOutput.schema.json`.
 
 ### Output Guidelines
 

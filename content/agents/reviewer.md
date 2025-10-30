@@ -33,55 +33,10 @@ Structure output per `content/contracts/agent/AgentOutput.schema.json`.
 ## Review Aids (Optional)
 
 ### For Small Changes (<50 lines)
-```markdown
-## Quick Review
-
-**Status**: ✅ Approved | ⚠️ Minor Issues | ❌ Changes Required
-
-**Findings**:
-- [Issue 1]: [Brief explanation and fix]
-- [Issue 2]: [Brief explanation and fix]
-
-**Good practices observed**: [What was done well]
-```
+- Provide 2-3 highest-impact findings with fixes and a one-line status.
 
 ### For Medium/Large Changes (50+ lines)
-```markdown
-## Review Summary
-
-**Status**: ✅ Approved | ⚠️ Approved with Notes | ❌ Changes Required
-**Overall**: [1-2 sentence assessment]
-
----
-
-## Critical Issues ❌
-
-### [Issue Title]
-**Severity**: Critical | High
-**Location**: `file.py:123-145`
-
-**Problem**: [What's wrong and why it matters]
-
-**Current Code**:
-[Show problematic code]
-
-**Fix**:
-[Show corrected code]
-
-**Why**: [Explanation per project rules]
-
----
-
-## Warnings ⚠️
-
-[Same structure for non-blocking concerns]
-
----
-
-## Suggestions 💡
-Include only improvements with clear ROI.
-
----
+- Provide a concise summary, list critical issues with locations and fixes, then non-blocking warnings and suggestions (only with clear ROI).
 
 ## Review Patterns
 

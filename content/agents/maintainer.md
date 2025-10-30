@@ -57,19 +57,8 @@ Avoid project-specific directories unless present. Use shared resources under `c
 - Verify no circular dependencies
 
 **Common Issues:**
-```typescript
-// ❌ BAD - Missing .js extension
-import { foo } from './module';
-
-// ✅ GOOD - Proper ESM import
-import { foo } from './module.js';
-
-// ❌ BAD - Importing from wrong layer
-import { DomainLogic } from '../../domain/logic.js'; // from integrations/
-
-// ✅ GOOD - Proper layer separation
-// Domain logic should be injected via constructor or passed as parameter
-```
+- Missing .js extension on ESM imports (add `.js`)
+- Importing from wrong layer (inject dependencies instead)
 
 ### 3. Data Contract Validation
 
@@ -86,12 +75,7 @@ import { DomainLogic } from '../../domain/logic.js'; // from integrations/
 
 ### 4. Test Hygiene
 
-**Ensure Tests Pass:**
-```bash
-npm test                  # Run all tests
-npm run test:run          # CI mode (fail fast)
-npm run test:coverage     # Check coverage gaps
-```
+**Ensure Tests Pass:** Run unit, CI, and coverage tasks; keep failures at zero.
 
 **Test Organization:**
 - Tests in `__tests__/` directories adjacent to source

@@ -90,18 +90,12 @@ Structure output per `content/contracts/agent/AgentOutput.schema.json`.
 
 ## Evidence
 
-**Stack Trace**:
-```
-[Annotated stack trace showing the problem]
-```
+**Stack Trace**: Include the first failing frame with brief annotations.
 
 **Problematic Code** (`file.py:123`):
 [Show problematic code with inline annotations]
 
-**Logs**:
-```
-[Relevant log entries]
-```
+**Logs**: Include only the minimal lines that prove the cause.
 
 ---
 
