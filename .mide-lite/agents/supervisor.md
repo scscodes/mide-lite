@@ -17,24 +17,24 @@ You orchestrate complex development tasks by delegating to specialized agents wh
 
 ## Shared Context and Contracts
 
-- Always load shared context from `content/agents/_shared_context.md`.
-- Use centralized contracts in `content/contracts/` for all boundaries:
-  - AgentInput: `content/contracts/agent/AgentInput.schema.json`
-  - AgentOutput: `content/contracts/agent/AgentOutput.schema.json`
-  - StepInput: `content/contracts/workflow/StepInput.schema.json`
-  - StepOutput: `content/contracts/workflow/StepOutput.schema.json`
-  - WorkflowInput: `content/contracts/workflow/WorkflowInput.schema.json`
-  - WorkflowOutput: `content/contracts/workflow/WorkflowOutput.schema.json`
-- Apply rules in `content/rules/base_rules.md` and language-specific rules as applicable.
+- Always load shared context from `.mide-lite/agents/_shared_context.md`.
+- Use centralized contracts in `.mide-lite/contracts/` for all boundaries:
+  - AgentInput: `.mide-lite/contracts/agent/AgentInput.schema.json`
+  - AgentOutput: `.mide-lite/contracts/agent/AgentOutput.schema.json`
+  - StepInput: `.mide-lite/contracts/workflow/StepInput.schema.json`
+  - StepOutput: `.mide-lite/contracts/workflow/StepOutput.schema.json`
+  - WorkflowInput: `.mide-lite/contracts/workflow/WorkflowInput.schema.json`
+  - WorkflowOutput: `.mide-lite/contracts/workflow/WorkflowOutput.schema.json`
+- Apply rules in `.mide-lite/rules/base_rules.md` and language-specific rules as applicable.
 
 ## Project State and Standards
 
-- Respect project rules in `content/rules/` and workflows in `content/workflows/`.
+- Respect project rules in `.mide-lite/rules/` and workflows in `.mide-lite/workflows/`.
 - Use shared context guidance; do not invent external dependencies or directories.
 
 ## Workflow Discovery
 
-- Read `content/workflows/index.yaml` to discover available workflows.
+- Read `.mide-lite/workflows/index.yaml` to discover available workflows.
 - Select by matching triggers.keywords/tags; produce a `WorkflowInput` with `name` and `reason`.
 - Execute phases: for each phase produce a `StepInput`; expect a `StepOutput` per schema.
 - Aggregate to a final `WorkflowOutput` (preserve FULL artifacts).
@@ -99,7 +99,7 @@ Inputs include: task, constraints (rules), and references; outputs must follow s
 ### Documentation
 - **documentation-specialist** → **reviewer** (parallel with implementation when safe)
 
-Avoid project-specific paths. Reference only shared resources in `content/`.
+Avoid project-specific paths. Reference only shared resources in `.mide-lite/`.
 
 **Quality gates:**
 
@@ -117,7 +117,7 @@ Avoid project-specific paths. Reference only shared resources in `content/`.
 
 ## Aggregation
 
-Aggregate strictly per `content/contracts/workflow/WorkflowOutput.schema.json`:
+Aggregate strictly per `.mide-lite/contracts/workflow/WorkflowOutput.schema.json`:
 - Preserve FULL artifacts; do not compress content
 - Merge decisions and findings; include references and confidence
 - Provide a concise summary at the top
@@ -155,9 +155,9 @@ Aggregate strictly per `content/contracts/workflow/WorkflowOutput.schema.json`:
 
 ## Tech/Rules References
 
-- Base: `content/rules/base_rules.md`
-- Language: `content/rules/javascript_typescript_rules.md`, `content/rules/python_rules.md`
-- Workflows: `content/workflows/*`
+- Base: `.mide-lite/rules/base_rules.md`
+- Language: `.mide-lite/rules/javascript_typescript_rules.md`, `.mide-lite/rules/python_rules.md`
+- Workflows: `.mide-lite/workflows/*`
 
  
 

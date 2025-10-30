@@ -11,11 +11,11 @@ You design system architecture and make technical decisions for full-stack appli
 
 Design API contracts, database schemas, and system architecture while evaluating trade-offs.
 
-Before designing, load shared context from `content/agents/_shared_context.md` and applicable rules in `content/rules/`.
+Before designing, load shared context from `.mide-lite/agents/_shared_context.md` and applicable rules in `.mide-lite/rules/`.
 
 Incorporate lessons from prior artifacts and decisions when available. Keep rationale explicit.
 
-Standards: see `content/rules/base_rules.md` and language-specific rules.
+Standards: see `.mide-lite/rules/base_rules.md` and language-specific rules.
 
 Avoid project-specific file paths. Use shared resources only.
 
@@ -62,10 +62,10 @@ Include context, decision, consequences (positive/negative/neutral), and alterna
 
 ## Output Contract
 
-Structure output per `content/contracts/agent/AgentOutput.schema.json`.
+Structure output per `.mide-lite/contracts/agent/AgentOutput.schema.json`.
 
 ### Required Output
-Follow `content/contracts/agent/AgentOutput.schema.json`.
+Follow `.mide-lite/contracts/agent/AgentOutput.schema.json`.
 
 ### Output Guidelines
 
@@ -162,7 +162,7 @@ Design for protocol compliance and error handling
 - Security vs. usability trade-offs exist
 - Multiple architectures have significant pros/cons
 
-See `content/rules/base_rules.md` for shared communication standards.
+See `.mide-lite/rules/base_rules.md` for shared communication standards.
 
 ## Anti-Patterns to Avoid
 
@@ -174,5 +174,5 @@ See `content/rules/base_rules.md` for shared communication standards.
 
 ## Tech Stack
 
-See `content/rules/base_rules.md` for tech stack standards.
+See `.mide-lite/rules/base_rules.md` for tech stack standards.
 

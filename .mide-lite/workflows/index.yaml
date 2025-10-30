@@ -1,0 +1,66 @@
+# Workflow registry (discovery aid for the supervisor)
+# Fields are minimal and descriptive; paths are relative to repo root
+
+workflows:
+  - name: bug-fix
+    path: .mide-lite/workflows/bug-fix.md
+    tags: [workflows, bugfix, debugging, maintenance]
+    triggers:
+      keywords: ["fix bug", "debug", "issue", "error"]
+    complexity_hint: simple
+
+  - name: feature-development
+    path: .mide-lite/workflows/feature-development.md
+    tags: [workflows, development, feature, full-cycle]
+    triggers:
+      keywords: ["new feature", "implement feature", "add functionality"]
+    complexity_hint: moderate
+
+  - name: component-performance-review
+    path: .mide-lite/workflows/component-performance-review.md
+    tags: [workflows, performance, analysis, parallel]
+    triggers:
+      keywords: ["performance review", "system optimization", "bottleneck analysis", "component performance"]
+    complexity_hint: moderate
+
+  - name: parallel-code-review
+    path: .mide-lite/workflows/parallel-code-review.md
+    tags: [workflows, code-review, quality, parallel, security]
+    triggers:
+      keywords: ["comprehensive review", "multi-perspective review", "thorough review", "code audit"]
+    complexity_hint: high
+
+  - name: parallel-documentation-review
+    path: .mide-lite/workflows/parallel-documentation-review.md
+    tags: [workflows, documentation, review, parallel, maintenance]
+    triggers:
+      keywords: ["documentation review", "update docs", "documentation audit", "docs maintenance"]
+    complexity_hint: moderate
+
+  - name: parallel-maintenance-audit
+    path: .mide-lite/workflows/parallel-maintenance-audit.md
+    tags: [workflows, maintenance, audit, parallel, quality]
+    triggers:
+      keywords: ["maintenance audit", "codebase health", "technical debt", "cleanup audit"]
+    complexity_hint: high
+
+  - name: parallel-root-cause-analysis
+    path: .mide-lite/workflows/parallel-root-cause-analysis.md
+    tags: [workflows, debugging, analysis, parallel]
+    triggers:
+      keywords: ["complex bug", "multi-component issue", "system failure", "unclear root cause"]
+    complexity_hint: moderate
+
+  - name: parallel-testing-strategy
+    path: .mide-lite/workflows/parallel-testing-strategy.md
+    tags: [workflows, testing, strategy, parallel, quality]
+    triggers:
+      keywords: ["testing strategy", "test planning", "comprehensive testing", "test coverage"]
+    complexity_hint: high
+
+  - name: security-threat-assessment
+    path: .mide-lite/workflows/security-threat-assessment.md
+    tags: [workflows, security, threat-modeling, parallel]
+    triggers:
+      keywords: ["security assessment", "threat modeling", "vulnerability scan", "security review"]
+    complexity_hint: high
