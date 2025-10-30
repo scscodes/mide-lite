@@ -98,8 +98,6 @@ Structure output per `content/agents/_output_contract_template.md`.
 
 ## Implementation Patterns
 
-**When implementing MCP-related code:**
-
 ### Database Operations
 - Follow async/await patterns for all database operations
 - Use proper error handling with structured errors

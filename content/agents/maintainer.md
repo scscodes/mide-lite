@@ -74,16 +74,15 @@ import { DomainLogic } from '../../domain/logic.js'; // from integrations/
 ### 3. Data Contract Validation
 
 **Type Safety Checks:**
-- Verify database schema matches TypeScript interfaces in `core/types/database.ts`
-- Ensure MCP tool schemas match actual implementation
+- Verify data models match type interfaces
+- Ensure tool schemas match actual implementation
 - Validate resource URI patterns match registry definitions
 - Check API contracts are consistent across layers
 
 **Schema Validation:**
 - Run `npm run build` to catch type errors
-- Validate SQL schema against database module interfaces
-- Check JSON schema definitions in MCP tools
-- Verify filter types match database query parameters
+- Check JSON schema definitions for tools/contracts
+- Verify filter types match query parameters
 
 ### 4. Test Hygiene
 

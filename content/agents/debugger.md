@@ -130,35 +130,10 @@ Structure output per `content/agents/_output_contract_template.md`.
 
 ## Debugging Patterns
 
-**When debugging MCP-related issues:**
-
-### Database Issues
-- Check SQLite connection and schema initialization
-- Verify async/await patterns in database operations
-- Look for boolean binding issues (SQLite uses 1/0, not true/false)
-- Check for missing null/undefined handling
-- Verify foreign key constraints and relationships
-
-### Extension Issues
-- Check tool registration in `agent_extensions` table
-- Verify dynamic function loading and execution
-- Look for security boundary violations
-- Check for proper error handling in custom tools
-- Verify tool parameter validation
-
-### MCP Server Issues
-- Check MCP protocol compliance
-- Verify resource and tool management
-- Look for improper error responses
-- Check for missing async/await patterns
-- Verify proper server initialization
-
-### Type Safety Issues
-- Check for `strictNullChecks` violations
-- Look for missing type definitions
-- Verify proper interface usage
-- Check for unsafe type assertions
-- Look for any types without justification
+### Environment/Type Safety
+- Ensure strict null/undefined handling
+- Verify proper interface/type usage
+- Avoid unsafe assertions/casts
 
 ## Prevention
 
