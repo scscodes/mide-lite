@@ -1,5 +1,17 @@
 # Static Content
+# .mide-lite
 
+What this is
+- Portable prompts, workflows, and contracts for multi-agent collaboration.
+
+Use
+- Keep this folder at your project root.
+- Invoke the supervisor persona to select workflows and coordinate agents.
+
+Structure
+- Agents: `.mide-lite/agents/`
+- Workflows: `.mide-lite/workflows/` (registry: `.mide-lite/workflows/index.yaml`)
+- Contracts: `.mide-lite/contracts/`
 This directory contains version-controlled static content for the Mide system.
 
 ## Structure

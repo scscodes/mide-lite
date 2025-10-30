@@ -6,29 +6,17 @@ tags: [contracts]
 
 # Contracts
 
-Authoritative schemas for all inputs/outputs:
+Schemas for all I/O boundaries. Keep artifacts FULL (no ellipses) and include references.
 
-- AgentInput → produced by supervisor, consumed by agents
-- AgentOutput → produced by agents, consumed by supervisor
-- StepInput → produced by supervisor, consumed by workflow steps
-- StepOutput → produced by steps, consumed by supervisor
-- WorkflowInput → produced by supervisor (workflow selection), consumed by workflow runner
-- WorkflowOutput → produced by supervisor, final aggregated output
+Agent
+- Input/Output: `.mide-lite/contracts/agent/`
 
-Schemas live under `.mide-lite/contracts/{agent,workflow}/`.
+Workflow
+- Step Input/Output: `.mide-lite/contracts/workflow/`
+- Workflow Input/Output: `.mide-lite/contracts/workflow/`
 
-Notes:
-- artifacts.content must be FULL (no ellipses)
-- references should include file paths and/or URLs
-
-## Supervisor usage (at-a-glance)
-
-1) Choosing a workflow
-- Read `.mide-lite/workflows/index.yaml` and select by triggers/tags; produce a `WorkflowInput` (name, reason) and proceed.
-
-2) Running steps
-- For each phase, produce a `StepInput` (step, task, references, constraints) and expect a `StepOutput` per `.mide-lite/contracts/workflow/StepOutput.schema.json`.
-
-3) Aggregating results
-- Emit a `WorkflowOutput` with `workflow.name`, `reason`, aggregated `artifacts` (FULL content), combined `findings/decisions`, and `confidence`.
+Supervisor quick reference
+- Discover: `.mide-lite/workflows/index.yaml` → choose by keywords/tags (create WorkflowInput)
+- Execute: produce StepInput per phase → expect StepOutput
+- Aggregate: emit WorkflowOutput (preserve full artifacts)
 
