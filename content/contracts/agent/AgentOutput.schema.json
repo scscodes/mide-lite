@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mide://contracts/agent/AgentOutput.schema.json",
+  "title": "AgentOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "summary": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": { "type": "string" },
+          "title": { "type": "string" },
+          "content": { "type": "string" },
+          "description": { "type": "string" },
+          "metadata": { "type": "object" }
+        },
+        "required": ["type", "title", "content"]
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "decision": { "type": "string" },
+          "rationale": { "type": "string" },
+          "alternatives_rejected": { "type": "array", "items": { "type": "string" } },
+          "trade_offs": { "type": "string" },
+          "context": { "type": "string" }
+        },
+        "required": ["decision", "rationale"]
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "severity": { "type": "string" },
+          "category": { "type": "string" },
+          "description": { "type": "string" },
+          "location": { "type": "string" },
+          "recommendation": { "type": "string" },
+          "impact": { "type": "string" }
+        },
+        "required": ["severity", "description"]
+      }
+    },
+    "next_steps": { "type": "array", "items": { "type": "string" } },
+    "blockers": { "type": "array", "items": { "type": "string" } },
+    "references": { "type": "array", "items": { "type": "string" } },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+  },
+  "required": ["summary", "artifacts", "references", "confidence"]
+}
+

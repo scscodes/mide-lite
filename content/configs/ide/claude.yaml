@@ -1,0 +1,16 @@
+---
+name: claude
+description: "Claude Code configuration for MCP server integration"
+config_type: ide
+enabled: true
+server_name: "mide"
+config_path: "~/.claude/mcp_settings.json"
+scope: "user"
+compatibility:
+  cursor: false
+  vscode: false
+  claude: true
+  openai: false
+tags: ["ide", "claude", "mcp"]
+status: active
+---

@@ -1,0 +1,86 @@
+---
+name: base_rules
+description: Universal code quality and collaboration guidance
+type: universal
+always_apply: false
+globs: []
+tags: []
+---
+
+# Rule Mapping
+**AUTO-INCLUDE** specialized rules based on detected technologies:
+
+## APIs
+- [api_discord](mdc:api_discord.mdc), [api_grok](mdc:api_grok.mdc), [api_openai](mdc:api_openai.mdc), [api_telegram](mdc:api_telegram.mdc)
+
+## Languages
+- [javascript_typescript](mdc:javascript_typescript_rules.mdc), [python](mdc:python_rules.mdc)
+
+## Tools
+- [tool_jupyter](mdc:tool_jupyter.mdc)
+
+---
+
+# Setup, Environment & Communication
+
+## Always Know Your Environment
+- **FIRST** confirm the local runtime environment (OS, shell) before executing commands or scripts.
+- **SECOND** find critical project files (package.json, requirements.txt, .env) to understand dependencies, configurations, and project scope.
+
+## Communication & Workflow
+- **USE** technical, concise tone.
+- **REQUEST** for clarification or context when requirements are unclear.
+- **REQUEST** validation before transitioning between complex tasks.
+
+# Code Development Standards
+## Core Principles
+- **USE** SOLID and DRY principles.
+- **USE** defensive programming (input validation, null checks, error boundaries).
+
+## SCM & Git
+- **COMMIT** changes **ONLY AFTER** receiving positive affirmation or consent.
+- **WRITE** meaningful commit messages with semantic versioning.
+- **NEVER** push changes without explicit consent.
+
+## Implementation Standards
+- **NEVER** introduce new dependencies without explicit consent.
+- **NEVER** write empty, placeholder logic without explicit consent.
+- **USE** comments to clarify intent and usage.
+- **USE** structured logging (DEBUG, INFO, WARN, ERROR levels).
+- **HANDLE** errors gracefully with validation and fallbacks.
+- **USE** standard libraries and built-ins over custom solutions.
+- **USE** explicit types and return signatures.
+- **NAME** variables and functions that express clear intent.
+
+## Security (Global)
+- **VALIDATE & SANITIZE** all external inputs at boundaries; **reject by default**.
+- **PROTECT SECRETS**: store in a manager; load via env; **never commit**.
+- **LEAST PRIVILEGE** for creds, network, filesystem; **default-deny**.
+- **ENCODE ON OUTPUT** by sink (HTML/URL/SQL params); avoid dynamic eval.
+- **SAFE LOGGING**: no secrets/PII; **redact at source**.
+- **CONTINUOUS SCANNING** of deps/images; **patch promptly**.
+- **SECURE TRANSPORT/HTTP**: TLS, **CSP**, **HSTS**, same-site/HttpOnly cookies, CSRF where applicable.
+
+## Performance (Global)
+- **MEASURE FIRST**: profile/trace to find hotspots; prove regressions with metrics.
+- **BUDGETS**: latency/memory targets per component; verify in CI/CD when feasible.
+- **CACHE WISELY**: bound size/TTL; clear invalidation strategy.
+- **CONTROL CONCURRENCY** and **BACKPRESSURE**; avoid unbounded queues.
+- **STREAM & BATCH** large data; eliminate **N+1 I/O**.
+- **OFFLOAD** non-critical work off the request path.
+
+## Resilience & Stability (Global)
+- **TIMEOUTS EVERYWHERE** for external calls; **fail fast** by default.
+- **RETRY SAFELY** only idempotent ops with **exponential backoff + jitter**; cap attempts.
+- **IDEMPOTENCY** at boundaries (keys/dedup) for create-like actions.
+- **CIRCUIT BREAKERS** and **BULKHEADS** to isolate failures.
+- **CANCELLATION & SHUTDOWN**: propagate cancel; graceful drain/flush/close.
+- **STARTUP VALIDATION**: validate config and **fail fast** with clear diagnostics.
+
+## Testing & Observability (Global)
+- **TEST BEHAVIOR** not implementation; co-locate; **mock at boundaries** only.
+- **DETERMINISTIC & FAST** unit tests; run slow/e2e separately; use property-based tests for invariants.
+- **STRUCTURED LOGS** with level, timestamp, component, **correlation/trace IDs**; no sensitive data.
+- **METRICS**: throughput, latency (pXX), errors, resources; clear names/labels.
+- **TRACING**: propagate/signal spans; annotate key events.
+- **ERROR TAXONOMY**: domain vs infrastructure; consistent status codes and log levels.

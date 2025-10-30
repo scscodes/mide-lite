@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mide://contracts/workflow/WorkflowInput.schema.json",
+  "title": "WorkflowInput",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": { "type": "string" },
+    "reason": { "type": "string" },
+    "triggers": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "keywords": { "type": "array", "items": { "type": "string" } },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "expected_output": { "const": "WorkflowOutput" }
+  },
+  "required": ["name", "reason"]
+}
+

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mide://contracts/workflow/WorkflowOutput.schema.json",
+  "title": "WorkflowOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "summary": { "type": "string" },
+    "workflow": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "reason": { "type": "string" }
+      },
+      "required": ["name"]
+    },
+    "steps": { "type": "array" },
+    "artifacts": { "type": "array" },
+    "decisions": { "type": "array" },
+    "findings": { "type": "array" },
+    "next_steps": { "type": "array", "items": { "type": "string" } },
+    "blockers": { "type": "array", "items": { "type": "string" } },
+    "references": { "type": "array", "items": { "type": "string" } },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+  },
+  "required": ["summary", "workflow", "references", "confidence"]
+}
+

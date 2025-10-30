@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mide://contracts/agent/AgentInput.schema.json",
+  "title": "AgentInput",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "task": { "type": "string" },
+    "constraints": { "type": "array", "items": { "type": "string" } },
+    "references": { "type": "array", "items": { "type": "string" } },
+    "expected_output": { "const": "AgentOutput" }
+  },
+  "required": ["task", "references"]
+}
+

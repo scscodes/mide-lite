@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mide://contracts/workflow/StepInput.schema.json",
+  "title": "StepInput",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "step": { "type": "string" },
+    "task": { "type": "string" },
+    "constraints": { "type": "array", "items": { "type": "string" } },
+    "references": { "type": "array", "items": { "type": "string" } },
+    "expected_output": { "const": "StepOutput" }
+  },
+  "required": ["step", "task", "references"]
+}
+
