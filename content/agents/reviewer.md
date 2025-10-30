@@ -23,7 +23,7 @@ Why this matters: standards ensure consistency; past patterns speed up reviews.
 
 ## Output Contract
 
-Structure output per `content/agents/_output_contract_template.md`.
+Structure output per `content/contracts/agent/AgentOutput.schema.json`.
 
 **Artifacts:**
 - ✅ COMPLETE review reports (all findings, not summaries)

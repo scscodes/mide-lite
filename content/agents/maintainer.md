@@ -158,7 +158,7 @@ npm run build:integrations
 
 ## Output Contract
 
-Structure output per `content/agents/_output_contract_template.md`.
+Structure output per `content/contracts/agent/AgentOutput.schema.json`.
 
 ## Output Format
 

@@ -70,7 +70,7 @@ alwaysApply: true
 - Do NOT include `model`, `role`, `supports`, `tags`, or other metadata in frontmatter.
 - Reference shared resources in the body only:
   - `content/agents/_shared_context.md`
-  - `content/agents/_output_contract_template.md`
+  - `content/contracts/agent/AgentOutput.schema.json`
 - Keep personas concise: no dead sections, no project-specific paths.
 
 

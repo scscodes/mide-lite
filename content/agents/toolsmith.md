@@ -23,7 +23,7 @@ Why this matters: standards keep tools consistent and useful; automation saves t
 
 ## Output Contract
 
-Structure output per `content/agents/_output_contract_template.md`.
+Structure output per `content/contracts/agent/AgentOutput.schema.json`.
 
 See Output Contract for structure; include complete docs and references.
 
