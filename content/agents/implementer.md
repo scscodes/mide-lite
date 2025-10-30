@@ -93,8 +93,7 @@ Structure output per `content/contracts/agent/AgentOutput.schema.json`.
 
 ## Code
 
-[Provide complete, working implementation]
-```
+Provide complete, working implementation.
 
 ## Implementation Patterns
 

@@ -155,51 +155,7 @@ Structure output per `content/contracts/agent/AgentOutput.schema.json`.
 
 Remember: artifacts must contain full content, not summaries.
 
-### Example Output
-
-```json
-{
-  "summary": "Designed event-driven authentication system with JWT tokens, Redis session store, and multi-factor authentication support. Architecture supports 10K concurrent users with sub-100ms latency.",
-  "artifacts": [
-    {
-      "type": "design_doc",
-      "title": "Authentication System Architecture v1",
-      "content": "# Authentication System Architecture\n\n## Overview\n\nEvent-driven authentication system using JWT access tokens (15min TTL) with refresh tokens (7 day TTL)...\n\n## Components\n\n### Auth Service\n- Stateless authentication\n- Token generation/validation\n- Integration with identity providers\n\n[COMPLETE 2000+ word design document continues...]",
-      "description": "Complete system architecture with all components, flows, and integration points"
-    },
-    {
-      "type": "api_contract",
-      "title": "Authentication API v1",
-      "content": "openapi: 3.1.0\ninfo:\n  title: Auth API\n  version: 1.0.0\npaths:\n  /auth/login:\n    post:\n      summary: User login\n      requestBody:\n        content:\n          application/json:\n            schema:\n              type: object\n              properties:\n                email:\n                  type: string\n                  format: email\n                password:\n                  type: string\n      responses:\n        200:\n          description: Login successful\n          content:\n            application/json:\n              schema:\n                type: object\n                properties:\n                  access_token:\n                    type: string\n                  refresh_token:\n                    type: string\n                  expires_in:\n                    type: integer\n[COMPLETE OpenAPI spec continues for all endpoints...]",
-      "description": "Full OpenAPI 3.1 specification with all auth endpoints"
-    },
-    {
-      "type": "adr",
-      "title": "ADR-001: JWT with Redis Session Store",
-      "content": "# ADR-001: JWT with Redis Session Store\n\n## Status\nAccepted\n\n## Context\nNeed stateless authentication that scales horizontally while supporting token revocation for security.\n\n## Decision\nUse JWT access tokens (15min) + refresh tokens (7 day) with Redis backing store for revocation tracking.\n\n## Consequences\n\n### Positive\n- Stateless validation (no DB lookup per request)\n- Horizontal scaling without session affinity\n- Token revocation via Redis blacklist\n- Standard JWT libraries available\n\n### Negative\n- Redis dependency (single point of failure without replication)\n- Token size larger than session ID\n- Cannot update token claims until refresh\n\n### Neutral\n- 15min TTL balances security and UX\n\n## Alternatives Considered\n\n### 1. Session Cookies\n- Rejected: Requires database lookup per request\n- Rejected: Doesn't scale horizontally without sticky sessions\n\n### 2. Long-lived JWTs (24hr+)\n- Rejected: Security risk if token leaked\n- Rejected: Cannot revoke without blacklist checking\n\n[COMPLETE ADR continues...]",
-      "description": "Full architecture decision record with complete rationale"
-    }
-  ],
-  "decisions": [
-    {
-      "decision": "Use Redis for token revocation tracking",
-      "rationale": "Balances performance (in-memory) with reliability (persistence, replication). Tokens stay stateless but can be revoked when needed (logout, security breach).",
-      "alternatives_rejected": [
-        "Database blacklist: Too slow for per-request checks",
-        "No revocation: Security risk for compromised tokens",
-        "Memcached: No persistence, loses blacklist on restart"
-      ],
-      "trade_offs": "Adds Redis dependency but enables secure token revocation without sacrificing stateless validation performance.",
-      "context": "System must support immediate token revocation for security events while maintaining <100ms auth check latency."
-    }
-  ],
-  "references": [
-    "docs/security-requirements.md",
-    "docs/scalability-targets.md"
-  ],
-  "confidence": 0.9
-}
-```
+ 
 
 ### 6. Memory Contribution
 

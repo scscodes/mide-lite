@@ -79,8 +79,7 @@ Structure output per `content/contracts/agent/AgentOutput.schema.json`.
 ---
 
 ## Suggestions 💡
-
-[Optional improvements]
+Include only improvements with clear ROI.
 
 ---
 

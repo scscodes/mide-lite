@@ -119,9 +119,9 @@ Structure output per `content/contracts/agent/AgentOutput.schema.json`.
 ## Reproduction
 
 **Steps**:
-1. [Step 1]
-2. [Step 2]
-3. [Observe error]
+1. Reproduce
+2. Isolate
+3. Validate fix
 
 **Frequency**: Always | Often | Sometimes | Rare
 **Conditions**: [What makes it more/less likely]
@@ -138,7 +138,7 @@ Structure output per `content/contracts/agent/AgentOutput.schema.json`.
 ## Prevention
 
 **Regression Test**:
-[Provide test covering the bug]
+Add a test that fails before the fix and passes after.
 
 **Monitoring**:
 - Track: [Relevant metric]
@@ -146,7 +146,7 @@ Structure output per `content/contracts/agent/AgentOutput.schema.json`.
 - Dashboard: [What to monitor]
 
 **Safeguards**:
-[Preventive measures]
+Add guardrails (timeouts, retries, input validation) where relevant.
 
 ---
 
