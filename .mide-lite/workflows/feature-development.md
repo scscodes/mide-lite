@@ -8,7 +8,7 @@ tags: [workflows, development, feature, full-cycle]
 
 Complete end-to-end workflow for implementing new features with proper architecture, implementation, and review cycles.
 
-Use contracts: `.mide-lite/contracts/workflow/StepOutput.schema.json` (per step) and `.mide-lite/contracts/workflow/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates; this file defines phases only.
+Use contracts: `.mide-lite/contracts/StepOutput.schema.json` (per step) and `.mide-lite/contracts/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates; this file defines phases only.
 
 ## Overview
 

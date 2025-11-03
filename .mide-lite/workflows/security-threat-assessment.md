@@ -8,7 +8,7 @@ tags: [workflows, security, threat-modeling, parallel]
 
 Comprehensive multi-agent security analysis with parallel threat modeling across all system layers.
 
-Use contracts: `.mide-lite/contracts/workflow/StepOutput.schema.json` (per step) and `.mide-lite/contracts/workflow/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates.
+Use contracts: `.mide-lite/contracts/StepOutput.schema.json` (per step) and `.mide-lite/contracts/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates.
 
 ## Overview
 

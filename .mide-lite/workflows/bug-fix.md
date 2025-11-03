@@ -8,7 +8,7 @@ tags: [workflows, bugfix, debugging, maintenance]
 
 Systematic approach to debugging and fixing issues with proper diagnosis and verification.
 
-Use contracts: `.mide-lite/contracts/workflow/StepOutput.schema.json` for steps; `.mide-lite/contracts/workflow/WorkflowOutput.schema.json` for final aggregation. Supervisor orchestrates; this file defines phases only.
+Use contracts: `.mide-lite/contracts/StepOutput.schema.json` for steps; `.mide-lite/contracts/WorkflowOutput.schema.json` for final aggregation. Supervisor orchestrates; this file defines phases only.
 
 ## Overview
 

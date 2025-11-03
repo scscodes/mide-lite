@@ -8,7 +8,7 @@ tags: [workflows, maintenance, audit, parallel, quality]
 
 Comprehensive maintenance audit with multiple agents examining different aspects of codebase health simultaneously.
 
-Use contracts: `.mide-lite/contracts/workflow/StepOutput.schema.json` (per step) and `.mide-lite/contracts/workflow/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates.
+Use contracts: `.mide-lite/contracts/StepOutput.schema.json` (per step) and `.mide-lite/contracts/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates.
 
 ## Overview
 

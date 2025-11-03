@@ -8,7 +8,7 @@ tags: [workflows, debugging, analysis, parallel]
 
 Multi-agent approach to complex issue diagnosis with parallel analysis and correlation.
 
-Use contracts: `.mide-lite/contracts/workflow/StepOutput.schema.json` (per step) and `.mide-lite/contracts/workflow/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates.
+Use contracts: `.mide-lite/contracts/StepOutput.schema.json` (per step) and `.mide-lite/contracts/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates.
 
 ## Overview
 

@@ -11,9 +11,12 @@ How it works
  - Rules live in `.mide-lite/rules/` (base + language + specialized) and are tag-aware.
 
 Key contracts
-- AgentInput/AgentOutput: `.mide-lite/contracts/agent/`
-- StepInput/StepOutput: `.mide-lite/contracts/workflow/`
-- WorkflowInput/WorkflowOutput: `.mide-lite/contracts/workflow/`
+- AgentInput: `.mide-lite/contracts/AgentInput.schema.json`
+- AgentOutput: `.mide-lite/contracts/AgentOutput.schema.json`
+- StepInput: `.mide-lite/contracts/StepInput.schema.json`
+- StepOutput: `.mide-lite/contracts/StepOutput.schema.json`
+- WorkflowInput: `.mide-lite/contracts/WorkflowInput.schema.json`
+- WorkflowOutput: `.mide-lite/contracts/WorkflowOutput.schema.json`
 
 Customize
 - Tweak behavior by editing schemas in `.mide-lite/contracts/` and the workflow registry in `.mide-lite/workflows/index.yaml`.

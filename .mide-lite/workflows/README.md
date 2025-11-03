@@ -8,4 +8,4 @@ Use
 - Final: emit WorkflowOutput (aggregate full artifacts)
 
 Contracts
-- `.mide-lite/contracts/workflow/`
+- `.mide-lite/contracts/`

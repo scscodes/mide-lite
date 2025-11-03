@@ -8,7 +8,7 @@ tags: [workflows, code-review, quality, parallel, security]
 
 Comprehensive code review with multiple agents examining code from different perspectives simultaneously.
 
-Use contracts: `.mide-lite/contracts/workflow/StepOutput.schema.json` (per step) and `.mide-lite/contracts/workflow/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates.
+Use contracts: `.mide-lite/contracts/StepOutput.schema.json` (per step) and `.mide-lite/contracts/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates.
 
 ## Overview
 
