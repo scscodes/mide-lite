@@ -1,5 +1,5 @@
 ---
-name: typescript_core
+name: typescript
 description: TypeScript core rules for strict, maintainable code
 globs:
   - "**/*.ts"

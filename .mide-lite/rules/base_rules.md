@@ -1,8 +1,8 @@
 ---
 name: base_rules
 description: Universal code quality and collaboration guidance
-globs: []
-alwaysApply: false
+globs: ["**"]
+alwaysApply: True
 tags: [base, global]
 ---
 
@@ -72,6 +72,6 @@ tags: [base, global]
 
 ## Tech/Rules References
 - Base: `.mide-lite/rules/base_rules.md`
-- Language: `.mide-lite/rules/typescript_core.md`, `.mide-lite/rules/javascript_core.md`, `.mide-lite/rules/python_rules.md`
+- Language: `.mide-lite/rules/typescript.md`, `.mide-lite/rules/javascript.md`, `.mide-lite/rules/python_rules.md`
 - Workflows: `.mide-lite/workflows/*`
 - Specialized: `.mide-lite/rules/security.md`, `.mide-lite/rules/testing.md`, `.mide-lite/rules/hygiene.md`

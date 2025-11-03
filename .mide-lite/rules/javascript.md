@@ -1,5 +1,5 @@
 ---
-name: javascript_core
+name: javascript
 description: Modern JavaScript core rules for scripts and Node tooling
 globs:
   - "**/*.js"
