@@ -17,6 +17,11 @@ alwaysApply: true
 - **CLARIFY** scope and intent, with clear requirements and outcomes.
 - **NEVER** operate under assumption or accept ambiguous tasks.
 
+## Decision & Escalation Gates
+- **TIMEBOX** investigations; escalate if no progress within agreed window.
+- **ESCALATE** when requirements conflict, risks are high, or trade-offs need input.
+- **ORCHESTRATE** via supervisor for multi-agent tasks; **DIRECT** response for small, clear changes.
+
 # Code Development Standards
 ## Core Principles
 - **USE** SOLID and DRY principles.
@@ -30,12 +35,13 @@ alwaysApply: true
 - **COMMIT** changes **ONLY AFTER** receiving explicit consent.
 - **WRITE** meaningful commit messages with semantic versioning.
 - **NEVER** push changes without explicit consent.
+- **CHANGE MANAGEMENT**: small, reviewable PRs; single-purpose commits; green CI before merge; avoid mixing refactor with feature.
 
 ## Security & Performance
 - **NEVER** introduce new or deprecated/EOL dependencies without explicit consent.
 - **NEVER** create empty directories or incomplete functions.
 - **VALIDATE & SANITIZE** all external inputs at boundaries; **reject by default**.
-- **SAFE LOGGING**: no secrets/PII; **redact at source**.
+- **LOGGING & SECRETS**: structured logs with levels; no secrets/PII; **redact at source**; use correlation/trace IDs.
 - **CONTROL CONCURRENCY** and **BACKPRESSURE**; avoid unbounded queues. 
 - **STREAM & BATCH** large data; eliminate **N+1 I/O**.
 - **CACHE**: bound size/TTL; clear invalidation strategy.
