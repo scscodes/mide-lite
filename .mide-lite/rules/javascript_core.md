@@ -29,6 +29,14 @@ tags: [javascript]
 - Don’t use `eval`/`Function`.
 - Avoid mutating function parameters; avoid `==`.
 
+## Node (Scripts/CLIs)
+- Dependencies: prefer stdlib and small, maintained libs; avoid heavy transitive deps.
+- CLI: use a single entrypoint, parse args once, validate early, exit with codes.
+- Process: handle `SIGINT`/`SIGTERM`; graceful shutdown with timeouts.
+- I/O: stream large files; avoid reading whole files into memory.
+- FS: use `fs/promises`; guard paths; avoid race conditions (TOCTOU).
+- Security: no secrets in logs; environment via process.env with defaults; sanitize inputs.
+
 ## When in Doubt
 1. Keep scripts small and focused.
 2. Prefer readability over cleverness.
