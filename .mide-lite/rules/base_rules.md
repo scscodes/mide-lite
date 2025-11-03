@@ -4,14 +4,6 @@ globs:
 alwaysApply: true
 ---
 
-# Rule Mapping
-**AUTO-INCLUDE** specialized rules based on detected technologies:
-
-## Languages
-- [javascript_typescript](mdc:javascript_typescript_rules.mdc), [python](mdc:python_rules.mdc)
-
----
-
 # Setup, Environment & Communication
 
 ## Always Know Your Environment
@@ -27,7 +19,7 @@ alwaysApply: true
 
 # Code Development Standards
 ## Core Principles
-- **USE** SOLID, DRY and ACID principals.
+- **USE** SOLID and DRY principles.
 - **USE** standard libraries and built-ins over custom solutions.
 - **STAY FOCUSED** and solve the task with **MINIMAL CODE** and **MINIMAL COMPLEXITY**.
 - **KEEP IT SIMPLE** and escalate growing complexity.
@@ -54,24 +46,15 @@ alwaysApply: true
 - **IDEMPOTENCY** at boundaries (keys/dedup) for create-like actions.
 
 ## Documentation & File Hygiene
-- **REQUIRED ARTIFCATS** must adhere to established patterns `docs/**.md` or `scripts/**.(c)js` and be the sole-source of information for a given topic.
-- **TEMPORARY ARTIFACTS** must be purged immediately after use, or given explicit TTL/lifecycle conditions.
-- **PRUNE AND PURGE** between tasks, before commits, and before creating new artifacts.
+- **KEEP SINGLE SOURCE** per topic; avoid duplicated docs.
+- **PURGE TEMPORARY ARTIFACTS** or assign explicit TTL.
+- **PRUNE** between tasks and before commits.
 
 
 ## Agent Persona Standards
-- **Frontmatter schema (minimal, enforced)**:
-  ```yaml
-  ---
-  name: <agent-id>
-  description: "<one-sentence purpose>"
-  ---
-  ```
-- Do NOT include `model`, `role`, `supports`, `tags`, or other metadata in frontmatter.
-- Reference shared resources in the body only:
-  - `.mide-lite/agents/_shared_context.md`
-  - `.mide-lite/contracts/agent/AgentOutput.schema.json`
-- Keep personas concise: no dead sections, no project-specific paths.
+- **Frontmatter** minimal: `name`, `description` (no other keys).
+- **Contracts**: reference `.mide-lite/contracts/` for inputs/outputs.
+- **Concise**: no dead sections; avoid project-specific paths.
 
 
 ## Testing

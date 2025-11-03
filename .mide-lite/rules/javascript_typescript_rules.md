@@ -10,8 +10,6 @@ alwaysApply: false
 
 # JavaScript & TypeScript Rules
 
-**Official Documentation:** https://developer.mozilla.org/en-US/docs/Web/JavaScript | https://www.typescriptlang.org/docs/
-
 ## Environment
 - **Target**: ES2022+ for JavaScript, TypeScript 5.0+
 - **Runtime**: Node.js 18 LTS minimum (20 LTS preferred)
@@ -48,97 +46,10 @@ alwaysApply: false
 - `SCREAMING_SNAKE_CASE`: true constants only
 - Booleans: `is*`, `has*`, `can*`, `should*`
 
-## React Patterns (18+)
-
-### Official Documentation
-https://react.dev/ | https://nextjs.org/docs
-
-### Server vs Client Components (Next.js App Router)
-- Default to Server Components - faster, more secure
-- Use `'use client'` only for: hooks, browser APIs, interactivity
-- Pass serializable props from Server to Client components
-
-### Component Structure
-- Extract custom hooks for reusable stateful logic
-- Use composition over prop drilling
-- Split when multiple `useState` calls for different concerns
-
-### Hooks Best Practices
-- Follow Rules of Hooks: top level only, functions/hooks only
-- Name custom hooks with `use` prefix
-- Don't overuse `useEffect` - often just need derived state
-- Use `useCallback` only when passing to memoized children
-- Use `useMemo` only for expensive computations (measure first)
-- Keep useEffect dependencies exhaustive
-
-### State Management
-- **Local**: `useState` for component-only state
-- **Lifted**: Share between siblings via common parent
-- **Context**: App-wide state (theme, auth, locale)
-- **URL**: Filters, pagination, search terms
-
-## Next.js Patterns (14+ App Router)
-
-### File Structure
-- Use App Router for new projects
-- Layouts cascade across route segments
-- Use `loading.tsx` and `error.tsx` at route level
-- Dynamic routes with `[param]` folders
-- Route groups `(group)` for organization without URL impact
-
-### Data Fetching
-- Server Components: fetch directly, use cache options
-- `cache: 'force-cache'` for static, `'no-store'` for dynamic
-- `next: { revalidate: 60 }` for ISR
-- Client Components: use TanStack Query or SWR
-
-### Performance
-- Use Next.js Image component for optimization
-- Dynamic imports for code splitting
-- Implement Suspense boundaries
-- Use Metadata API for SEO
-- Optimize fonts with next/font
-
-### API Routes
-- Use Route Handlers (`app/api/*/route.ts`)
-- Export HTTP method functions (GET, POST, etc.)
-
-## Angular Patterns (17+)
-
-### Official Documentation
-https://angular.io/docs
-
-### Modern Patterns
-- Use standalone components, avoid NgModules (deprecated v17+)
-- Use new control flow: `@if`, `@for`, `@switch` (not `*ngIf`, `*ngFor`)
-- Use Signals for reactive state instead of RxJS where appropriate
-- Use `inject()` function over constructor injection
-- Implement OnPush change detection for performance
-
-### Dependency Injection
-- Use injection tokens for non-class dependencies
-- Keep hierarchical injectors for feature isolation
-
-### Forms and Routing
-- Use Reactive Forms with typed FormControl<T>
-- Lazy load routes for performance
-- Use guard functions (not classes) for route protection
-
-## Testing
-
-### Jest/Vitest
-- Co-locate tests: `component.test.ts` next to `component.ts`
-- Use describe/it, avoid deep nesting (max 2 levels)
-- Use beforeEach for setup, avoid shared mutable state
-- Mock at boundaries, not implementation details
-- Keep tests fast (< 50ms) or mark slow tests
-
-### React Testing
-- Use React Testing Library, not Enzyme
-- Query by accessible attributes (role, label), not class/ID
-- Use `waitFor` and `findBy` for async changes
-- Use `@testing-library/user-event` for interactions
-- Test component behavior, not internal state
+## Front-end Frameworks (if applicable)
+- Prefer composition over inheritance; keep components small and pure
+- Use typed props/interfaces and exhaustive dependency arrays
+- Co-locate tests next to components; mock only at boundaries
 
 ## Tooling
 - **ESLint**: With TypeScript parser and recommended rules
@@ -171,18 +82,15 @@ https://angular.io/docs
 - Never use async functions in useEffect without cleanup
 - Don't mix Promise chains with async/await
 
-## Security (See base Security (Global))
-- Prefer framework sanitization APIs; avoid `dangerouslySetInnerHTML` unless data is sanitized.
-- Use httpOnly cookies for tokens; avoid localStorage for secrets.
-- Enforce CSP headers; avoid dynamic eval/Function constructors.
+## Security (see base)
+- Prefer framework sanitization APIs; avoid unsafe HTML injection
+- Use httpOnly cookies for tokens; avoid localStorage for secrets
 
-## Performance (See base Performance (Global))
-- Use `AbortController` and timeouts for fetch/HTTP; avoid unbounded concurrency.
-- Debounce/throttle high-frequency UI events; prefer `requestAnimationFrame` for visual updates.
-- Code-split via dynamic imports; offload CPU work to Web Workers.
+## Performance (see base)
+- Use `AbortController` and timeouts; avoid unbounded concurrency
+- Debounce/throttle high-frequency UI events; use `requestAnimationFrame` when needed
 
 ## When in Doubt
-1. Check TypeScript strict mode errors first
-2. Read official framework documentation
-3. Use ESLint recommended rules
-4. Optimize for readability over cleverness
+1. Fix TypeScript strict errors first
+2. Use ESLint recommended rules
+3. Optimize for readability over cleverness

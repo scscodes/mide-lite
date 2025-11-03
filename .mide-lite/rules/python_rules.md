@@ -7,8 +7,6 @@ alwaysApply: false
 
 # Python Rules
 
-**Official Documentation:** https://docs.python.org/3/
-
 ## Environment
 - **Python**: 3.11+ minimum (3.12+ preferred)
 - **Type checking**: mypy --strict mandatory in CI
@@ -60,28 +58,10 @@ alwaysApply: false
 - Use Arrange-Act-Assert pattern
 - Mock at boundaries (APIs, databases), not internals
 
-## FastAPI Patterns
-
-### Official Documentation
-https://fastapi.tiangolo.com/
-
-- Pydantic models for request/response validation
-- Async endpoint functions for I/O operations
-- Use `Depends()` for dependency injection (DB sessions, auth)
-- Group routes with `APIRouter` by feature
-- Raise `HTTPException` with proper status codes
-- Use lifespan events for startup/shutdown logic
-- Document with descriptions in Pydantic models and endpoint parameters
-
-## Flask Patterns
-
-### Official Documentation
-https://flask.palletsprojects.com/
-
-- Use Application Factory pattern for configuration flexibility
-- Organize with Blueprints by feature module
-- Validate input with Pydantic or marshmallow
-- Use custom error handlers for consistent API errors
+## Async Web Frameworks (if applicable)
+- Prefer typed models and validation at boundaries
+- Group routes by feature; centralize error handling
+- Use dependency injection mechanisms where available
 
 ## Critical Anti-Patterns
 
@@ -111,14 +91,13 @@ Use `pyproject.toml` for centralized tool configuration:
 - mypy: strict mode, python version
 - pytest: asyncio mode, test paths
 
-## Security (See base Security (Global))
-- Use Pydantic BaseSettings for config; never commit secrets.
-- Always use parameterized SQL; avoid string concatenation.
+## Security (see base)
+- Use settings management for config; never commit secrets
+- Parameterize SQL; avoid string concatenation
 
-## Performance (See base Performance (Global))
-- Prefer comprehensions and generator expressions; avoid quadratic loops.
-- Cache pure functions (`functools.cache`) with clear invalidation.
-- Profile before optimizing; avoid blocking the event loop.
+## Performance (see base)
+- Prefer comprehensions/generators; avoid quadratic loops
+- Cache pure functions with clear invalidation; avoid blocking the event loop
 
 ## When in Doubt
 1. Check Python docs and PEPs
