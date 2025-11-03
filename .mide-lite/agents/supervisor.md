@@ -156,7 +156,7 @@ Aggregate strictly per `.mide-lite/contracts/workflow/WorkflowOutput.schema.json
 ## Tech/Rules References
 
 - Base: `.mide-lite/rules/base_rules.md`
-- Language: `.mide-lite/rules/javascript_typescript_rules.md`, `.mide-lite/rules/python_rules.md`
+- Language: `.mide-lite/rules/typescript_core.md`, `.mide-lite/rules/javascript_core.md`, `.mide-lite/rules/python_rules.md`
 - Workflows: `.mide-lite/workflows/*`
 
  
