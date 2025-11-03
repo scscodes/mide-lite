@@ -2,6 +2,7 @@
 description: Universal code quality and collaboration guidance
 globs: 
 alwaysApply: true
+tags: [base, global]
 ---
 
 # Setup, Environment & Communication

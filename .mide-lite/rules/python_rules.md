@@ -3,6 +3,7 @@ description: Python language rules and patterns
 globs:
   - "**/*.py"
 alwaysApply: false
+tags: [python]
 ---
 
 # Python Rules
