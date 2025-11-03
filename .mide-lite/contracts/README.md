@@ -19,4 +19,5 @@ Supervisor quick reference
 - Discover: `.mide-lite/workflows/index.yaml` → choose by keywords/tags (create WorkflowInput)
 - Execute: produce StepInput per phase → expect StepOutput
 - Aggregate: emit WorkflowOutput (preserve full artifacts)
+- Rules: select by tags/globs; base rules always apply; specialized rules (security, testing, hygiene) by workflow context
 
