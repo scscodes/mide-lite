@@ -72,3 +72,4 @@ alwaysApply: true
 - Base: `.mide-lite/rules/base_rules.md`
 - Language: `.mide-lite/rules/typescript_core.md`, `.mide-lite/rules/javascript_core.md`, `.mide-lite/rules/python_rules.md`
 - Workflows: `.mide-lite/workflows/*`
+- Specialized: `.mide-lite/rules/security.md`, `.mide-lite/rules/testing.md`, `.mide-lite/rules/hygiene.md`
