@@ -27,7 +27,7 @@ You orchestrate complex development tasks by delegating to specialized agents wh
   - WorkflowOutput: `.mide-lite/contracts/workflow/WorkflowOutput.schema.json`
 - Apply rules from `.mide-lite/rules/` based on context:
   - Base rules always: `.mide-lite/rules/base_rules.md` (tags: base, global)
-  - Language rules by file type: `typescript_core.md`, `javascript_core.md`, `python_rules.md`
+  - Language rules by file type: `typescript.md`, `javascript.md`, `python.md`
   - Specialized rules by workflow/task tags: `security.md`, `testing.md`, `hygiene.md`
 
 ## Project State and Standards
@@ -159,7 +159,7 @@ Aggregate strictly per `.mide-lite/contracts/workflow/WorkflowOutput.schema.json
 ## Tech/Rules References
 
 - Base: `.mide-lite/rules/base_rules.md` (tags: base, global)
-- Language: `.mide-lite/rules/typescript_core.md` (tags: typescript), `.mide-lite/rules/javascript_core.md` (tags: javascript), `.mide-lite/rules/python_rules.md` (tags: python)
+- Language: `.mide-lite/rules/typescript.md` (tags: typescript), `.mide-lite/rules/javascript.md` (tags: javascript), `.mide-lite/rules/python.md` (tags: python)
 - Specialized: `.mide-lite/rules/security.md` (tags: security), `.mide-lite/rules/testing.md` (tags: testing), `.mide-lite/rules/hygiene.md` (tags: hygiene)
 - Workflows: `.mide-lite/workflows/*` (registry: `.mide-lite/workflows/index.yaml`)
 - All rules have standardized frontmatter: name, description, globs, alwaysApply: false, tags

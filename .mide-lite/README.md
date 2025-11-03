@@ -11,7 +11,8 @@ Use
 Structure
 - Agents: `.mide-lite/agents/`
 - Workflows: `.mide-lite/workflows/` (registry: `.mide-lite/workflows/index.yaml`)
-- Contracts: `.mide-lite/contracts/`
+ - Contracts: `.mide-lite/contracts/`
+ - Rules: `.mide-lite/rules/` (e.g., `base_rules.md`, `typescript.md`, `javascript.md`, `python.md`)
 This directory contains version-controlled static content for the Mide system.
 
 ## Structure
