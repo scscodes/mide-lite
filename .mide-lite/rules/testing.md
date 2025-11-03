@@ -1,6 +1,8 @@
 ---
 name: testing
 description: Testing and observability guidelines
+globs: []
+alwaysApply: false
 tags: [testing]
 ---
 

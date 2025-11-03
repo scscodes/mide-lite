@@ -1,6 +1,8 @@
 ---
 name: hygiene
 description: Project hygiene and artifact lifecycle rules
+globs: []
+alwaysApply: false
 tags: [hygiene]
 ---
 

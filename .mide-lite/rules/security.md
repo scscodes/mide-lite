@@ -1,6 +1,8 @@
 ---
 name: security
 description: Cross-cutting application security rules
+globs: []
+alwaysApply: false
 tags: [security]
 ---
 

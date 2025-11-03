@@ -1,6 +1,10 @@
 ---
 name: javascript_core
 description: Modern JavaScript core rules for scripts and Node tooling
+globs:
+  - "**/*.js"
+  - "**/*.jsx"
+alwaysApply: false
 tags: [javascript]
 ---
 

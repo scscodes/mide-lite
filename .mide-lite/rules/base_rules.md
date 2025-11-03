@@ -1,7 +1,8 @@
 ---
+name: base_rules
 description: Universal code quality and collaboration guidance
-globs: 
-alwaysApply: true
+globs: []
+alwaysApply: false
 tags: [base, global]
 ---
 

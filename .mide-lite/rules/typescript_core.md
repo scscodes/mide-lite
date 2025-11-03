@@ -1,6 +1,10 @@
 ---
 name: typescript_core
 description: TypeScript core rules for strict, maintainable code
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+alwaysApply: false
 tags: [typescript]
 ---
 

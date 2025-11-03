@@ -1,4 +1,5 @@
 ---
+name: python_rules
 description: Python language rules and patterns
 globs:
   - "**/*.py"
