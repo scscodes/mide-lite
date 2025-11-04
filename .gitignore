@@ -137,3 +137,7 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# MIDE-Lite workflow traces (ephemeral artifacts)
+.mide-lite/.traces/
+.mide-lite/.artifacts/

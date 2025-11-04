@@ -68,6 +68,36 @@ Structure output per `.mide-lite/contracts/agent/AgentOutput.schema.json`.
 - ✅ COMPLETE test plans (all test cases, coverage)
 - ❌ NO abbreviations or "see code for details"
 
+**Artifact Tagging (Critical):**
+All artifacts MUST include `metadata` with proper tags. See `.mide-lite/agents/_shared_context.md` for full decision tree.
+
+**User-facing artifacts** (what user requested):
+- `code` (implementation) → `importance: critical, audience: user, promote_to_output: true`
+- `test_plan` (coverage summary) → `importance: high, audience: user, promote_to_output: true`
+
+**Agent-internal artifacts** (for reviewer):
+- `implementation_notes` (decisions, edge cases) → `importance: high, audience: agent, promote_to_output: false`
+- `test_details` (all test cases) → `importance: medium, audience: agent, promote_to_output: false`
+
+**Audit trail artifacts** (for debugging):
+- `implementation_trace` (step-by-step) → `importance: low, audience: audit, promote_to_output: false`
+
+**Example tagged artifact:**
+```json
+{
+  "type": "code",
+  "title": "Authentication Service Implementation",
+  "content": "[COMPLETE code here]",
+  "metadata": {
+    "importance": "critical",
+    "audience": "user",
+    "promote_to_output": true,
+    "lifecycle": "persistent",
+    "created_by": "implementer"
+  }
+}
+```
+
 ## Output Format (Legacy - Use Contract Above)
 
 ```markdown

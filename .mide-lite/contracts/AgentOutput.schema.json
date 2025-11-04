@@ -16,7 +16,47 @@
           "title": { "type": "string" },
           "content": { "type": "string" },
           "description": { "type": "string" },
-          "metadata": { "type": "object" }
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "importance": {
+                "type": "string",
+                "enum": ["critical", "high", "medium", "low"],
+                "default": "medium",
+                "description": "Importance level of this artifact"
+              },
+              "audience": {
+                "type": "string",
+                "enum": ["user", "agent", "audit"],
+                "default": "agent",
+                "description": "Intended audience: user (end-user facing), agent (inter-agent), audit (trace/debug)"
+              },
+              "promote_to_output": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether to include in final user-facing output (opt-in)"
+              },
+              "lifecycle": {
+                "type": "string",
+                "enum": ["persistent", "ephemeral", "intermediate"],
+                "default": "ephemeral",
+                "description": "Artifact lifecycle: persistent (keep), ephemeral (discard), intermediate (agent-use only)"
+              },
+              "size_kb": {
+                "type": "number",
+                "description": "Approximate size in kilobytes"
+              },
+              "created_by": {
+                "type": "string",
+                "description": "Agent that created this artifact"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time",
+                "description": "ISO 8601 timestamp"
+              }
+            }
+          }
         },
         "required": ["type", "title", "content"]
       }
