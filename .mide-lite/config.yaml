@@ -1,0 +1,162 @@
+# MIDE-Lite Supervisor Configuration
+# Controls how the supervisor synthesizes and presents workflow outputs
+
+supervisor:
+  # Output verbosity mode
+  # - minimal: Executive summary only, no artifact content
+  # - balanced: Key findings + top 3 artifacts, rest collapsed
+  # - full: All artifacts with complete content (legacy behavior)
+  output_mode: "balanced"
+
+  # Artifact storage strategy
+  # - ephemeral: Keep artifacts in-response only; no files created (DEFAULT)
+  # - session: Store in temp directory; auto-cleanup after TTL
+  # - persistent: Store in .mide-lite/.traces/; requires user confirmation
+  storage_mode: "ephemeral"
+
+  # Storage location configuration
+  storage:
+    ephemeral:
+      enable_file_storage: false
+      description: "Artifacts live only in supervisor response; no files created"
+
+    session:
+      location: "/tmp/mide-session-{session_id}/"
+      auto_cleanup: true
+      ttl_minutes: 60
+      description: "Temporary storage with automatic cleanup"
+
+    persistent:
+      location: ".mide-lite/.traces/"
+      require_user_confirmation: true
+      gitignore: true
+      description: "Permanent storage; user must explicitly opt-in"
+
+  # Synthesis strategy
+  synthesis:
+    # Maximum artifacts to show in expanded form
+    max_promoted_artifacts: 3
+
+    # Always promote artifacts/findings with these severity levels
+    always_promote_severity: ["critical", "high"]
+
+    # Collapse minor findings into <details> dropdown
+    collapse_minor_findings: true
+
+    # Preserve technical specifics (file paths, line numbers, API names)
+    preserve_technical_details: true
+
+    # Quality gates for synthesis
+    quality_gates:
+      # If agent promotes >50% of artifacts, apply filtering
+      over_promotion_threshold: 0.5
+
+      # Size threshold for auto-demotion (KB)
+      large_artifact_threshold_kb: 10
+
+      # Confidence threshold for full context preservation
+      low_confidence_threshold: 0.6
+
+  # Interactive prompts
+  interactive:
+    # Ask before creating any files in project
+    confirm_before_file_creation: true
+
+    # Offer to save full workflow trace after complex workflows
+    offer_save_option: true
+
+    # Auto-save workflows that meet criteria (even in ephemeral mode)
+    auto_save_criteria:
+      confidence_below: 0.5
+      critical_findings_count: 3
+      blockers_present: true
+
+  # Validation rules
+  validation:
+    # Enable supervisor-side artifact metadata validation
+    enable_validation: true
+
+    # Log artifact tagging statistics for monitoring
+    log_tagging_stats: true
+
+    # Apply type-based overrides when agents mis-tag
+    apply_type_overrides: true
+
+# Artifact type rules (supervisor applies these overrides)
+artifact_type_rules:
+  # Always user-facing
+  user_facing_types:
+    - design_doc
+    - api_contract
+    - adr
+    - deployment_guide
+    - user_documentation
+
+  # Always agent-to-agent (internal)
+  agent_internal_types:
+    - analysis_report
+    - diagnostic_trace
+    - implementation_notes
+    - research_notes
+
+  # Context-dependent (use agent metadata)
+  conditional_types:
+    - review_report  # Promote if critical findings
+    - test_plan      # Promote if coverage issues
+    - code           # Promote if primary deliverable
+
+# Output format templates
+output_templates:
+  minimal:
+    structure: |
+      ## {workflow_name} Complete
+
+      {executive_summary}
+
+      **Outcome:** {outcome_status}
+      **Confidence:** {confidence}
+
+      {critical_blockers_only}
+
+  balanced:
+    structure: |
+      ## {workflow_name} Complete
+
+      {executive_summary}
+
+      ### Critical Items
+      {critical_findings_full_detail}
+
+      ### Key Decisions
+      {decisions_with_rationale}
+
+      ### Next Steps
+      {actionable_next_steps}
+
+      <details>
+      <summary>📊 Additional Findings ({count})</summary>
+      {minor_findings_summary}
+      </details>
+
+      <details>
+      <summary>📦 Artifacts Created ({count})</summary>
+      {artifact_list}
+      </details>
+
+  full:
+    structure: |
+      ## {workflow_name} Complete
+
+      {executive_summary}
+
+      ### All Artifacts
+      {all_artifacts_full_content}
+
+      ### All Decisions
+      {all_decisions}
+
+      ### All Findings
+      {all_findings}
+
+      ### References
+      {all_references}
