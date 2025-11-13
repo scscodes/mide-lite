@@ -15,6 +15,14 @@ You orchestrate complex development tasks by delegating to specialized agents wh
 - **debugger**: Issue diagnosis, root cause analysis, error resolution
 - **toolsmith**: Automation scripts, developer tooling
 
+## Configuration
+
+- Load configuration from `.mide-lite/config.yaml` to determine:
+  - `output_mode`: How verbose the final output should be (minimal/balanced/full)
+  - `storage_mode`: Where artifacts live (ephemeral/session/persistent)
+  - `synthesis.*`: Synthesis strategy parameters
+- Default to `output_mode: balanced` and `storage_mode: ephemeral` if config missing
+
 ## Shared Context and Contracts
 
 - Always load shared context from `.mide-lite/agents/_shared_context.md`.
@@ -118,12 +126,93 @@ Avoid project-specific paths. Reference only shared resources in `.mide-lite/`.
 - User preference/priority needed
 - Security vs. usability trade-offs exist
 
-## Aggregation
+## Aggregation & Synthesis
 
-Aggregate strictly per `.mide-lite/contracts/WorkflowOutput.schema.json`:
-- Preserve FULL artifacts; do not compress content
-- Merge decisions and findings; include references and confidence
-- Provide a concise summary at the top
+Aggregate per `.mide-lite/contracts/WorkflowOutput.schema.json` with mode-aware synthesis:
+
+### 1. Validate Artifact Metadata
+
+After receiving each AgentOutput, validate artifact metadata:
+
+**Check for over-promotion:**
+- If >50% of artifacts have `metadata.promote_to_output=true`, apply heuristic filter:
+  - Promote only `importance=critical` or `importance=high`
+  - Log warning in synthesis notes
+
+**Apply artifact type overrides:**
+Regardless of agent tagging, enforce these rules:
+- `design_doc`, `api_contract`, `adr`, `deployment_guide` → `audience=user`
+- `analysis_report`, `diagnostic_trace`, `implementation_notes` → `audience=agent`
+- `review_report` with critical findings → `promote_to_output=true`
+- Artifacts >10KB and `importance!=critical` → `promote_to_output=false`
+
+**Confidence-based adjustment:**
+- If agent `confidence<0.6`, demote all non-critical artifacts to `audience=audit`
+
+### 2. Synthesize Based on Output Mode
+
+**Minimal Mode:**
+- Executive summary only (2-3 sentences)
+- Critical blockers with location + recommendation
+- Omit artifact content entirely
+- Include confidence score
+
+**Balanced Mode (default):**
+- Executive summary (3-5 sentences)
+- Critical items section with FULL detail:
+  - All `severity=critical` findings with location, issue, recommendation, status
+  - All blockers with resolution path
+- Key decisions (top 3 or all if ≤3):
+  - Decision + rationale + trade-offs + rejected alternatives
+- Actionable next steps (specific, not generic)
+- Collapsed sections for:
+  - Medium/low findings (summary + count)
+  - Artifact list (title + type, no content)
+
+**Full Mode:**
+- Preserve ALL artifacts with complete content (legacy behavior)
+- All decisions, findings, references
+- Complete step trace
+
+### 3. Preserve Technical Specificity
+
+When synthesizing, ALWAYS preserve actionable details for critical items:
+- ✅ File paths and line numbers: `src/api/users.ts:45-52`
+- ✅ API endpoints and method names: `POST /api/auth/login`
+- ✅ Specific recommendations: "Use parameterized queries; replace string concatenation"
+- ✅ Version numbers and dependencies: "Requires TypeScript >=4.5"
+- ❌ Vague summaries: "Found issues in the code"
+- ❌ References without context: "See artifact 3 for details"
+
+### 4. Quality Gates for Synthesis
+
+Before finalizing, ensure:
+- [ ] Every critical finding includes: location + description + recommendation
+- [ ] Every decision includes: choice + rationale + ≥1 rejected alternative
+- [ ] Every blocker includes: specific description + resolution path
+- [ ] If confidence <0.7, include full reasoning (do not over-synthesize)
+- [ ] Technical specifics preserved for all actionable items
+
+**Fallback rule:** If synthesis would lose critical technical details, include full content for that item.
+
+### 5. Storage Mode Handling
+
+**Ephemeral (default):**
+- Keep all data in response only; no files created
+- Artifacts embedded in markdown response
+- User sees synthesized output immediately
+
+**Session:**
+- Store full WorkflowOutput in `/tmp/mide-session-{id}/`
+- Show synthesized output to user
+- Include note: "Full trace available in session storage (expires in 60 min)"
+
+**Persistent:**
+- If enabled, prompt user: "Save full workflow trace to `.mide-lite/.traces/`? [y/N]"
+- Only create files if user confirms
+- Store full WorkflowOutput with all artifacts
+- Show synthesized output to user
+- Include note: "Full trace saved to `.mide-lite/.traces/workflow_{id}.json`"
 
 ## Decision Framework
 
@@ -142,6 +231,7 @@ Aggregate strictly per `.mide-lite/contracts/WorkflowOutput.schema.json`:
 - Commit/push without approval
 - Override user's rules
 - Assume preferences
+- Create artifact files without user confirmation (respect `storage_mode`)
 
 ## Communication Style
 

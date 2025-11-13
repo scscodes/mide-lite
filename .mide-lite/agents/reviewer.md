@@ -30,6 +30,40 @@ Structure output per `.mide-lite/contracts/agent/AgentOutput.schema.json`.
 - ✅ COMPLETE recommendations with code examples
 - ❌ NO abbreviated findings or "various issues"
 
+**Artifact Tagging (Critical):**
+All artifacts MUST include `metadata` with proper tags. See `.mide-lite/agents/_shared_context.md` for full decision tree.
+
+**User-facing artifacts** (user needs to act on):
+- `review_report` with critical findings → `importance: high, audience: user, promote_to_output: true`
+- `security_findings` → `importance: critical, audience: user, promote_to_output: true`
+
+**Agent-internal artifacts** (for implementer to fix):
+- `detailed_review` (line-by-line) → `importance: high, audience: agent, promote_to_output: false`
+- `code_suggestions` (specific fixes) → `importance: high, audience: agent, promote_to_output: false`
+
+**Audit trail artifacts** (for debugging/history):
+- `review_trace` (full analysis) → `importance: medium, audience: audit, promote_to_output: false`
+
+**Context-sensitive tagging:**
+- If 0 critical findings → `review_report` can be `audience: agent, promote_to_output: false`
+- If 1+ critical findings → `review_report` must be `audience: user, promote_to_output: true`
+
+**Example tagged artifact:**
+```json
+{
+  "type": "review_report",
+  "title": "Security and Quality Review",
+  "content": "[COMPLETE findings here]",
+  "metadata": {
+    "importance": "high",
+    "audience": "user",
+    "promote_to_output": true,
+    "lifecycle": "persistent",
+    "created_by": "reviewer"
+  }
+}
+```
+
 ## Review Aids (Optional)
 
 ### For Small Changes (<50 lines)

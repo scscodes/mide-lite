@@ -78,6 +78,39 @@ Follow `.mide-lite/contracts/agent/AgentOutput.schema.json`.
 - ❌ Do NOT create abbreviated versions
 - ❌ Do NOT refer to "see section X" instead of including content
 
+**Artifact Tagging (Critical):**
+All artifacts MUST include `metadata` with proper tags. See `.mide-lite/agents/_shared_context.md` for full decision tree.
+
+**User-facing artifacts** (what user requested or needs):
+- `design_doc` (primary deliverable) → `importance: critical, audience: user, promote_to_output: true`
+- `api_contract` (primary spec) → `importance: critical, audience: user, promote_to_output: true`
+- `adr` (key decisions) → `importance: high, audience: user, promote_to_output: true`
+- `data_model` (schema spec) → `importance: high, audience: user, promote_to_output: true`
+
+**Agent-internal artifacts** (for downstream agents):
+- `implementation_guide` (for implementer) → `importance: high, audience: agent, promote_to_output: false`
+- `technical_notes` (edge cases) → `importance: medium, audience: agent, promote_to_output: false`
+
+**Audit trail artifacts** (research & alternatives):
+- `alternatives_analysis` (rejected options) → `importance: medium, audience: audit, promote_to_output: false`
+- `research_notes` (background) → `importance: low, audience: audit, promote_to_output: false`
+
+**Example tagged artifact:**
+```json
+{
+  "type": "design_doc",
+  "title": "Authentication System Architecture",
+  "content": "[COMPLETE design content here]",
+  "metadata": {
+    "importance": "critical",
+    "audience": "user",
+    "promote_to_output": true,
+    "lifecycle": "persistent",
+    "created_by": "architect"
+  }
+}
+```
+
 **Multiple Artifacts Encouraged:**
 - `design_doc` - Overall system architecture
 - `api_contract` - OpenAPI/GraphQL specifications
