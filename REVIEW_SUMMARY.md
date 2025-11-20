@@ -86,7 +86,7 @@ The supervisor is the **gateway for all actions**, but key sections lacked promi
 ## Task 3: Artifact Management Solution ✅
 
 ### Problem Identified
-Models frequently create **excessive temporary files** (ANALYSIS.md, REPORT.md, PLAN.md, etc.) that clutter the project and violate the "ephemeral by default" principle.
+Models frequently create **excessive temporary files** (ANALYSIS.md, REPORT.md, PLAN.md, etc.) that clutter the workspace and violate the "ephemeral by default" principle.
 
 ### Solution Designed
 
@@ -95,7 +95,7 @@ Models frequently create **excessive temporary files** (ANALYSIS.md, REPORT.md, 
 #### Core Concept
 **Scratch Directory System** that:
 1. Intercepts file creation attempts
-2. Redirects temporary files to `.mide-lite/.scratch/`
+2. Redirects temporary files to `scratch/`
 3. Gates important files with user prompts
 4. Auto-cleans based on configurable rules
 
@@ -110,12 +110,12 @@ prompt_patterns:         # Ask user where to save
   - *_DESIGN.md, ARCHITECTURE.md, ADR-*.md
 
 never_intercept:         # Always allow in project
-  - README.md, docs/**, .mide-lite/**
+  - README.md, docs/**, mide-lite/**
 ```
 
 **2. Scratch Directory Structure**
 ```
-.mide-lite/.scratch/
+scratch/                 # Top-level scratch workspace
   session-{id}/          # Per-session isolation
     001-agent-artifact.md
   _index.json            # Artifact tracking registry
@@ -134,15 +134,15 @@ never_intercept:         # Always allow in project
 
 #### Implementation Touchpoints
 
-1. **`.mide-lite/config.yaml`** - Add `artifact_files` configuration section
-2. **`.mide-lite/agents/_shared_context.md`** - Add file management guidelines
-3. **`.mide-lite/agents/supervisor.md`** - Add interception logic
-4. **`.gitignore`** - Exclude `.mide-lite/.scratch/` (except .gitkeep)
-5. **`.mide-lite/.scratch/_index.json`** - Create artifact registry schema
+1. **`mide-lite/config.yaml`** - Add `artifact_files` configuration section
+2. **`mide-lite/agents/_shared_context.md`** - Add file management guidelines
+3. **`mide-lite/agents/supervisor.md`** - Add interception logic
+4. **`.gitignore`** - Exclude `scratch/` (except .gitkeep)
+5. **`scratch/_index.json`** - Create artifact registry schema
 
 ### Impact
-- ✅ **Zero project clutter** - Temp files never in project root
-- ✅ **Portable** - Self-contained in .mide-lite/
+- ✅ **Zero workspace clutter** - Temp files isolated in scratch/
+- ✅ **Self-contained** - All content in mide-lite/, scratch/, traces/
 - ✅ **Auto-cleanup** - Old files automatically removed
 - ✅ **User control** - Prompts for important files
 - ✅ **Backward compatible** - Opt-in feature
@@ -154,17 +154,17 @@ never_intercept:         # Always allow in project
 ## Files Modified
 
 ### Agent Files (Dead Code Removal)
-- `.mide-lite/agents/implementer.md`
-- `.mide-lite/agents/debugger.md`
-- `.mide-lite/agents/security-specialist.md`
-- `.mide-lite/agents/performance-engineer.md`
-- `.mide-lite/agents/devops-engineer.md`
-- `.mide-lite/agents/documentation-specialist.md`
-- `.mide-lite/agents/maintainer.md`
-- `.mide-lite/agents/architect.md`
+- `mide-lite/agents/implementer.md`
+- `mide-lite/agents/debugger.md`
+- `mide-lite/agents/security-specialist.md`
+- `mide-lite/agents/performance-engineer.md`
+- `mide-lite/agents/devops-engineer.md`
+- `mide-lite/agents/documentation-specialist.md`
+- `mide-lite/agents/maintainer.md`
+- `mide-lite/agents/architect.md`
 
 ### Supervisor File (Optimization)
-- `.mide-lite/agents/supervisor.md`
+- `mide-lite/agents/supervisor.md`
 
 ### Documentation Created
 - `SCRATCH_DIRECTORY_PROPOSAL.md` - Complete artifact management specification
@@ -211,7 +211,7 @@ never_intercept:         # Always allow in project
 ✅ **Designed artifact solution** - Addresses file proliferation problem
 
 ### Philosophy Maintained
-✅ **Portable** - All solutions self-contained in .mide-lite/
+✅ **Self-contained** - All workspace content in mide-lite/, scratch/, traces/
 ✅ **Zero dependencies** - No external tools/services required
 ✅ **Easy to manage** - Configuration-driven, not code-driven
 ✅ **Backward compatible** - All changes opt-in or non-breaking
@@ -241,7 +241,7 @@ The mide-lite project is **healthy, well-architected, and production-ready**. Th
 - Enhanced the critical supervisor gateway for better decision-making
 - Designed a lightweight solution for artifact management
 
-All changes maintain the project's core principles: **portable, zero-dependency, easy-to-manage, and minimal overhead**.
+All changes maintain the project's core principles: **self-contained, zero-dependency, easy-to-manage, and minimal overhead**.
 
 ---
 

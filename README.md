@@ -1,6 +1,6 @@
 # mide-lite
 
-> **Portable multi-agent AI framework** for orchestrating specialized AI agents in development workflows. No dependencies, no cost, no hassle. Drag, drop, prompt.
+> **Self-contained multi-agent AI framework** for orchestrating specialized AI agents in development workflows. No dependencies, no cost, no hassle. Add to workspace, prompt, done.
 
 Multi-agent AI systems are reshaping how we approach complex development tasks. Unlike monolithic AI assistants, **mide-lite** enables a team of specialized agents (architect, implementer, reviewer, debugger, etc.) to collaborate through structured workflows, ensuring consistency and quality.
 
@@ -17,16 +17,16 @@ I perpetually refactor. Agents help, but need coaching. What started as prompts,
 
 ## Quickstart (<30 seconds)
 
-1. Copy the `.mide-lite/` folder into the root of your project.
+1. Add this project directory to your workspace in your AI assistant (Cursor/Claude/Copilot).
 
-2. In your AI assistant (Cursor/Claude/Copilot), give it this instruction:
+2. In your AI assistant, give it this instruction:
 
    ```text
-   You are the "supervisor" agent from .mide-lite.
-   
-   - Discover workflows from .mide-lite/workflows/index.yaml
+   You are the "supervisor" agent from mide-lite.
+
+   - Discover workflows from mide-lite/workflows/index.yaml
    - Use the "bug-fix" or "feature-development" workflow as appropriate
-   - Respect contracts in .mide-lite/contracts and rules in .mide-lite/rules
+   - Respect contracts in mide-lite/contracts and rules in mide-lite/rules
    ```
 
 3. Ask it to run a workflow:
@@ -73,21 +73,22 @@ structured outputs (JSON contracts + code changes)
 ## Key Features
 
 - **Focused Expertise**: Each agent has a specific role, leading to higher quality outputs than general-purpose assistants
-- **Portable & Zero-Config**: Drop `.mide-lite/` into any project—no dependencies, no setup
+- **Self-Contained & Zero-Config**: Add to your workspace—no dependencies, no setup, no installation
 - **Contract-Driven**: Structured schemas enforce consistency at all communication boundaries
 - **Context-Aware**: Rules automatically apply based on file types and workflow context
 - **Deterministic Workflows**: Workflow registry enables predictable agent orchestration for common tasks
 
 ## Architecture
 
-All of mide-lite lives in a single folder so it's easy to copy between projects:
+All of mide-lite lives in a single directory that you add to your workspace:
 
 ```
-.mide-lite/
+mide-lite/
   agents/       # Personas for focused tasks
   workflows/    # Workflow templates + registry
   contracts/    # JSON schemas for inputs/outputs
   rules/        # Tag-aware rules for code & hygiene
+scratch/        # Temporary artifacts (auto-cleaned)
 ```
 
 **Core Agents:** supervisor (orchestrator), architect, implementer, reviewer, debugger
@@ -112,9 +113,9 @@ This framework demonstrates feasibility of building production-ready multi-agent
 
 You customize behavior by editing files, not code:
 
-- **Workflows**: Update or add entries in `.mide-lite/workflows/index.yaml`
-- **Contracts**: Evolve JSON schemas in `.mide-lite/contracts/` as your automation matures
+- **Workflows**: Update or add entries in `mide-lite/workflows/index.yaml`
+- **Contracts**: Evolve JSON schemas in `mide-lite/contracts/` as your automation matures
 - **Rules**: Add language-/domain-specific markdown files and tags
 - **Agents**: Keep personas lean; reference contracts and rules, avoid project-specific paths
 
-All components are portable—avoid project-specific paths to maintain framework portability.
+All components are self-contained—agents reference only paths within this workspace.

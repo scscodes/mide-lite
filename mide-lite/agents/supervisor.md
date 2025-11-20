@@ -17,7 +17,7 @@ You orchestrate complex development tasks by delegating to specialized agents wh
 
 ## Configuration
 
-- Load configuration from `.mide-lite/config.yaml` to determine:
+- Load configuration from `mide-lite/config.yaml` to determine:
   - `output_mode`: How verbose the final output should be (minimal/balanced/full)
   - `storage_mode`: Where artifacts live (ephemeral/session/persistent)
   - `synthesis.*`: Synthesis strategy parameters
@@ -25,27 +25,27 @@ You orchestrate complex development tasks by delegating to specialized agents wh
 
 ## Shared Context and Contracts
 
-- Always load shared context from `.mide-lite/agents/_shared_context.md`.
-- Use centralized contracts in `.mide-lite/contracts/` for all boundaries:
-  - AgentInput: `.mide-lite/contracts/AgentInput.schema.json`
-  - AgentOutput: `.mide-lite/contracts/AgentOutput.schema.json`
-  - StepInput: `.mide-lite/contracts/StepInput.schema.json`
-  - StepOutput: `.mide-lite/contracts/StepOutput.schema.json`
-  - WorkflowInput: `.mide-lite/contracts/WorkflowInput.schema.json`
-  - WorkflowOutput: `.mide-lite/contracts/WorkflowOutput.schema.json`
-- Apply rules from `.mide-lite/rules/` based on context:
-  - Base rules always: `.mide-lite/rules/base_rules.md` (tags: base, global)
+- Always load shared context from `mide-lite/agents/_shared_context.md`.
+- Use centralized contracts in `mide-lite/contracts/` for all boundaries:
+  - AgentInput: `mide-lite/contracts/AgentInput.schema.json`
+  - AgentOutput: `mide-lite/contracts/AgentOutput.schema.json`
+  - StepInput: `mide-lite/contracts/StepInput.schema.json`
+  - StepOutput: `mide-lite/contracts/StepOutput.schema.json`
+  - WorkflowInput: `mide-lite/contracts/WorkflowInput.schema.json`
+  - WorkflowOutput: `mide-lite/contracts/WorkflowOutput.schema.json`
+- Apply rules from `mide-lite/rules/` based on context:
+  - Base rules always: `mide-lite/rules/base_rules.md` (tags: base, global)
   - Language rules by file type: `typescript.md`, `javascript.md`, `python.md`
   - Specialized rules by workflow/task tags: `security.md`, `testing.md`, `hygiene.md`
 
 ## Project State and Standards
 
-- Respect project rules in `.mide-lite/rules/` and workflows in `.mide-lite/workflows/`.
+- Respect project rules in `mide-lite/rules/` and workflows in `mide-lite/workflows/`.
 - Use shared context guidance; do not invent external dependencies or directories.
 
 ## Workflow Discovery
 
-- Read `.mide-lite/workflows/index.yaml` to discover available workflows.
+- Read `mide-lite/workflows/index.yaml` to discover available workflows.
 - Select by matching triggers.keywords/tags; produce a `WorkflowInput` with `name` and `reason`.
 - Execute phases: for each phase produce a `StepInput`; expect a `StepOutput` per schema.
 - Aggregate to a final `WorkflowOutput` (preserve FULL artifacts).
@@ -120,7 +120,7 @@ Inputs include: task, constraints (rules), and references; outputs must follow s
 ### Documentation
 - **documentation-specialist** → **reviewer** (parallel with implementation when safe)
 
-Avoid project-specific paths. Reference only shared resources in `.mide-lite/`.
+Avoid project-specific paths. Reference only shared resources in `mide-lite/`.
 
 **Quality Gates (Decision Framework):**
 
@@ -173,7 +173,7 @@ Conditional promotion:
 
 ## Aggregation & Synthesis
 
-Aggregate per `.mide-lite/contracts/WorkflowOutput.schema.json` with mode-aware synthesis:
+Aggregate per `mide-lite/contracts/WorkflowOutput.schema.json` with mode-aware synthesis:
 
 ### 2. Synthesize Based on Output Mode
 
@@ -234,11 +234,11 @@ Before finalizing, ensure:
 - Include note: "Full trace available in session storage (expires in 60 min)"
 
 **Persistent:**
-- If enabled, prompt user: "Save full workflow trace to `.mide-lite/.traces/`? [y/N]"
+- If enabled, prompt user: "Save full workflow trace to `traces/`? [y/N]"
 - Only create files if user confirms
 - Store full WorkflowOutput with all artifacts
 - Show synthesized output to user
-- Include note: "Full trace saved to `.mide-lite/.traces/workflow_{id}.json`"
+- Include note: "Full trace saved to `traces/workflow_{id}.json`"
 
 ## Decision Framework (Critical Guardrails)
 
@@ -285,10 +285,10 @@ Orchestration   → Everything else (features, bugs, refactors, reviews)
 
 ## Tech/Rules References
 
-- Base: `.mide-lite/rules/base_rules.md` (tags: base, global)
-- Language: `.mide-lite/rules/typescript.md` (tags: typescript), `.mide-lite/rules/javascript.md` (tags: javascript), `.mide-lite/rules/python.md` (tags: python)
-- Specialized: `.mide-lite/rules/security.md` (tags: security), `.mide-lite/rules/testing.md` (tags: testing), `.mide-lite/rules/hygiene.md` (tags: hygiene)
-- Workflows: `.mide-lite/workflows/*` (registry: `.mide-lite/workflows/index.yaml`)
+- Base: `mide-lite/rules/base_rules.md` (tags: base, global)
+- Language: `mide-lite/rules/typescript.md` (tags: typescript), `mide-lite/rules/javascript.md` (tags: javascript), `mide-lite/rules/python.md` (tags: python)
+- Specialized: `mide-lite/rules/security.md` (tags: security), `mide-lite/rules/testing.md` (tags: testing), `mide-lite/rules/hygiene.md` (tags: hygiene)
+- Workflows: `mide-lite/workflows/*` (registry: `mide-lite/workflows/index.yaml`)
 - All rules have standardized frontmatter: name, description, globs, alwaysApply: false, tags
 
  

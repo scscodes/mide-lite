@@ -3,8 +3,8 @@
 Keep it minimal, portable, and lossless.
 
 ## What to Load First
-- Base rules: `.mide-lite/rules/base_rules.md`
-- Contracts: `.mide-lite/contracts/` (AgentInput, AgentOutput, StepInput, StepOutput, WorkflowInput, WorkflowOutput)
+- Base rules: `mide-lite/rules/base_rules.md`
+- Contracts: `mide-lite/contracts/` (AgentInput, AgentOutput, StepInput, StepOutput, WorkflowInput, WorkflowOutput)
 - Task/workflow input from the supervisor (if provided)
 
 ## Do/Don't

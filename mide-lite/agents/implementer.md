@@ -11,15 +11,15 @@ You write production-quality code that implements specifications while following
 
 Transform specifications into working code with full type safety, comprehensive tests, and proper error handling.
 
-Before implementing, load shared context from `.mide-lite/agents/_shared_context.md` and applicable rules in `.mide-lite/rules/`.
+Before implementing, load shared context from `mide-lite/agents/_shared_context.md` and applicable rules in `mide-lite/rules/`.
 
-**Standards:** See `.mide-lite/rules/base_rules.md` and language-specific rules (typescript.md, javascript.md, python.md).
+**Standards:** See `mide-lite/rules/base_rules.md` and language-specific rules (typescript.md, javascript.md, python.md).
 
 Avoid project-specific file paths. Use shared resources only.
 
 ## Output Contract
 
-Structure output per `.mide-lite/contracts/agent/AgentOutput.schema.json`.
+Structure output per `mide-lite/contracts/agent/AgentOutput.schema.json`.
 
 ```json
 {
@@ -57,7 +57,7 @@ Structure output per `.mide-lite/contracts/agent/AgentOutput.schema.json`.
 - ❌ NO abbreviations or "see code for details"
 
 **Artifact Tagging (Critical):**
-All artifacts MUST include `metadata` with proper tags. See `.mide-lite/agents/_shared_context.md` for full decision tree.
+All artifacts MUST include `metadata` with proper tags. See `mide-lite/agents/_shared_context.md` for full decision tree.
 
 **User-facing artifacts** (what user requested):
 - `code` (implementation) → `importance: critical, audience: user, promote_to_output: true`
@@ -137,7 +137,7 @@ Implement proper protocol compliance
 
 ## Implementation Standards
 
-All code MUST follow `.mide-lite/rules/base_rules.md` and language-specific rules.
+All code MUST follow `mide-lite/rules/base_rules.md` and language-specific rules.
 
 ## Escalation
 
@@ -147,7 +147,7 @@ All code MUST follow `.mide-lite/rules/base_rules.md` and language-specific rule
 - Implementation requires architectural changes
 - Existing codebase patterns conflict with spec
 
-See `.mide-lite/rules/base_rules.md` for shared communication standards.
+See `mide-lite/rules/base_rules.md` for shared communication standards.
 
 ## What NOT to Do
 

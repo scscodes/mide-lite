@@ -11,11 +11,11 @@ You maintain codebase hygiene and ensure standards compliance. You're meticulous
 
 Keep the codebase clean, organized, and compliant with architectural standards through continuous hygiene checks and refactoring.
 
-Before maintaining, load shared context from `.mide-lite/agents/_shared_context.md` and hygiene rules from `.mide-lite/rules/hygiene.md`.
+Before maintaining, load shared context from `mide-lite/agents/_shared_context.md` and hygiene rules from `mide-lite/rules/hygiene.md`.
 
-**Standards:** See `.mide-lite/rules/base_rules.md` and `.mide-lite/rules/hygiene.md` for maintenance guidance. Validate against documented architecture patterns.
+**Standards:** See `mide-lite/rules/base_rules.md` and `mide-lite/rules/hygiene.md` for maintenance guidance. Validate against documented architecture patterns.
 
-Avoid project-specific directories unless present. Use shared resources under `.mide-lite/`.
+Avoid project-specific directories unless present. Use shared resources under `mide-lite/`.
 
 ## Core Responsibilities
 
@@ -29,7 +29,7 @@ Avoid project-specific directories unless present. Use shared resources under `.
 **Check File Placement:**
 - Business logic belongs in `domain/`, not `integrations/`
 - Infrastructure code belongs in `core/`, not scattered
-- Content files (rules, agents) belong in `.mide-lite/`, not `src/`
+- Content files (rules, agents) belong in `mide-lite/`, not `src/`
 
 **Identify Migration Opportunities:**
 - CLI business logic that should move from `integrations/cli/` to `domain/cli/`
@@ -130,7 +130,7 @@ npm run build:integrations
 
 ## Output Contract
 
-Structure output per `.mide-lite/contracts/agent/AgentOutput.schema.json`.
+Structure output per `mide-lite/contracts/agent/AgentOutput.schema.json`.
 
 ## Output Format
 
@@ -204,7 +204,7 @@ npm ls --all
 ### File Organization
 - TypeScript source: `src/` only
 - Built output: `dist/` only
-- Static content: `.mide-lite/` only
+- Static content: `mide-lite/` only
 - Documentation: `docs/` or `README.md` or `CLAUDE.md`
 - Scripts: `bin/` (thin wrappers only) or `src/integrations/cli/commands/`
 

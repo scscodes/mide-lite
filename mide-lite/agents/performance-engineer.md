@@ -11,15 +11,15 @@ You are a performance optimization expert focused on identifying bottlenecks, im
 
 Analyze system performance, identify bottlenecks, and provide optimization recommendations while ensuring scalable and maintainable performance improvements.
 
-Before analyzing, load shared context from `.mide-lite/agents/_shared_context.md` and applicable rules in `.mide-lite/rules/`.
+Before analyzing, load shared context from `mide-lite/agents/_shared_context.md` and applicable rules in `mide-lite/rules/`.
 
-**Standards:** See `.mide-lite/rules/base_rules.md` and language-specific rules (typescript.md, javascript.md, python.md).
+**Standards:** See `mide-lite/rules/base_rules.md` and language-specific rules (typescript.md, javascript.md, python.md).
 
 Avoid project-specific file paths. Use shared resources only.
 
 ## Output Contract
 
-Structure output per `.mide-lite/contracts/agent/AgentOutput.schema.json`.
+Structure output per `mide-lite/contracts/agent/AgentOutput.schema.json`.
 
 ## Output Format
 

@@ -14,7 +14,7 @@ Models frequently create excessive temporary files (ANALYSIS.md, REPORT.md, PLAN
 
 **Scratch Directory Structure:**
 ```
-.mide-lite/
+mide-lite/
   .scratch/           # NEW: Scratch workspace (git-ignored)
     session-{id}/     # Per-session isolation
       {timestamp}-{agent}-{type}.md
@@ -23,7 +23,7 @@ Models frequently create excessive temporary files (ANALYSIS.md, REPORT.md, PLAN
 
 **Example:**
 ```
-.mide-lite/.scratch/
+scratch/
   session-20250120-abc123/
     001-supervisor-workflow-output.json
     002-architect-design-doc.md
@@ -61,14 +61,14 @@ scratch_patterns:
     - "CHANGELOG.md"
     - "LICENSE.md"
     - "docs/**/*.md"
-    - ".mide-lite/agents/**"
-    - ".mide-lite/workflows/**"
-    - ".mide-lite/rules/**"
+    - "mide-lite/agents/**"
+    - "mide-lite/workflows/**"
+    - "mide-lite/rules/**"
 ```
 
 ### 3. Implementation Touchpoints
 
-#### A. Configuration Extension (`.mide-lite/config.yaml`)
+#### A. Configuration Extension (`mide-lite/config.yaml`)
 
 **Add new section:**
 ```yaml
@@ -83,7 +83,7 @@ supervisor:
     enable_scratch_directory: true
 
     # Scratch directory location
-    scratch_location: ".mide-lite/.scratch/"
+    scratch_location: "scratch/"
 
     # Auto-cleanup rules
     auto_cleanup:
@@ -121,17 +121,17 @@ supervisor:
         - "README.md"
         - "CHANGELOG.md"
         - "docs/**/*.md"
-        - ".mide-lite/**"
+        - "mide-lite/**"
 ```
 
-#### B. Shared Context Update (`.mide-lite/agents/_shared_context.md`)
+#### B. Shared Context Update (`mide-lite/agents/_shared_context.md`)
 
 **Add new section after "Documentation & File Hygiene":**
 ```markdown
 ## Artifact File Management (IMPORTANT)
 
 **Scratch Directory for Temporary Artifacts:**
-- Temporary analysis files (ANALYSIS.md, REPORT.md, PLAN.md, etc.) are automatically redirected to `.mide-lite/.scratch/`
+- Temporary analysis files (ANALYSIS.md, REPORT.md, PLAN.md, etc.) are automatically redirected to `scratch/`
 - Never create temporary files in project root or src directories
 - Use artifact metadata to control output (see Artifact Tagging section)
 
@@ -155,7 +155,7 @@ supervisor:
 Agent wants to create: "ANALYSIS.md"
   ↓
 Does filename match auto_redirect_patterns?
-  ├─ YES → Automatically redirect to .mide-lite/.scratch/session-{id}/
+  ├─ YES → Automatically redirect to scratch/session-{id}/
   └─ NO  → Continue...
 
 Does filename match prompt_patterns?
@@ -168,7 +168,7 @@ Does filename match never_intercept_patterns?
 ```
 ```
 
-#### C. Supervisor Agent Update (`.mide-lite/agents/supervisor.md`)
+#### C. Supervisor Agent Update (`mide-lite/agents/supervisor.md`)
 
 **Add new section after "Storage Mode Handling":**
 ```markdown
@@ -182,7 +182,7 @@ When agents attempt to create temporary files, intercept and redirect to scratch
 1. Agent proposes file creation (e.g., "ANALYSIS.md")
 2. Supervisor checks against `artifact_files.interception` rules
 3. Apply decision:
-   - **auto_redirect_patterns** → Silently redirect to `.mide-lite/.scratch/session-{id}/`
+   - **auto_redirect_patterns** → Silently redirect to `scratch/session-{id}/`
    - **prompt_patterns** → Ask user: "Save to project or scratch?"
    - **never_intercept_patterns** → Allow in project
    - **default** → Apply storage_mode rules
@@ -190,12 +190,12 @@ When agents attempt to create temporary files, intercept and redirect to scratch
 **User Messaging:**
 ```text
 # When files are redirected to scratch:
-"Working files saved to .mide-lite/.scratch/session-abc123/ (auto-cleaned in 7 days)"
+"Working files saved to scratch/session-abc123/ (auto-cleaned in 7 days)"
 
 # When prompting for location:
 "Save ARCHITECTURE_DESIGN.md to:
   1. Project (docs/) - permanent, version controlled
-  2. Scratch (.mide-lite/.scratch/) - temporary, auto-cleaned
+  2. Scratch (scratch/) - temporary, auto-cleaned
 
 Your choice: [1/2]"
 ```
@@ -207,29 +207,29 @@ Your choice: [1/2]"
 
 **Preserve Referenced Artifacts:**
 - If artifact is referenced in persistent trace → Keep in scratch
-- If user saves workflow to `.mide-lite/.traces/` → Keep referenced scratch files
-- Add note: "Referenced scratch files preserved in .mide-lite/.scratch/preserved/"
+- If user saves workflow to `traces/` → Keep referenced scratch files
+- Add note: "Referenced scratch files preserved in scratch/preserved/"
 ```
 
-#### D. Gitignore Update (`.gitignore` or `.mide-lite/.gitignore`)
+#### D. Gitignore Update (`.gitignore` or `mide-lite/.gitignore`)
 
 **Add:**
 ```gitignore
 # Scratch directory for temporary agent artifacts
-.mide-lite/.scratch/
+scratch/
 
 # Exception: Preserve the directory structure
-!.mide-lite/.scratch/.gitkeep
+!scratch/.gitkeep
 ```
 
-**Create `.mide-lite/.scratch/.gitkeep`:**
+**Create `scratch/.gitkeep`:**
 ```
 # This directory contains temporary agent artifacts
 # Files here are automatically cleaned based on config.yaml rules
 # See SCRATCH_DIRECTORY_PROPOSAL.md for details
 ```
 
-#### E. Index File Schema (`.mide-lite/.scratch/_index.json`)
+#### E. Index File Schema (`scratch/_index.json`)
 
 **Purpose:** Track all scratch artifacts for cleanup and discovery
 
@@ -329,11 +329,11 @@ Supervisor: Orchestrates → Architect, Reviewer
   ↓
 Architect creates: "ANALYSIS.md" (matches auto_redirect_patterns)
   ↓
-Supervisor: Silently redirects to .mide-lite/.scratch/session-abc/001-architect-analysis.md
+Supervisor: Silently redirects to scratch/session-abc/001-architect-analysis.md
   ↓
 Supervisor: Synthesizes output (user sees synthesized results, not file)
   ↓
-User sees: "Analysis complete. Working files in .mide-lite/.scratch/ (auto-cleaned in 7 days)"
+User sees: "Analysis complete. Working files in scratch/ (auto-cleaned in 7 days)"
 ```
 
 #### Flow 2: Prompted Save (User Choice)
@@ -347,11 +347,11 @@ Architect creates: "AUTH_ARCHITECTURE_DESIGN.md" (matches prompt_patterns)
 Supervisor: Prompts user:
   "Save AUTH_ARCHITECTURE_DESIGN.md to:
    1. Project (docs/architecture/) - permanent
-   2. Scratch (.mide-lite/.scratch/) - temporary
+   2. Scratch (scratch/) - temporary
    Your choice: [1/2]"
   ↓
 User selects 1 → File saved to docs/architecture/
-User selects 2 → File saved to .mide-lite/.scratch/
+User selects 2 → File saved to scratch/
 ```
 
 #### Flow 3: Persistent Trace with References
@@ -360,23 +360,23 @@ User: "Run bug-fix workflow and save trace"
   ↓
 Supervisor: Executes workflow → Multiple agents create scratch files
   ↓
-Supervisor: "Save full workflow trace to .mide-lite/.traces/? [y/N]"
+Supervisor: "Save full workflow trace to traces/? [y/N]"
   ↓
 User: "y"
   ↓
 Supervisor:
-  - Saves workflow trace to .mide-lite/.traces/workflow-abc123.json
+  - Saves workflow trace to traces/workflow-abc123.json
   - Preserves referenced scratch artifacts
-  - Moves them to .mide-lite/.scratch/preserved/
+  - Moves them to scratch/preserved/
   - Updates _index.json: preserve=true
   ↓
-User sees: "Trace saved. Referenced artifacts preserved in .mide-lite/.scratch/preserved/"
+User sees: "Trace saved. Referenced artifacts preserved in scratch/preserved/"
 ```
 
 ### 7. Benefits
 
 ✅ **Reduces Clutter:** Temporary files never pollute project root
-✅ **Maintains Portability:** Scratch is self-contained in .mide-lite/
+✅ **Maintains Portability:** Scratch is self-contained in mide-lite/
 ✅ **Auto-Cleanup:** Old scratch files automatically removed
 ✅ **User Control:** Prompt for important files, auto-redirect temp files
 ✅ **Backward Compatible:** Opt-in, doesn't break existing workflows
@@ -386,13 +386,13 @@ User sees: "Trace saved. Referenced artifacts preserved in .mide-lite/.scratch/p
 
 ### 8. Implementation Checklist
 
-- [ ] Update `.mide-lite/config.yaml` with `artifact_files` section
-- [ ] Update `.mide-lite/agents/_shared_context.md` with file management rules
-- [ ] Update `.mide-lite/agents/supervisor.md` with interception logic
-- [ ] Create `.mide-lite/.scratch/` directory structure
-- [ ] Create `.mide-lite/.scratch/.gitkeep` placeholder
-- [ ] Update `.gitignore` to exclude `.mide-lite/.scratch/` (except .gitkeep)
-- [ ] Create `.mide-lite/.scratch/_index.json` schema
+- [ ] Update `mide-lite/config.yaml` with `artifact_files` section
+- [ ] Update `mide-lite/agents/_shared_context.md` with file management rules
+- [ ] Update `mide-lite/agents/supervisor.md` with interception logic
+- [ ] Create `scratch/` directory structure
+- [ ] Create `scratch/.gitkeep` placeholder
+- [ ] Update `.gitignore` to exclude `scratch/` (except .gitkeep)
+- [ ] Create `scratch/_index.json` schema
 - [ ] Document in README.md (optional user-facing section)
 - [ ] Test with common workflows (bug-fix, feature-development)
 
@@ -411,7 +411,7 @@ User sees: "Trace saved. Referenced artifacts preserved in .mide-lite/.scratch/p
 This proposal introduces a **lightweight, gated scratch directory system** that:
 
 1. **Intercepts** temporary file creation attempts
-2. **Redirects** them to `.mide-lite/.scratch/` based on configurable patterns
+2. **Redirects** them to `scratch/` based on configurable patterns
 3. **Prompts** users for important files (design docs, ADRs)
 4. **Auto-cleans** old scratch files based on age and session status
 5. **Preserves** artifacts referenced in persistent traces

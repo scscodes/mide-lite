@@ -11,7 +11,7 @@ supervisor:
   # Artifact storage strategy
   # - ephemeral: Keep artifacts in-response only; no files created (DEFAULT)
   # - session: Store in temp directory; auto-cleanup after TTL
-  # - persistent: Store in .mide-lite/.traces/; requires user confirmation
+  # - persistent: Store in traces/; requires user confirmation
   storage_mode: "ephemeral"
 
   # Storage location configuration
@@ -27,7 +27,7 @@ supervisor:
       description: "Temporary storage with automatic cleanup"
 
     persistent:
-      location: ".mide-lite/.traces/"
+      location: "traces/"
       require_user_confirmation: true
       gitignore: true
       description: "Permanent storage; user must explicitly opt-in"
