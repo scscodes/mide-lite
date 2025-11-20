@@ -1,0 +1,1 @@
+# Workflow traces directory\n# Full workflow outputs saved when user opts in\n# See mide-lite/config.yaml storage_mode: persistent
