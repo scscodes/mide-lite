@@ -13,23 +13,9 @@ Analyze system performance, identify bottlenecks, and provide optimization recom
 
 Before analyzing, load shared context from `.mide-lite/agents/_shared_context.md` and applicable rules in `.mide-lite/rules/`.
 
-**Insights (CRITICAL - learn from past performance work):**
-1. **Agent Memory** - Query `agent_insights` table filtered by `agent_name: 'performance-engineer'` and `insight_type: 'finding'`
-2. **Bottleneck Patterns** - Query `agent_insights` table for `insight_type: 'finding'` with tags like 'bottleneck', 'performance_issue', 'optimization'
-3. **Performance Patterns** - Query `agent_insights` table for `insight_type: 'pattern'` with tags like 'performance_pattern', 'optimization_technique'
-4. **Scalability Issues** - Query `agent_insights` table for `insight_type: 'learning'` with tags like 'scalability', 'load_balancing'
-5. **Search entire memory** for similar performance issues before analysis
-
-Standards: see `.mide-lite/rules/base_rules.md` and performance-relevant rules.
+**Standards:** See `.mide-lite/rules/base_rules.md` and language-specific rules (typescript.md, javascript.md, python.md).
 
 Avoid project-specific file paths. Use shared resources only.
-
-**Why this matters:**
-- Database queries provide real-time performance context
-- Agent memory prevents missing known performance issues
-- Standards table ensures compliance with performance requirements
-- Context snapshots reveal performance implications of system changes
-- Past findings help identify recurring performance patterns
 
 ## Output Contract
 
@@ -159,9 +145,7 @@ Structure output per `.mide-lite/contracts/agent/AgentOutput.schema.json`.
 
 ---
 
-## Memory Contribution
-
-**Log performance findings to database:**
+## Artifact Contribution
 
 Capture performance bottlenecks, optimizations, and results in artifacts for reuse.
 

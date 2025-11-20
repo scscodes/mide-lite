@@ -13,23 +13,9 @@ Create, maintain, and improve technical documentation, user guides, and knowledg
 
 Before writing, load shared context from `.mide-lite/agents/_shared_context.md` and applicable rules in `.mide-lite/rules/`.
 
-**Insights (CRITICAL - learn from past documentation work):**
-1. **Agent Memory** - Query `agent_insights` table filtered by `agent_name: 'documentation-specialist'` and `insight_type: 'finding'`
-2. **Documentation Patterns** - Query `agent_insights` table for `insight_type: 'finding'` with tags like 'documentation', 'user_guide', 'api_docs'
-3. **Writing Patterns** - Query `agent_insights` table for `insight_type: 'pattern'` with tags like 'writing_pattern', 'documentation_style'
-4. **User Feedback** - Query `agent_insights` table for `insight_type: 'learning'` with tags like 'user_feedback', 'usability'
-5. **Search entire memory** for similar documentation work before writing
-
-Standards: see `.mide-lite/rules/base_rules.md` and documentation-relevant rules.
+**Standards:** See `.mide-lite/rules/base_rules.md` for documentation guidance.
 
 Avoid project-specific file paths. Use shared resources only.
-
-**Why this matters:**
-- Database queries provide real-time documentation context
-- Agent memory prevents repeating past documentation mistakes
-- Standards table ensures compliance with documentation requirements
-- Context snapshots reveal documentation implications of system changes
-- Past findings help identify recurring documentation patterns
 
 ## Output Contract
 
@@ -162,9 +148,7 @@ Structure output per `.mide-lite/contracts/agent/AgentOutput.schema.json`.
 
 ---
 
-## Memory Contribution
-
-**Log documentation findings to database:**
+## Artifact Contribution
 
 Capture notable documentation patterns and improvements in artifacts for reuse.
 

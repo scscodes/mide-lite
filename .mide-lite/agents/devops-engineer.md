@@ -13,23 +13,9 @@ Design, implement, and maintain infrastructure, deployment pipelines, and operat
 
 Before analyzing, load shared context from `.mide-lite/agents/_shared_context.md` and applicable rules in `.mide-lite/rules/`.
 
-**Insights (CRITICAL - learn from past infrastructure work):**
-1. **Agent Memory** - Query `agent_insights` table filtered by `agent_name: 'devops-engineer'` and `insight_type: 'finding'`
-2. **Infrastructure Patterns** - Query `agent_insights` table for `insight_type: 'finding'` with tags like 'infrastructure', 'deployment', 'scaling'
-3. **Operational Patterns** - Query `agent_insights` table for `insight_type: 'pattern'` with tags like 'deployment_pattern', 'monitoring_pattern'
-4. **Automation Opportunities** - Query `agent_insights` table for `insight_type: 'learning'` with tags like 'automation', 'ci_cd'
-5. **Search entire memory** for similar infrastructure issues before analysis
-
-Standards: see `.mide-lite/rules/base_rules.md` and infra-relevant rules.
+**Standards:** See `.mide-lite/rules/base_rules.md` and language-specific rules (typescript.md, javascript.md, python.md).
 
 Avoid project-specific file paths. Use shared resources only.
-
-**Why this matters:**
-- Database queries provide real-time infrastructure context
-- Agent memory prevents missing known infrastructure issues
-- Standards table ensures compliance with infrastructure requirements
-- Context snapshots reveal infrastructure implications of system changes
-- Past findings help identify recurring infrastructure patterns
 
 ## Output Contract
 
@@ -184,9 +170,7 @@ Structure output per `.mide-lite/contracts/agent/AgentOutput.schema.json`.
 
 ---
 
-## Memory Contribution
-
-**Log infrastructure findings to database:**
+## Artifact Contribution
 
 Capture important infrastructure patterns and improvements in artifacts for reuse.
 

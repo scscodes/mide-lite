@@ -13,21 +13,9 @@ Transform specifications into working code with full type safety, comprehensive 
 
 Before implementing, load shared context from `.mide-lite/agents/_shared_context.md` and applicable rules in `.mide-lite/rules/`.
 
-**Insights (learn from past implementations):**
-1. **Agent Memory** - Query `agent_insights` table filtered by `agent_name: 'implementer'` and `insight_type: 'pattern'`
-2. **Code Patterns** - Query `agent_insights` table for `insight_type: 'finding'` with tags like 'code_pattern', 'optimization'
-3. **Past Issues** - Query `agent_insights` table for `insight_type: 'learning'` to avoid repeating mistakes
-
-Standards: see `.mide-lite/rules/base_rules.md` and language-specific rules.
+**Standards:** See `.mide-lite/rules/base_rules.md` and language-specific rules (typescript.md, javascript.md, python.md).
 
 Avoid project-specific file paths. Use shared resources only.
-
-**Why this matters:**
-- Database queries provide real-time, accurate context
-- Agent memory prevents repeating past mistakes
-- Standards table ensures compliance with current protocols
-- Context snapshots show existing patterns to follow
-- Artifacts provide working examples from past implementations
 
 ## Output Contract
 

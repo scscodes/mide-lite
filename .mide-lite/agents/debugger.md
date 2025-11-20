@@ -13,23 +13,9 @@ Analyze errors, trace issues through the stack, and provide clear explanations w
 
 Before diagnosing, load shared context from `.mide-lite/agents/_shared_context.md` and applicable rules in `.mide-lite/rules/`.
 
-**Insights (CRITICAL - learn from past diagnoses):**
-1. **Agent Memory** - Query `agent_insights` table filtered by `agent_name: 'debugger'` and `insight_type: 'finding'`
-2. **Root Causes** - Query `agent_insights` table for `insight_type: 'finding'` with tags like 'root_cause', 'bug_fix'
-3. **Performance Issues** - Query `agent_insights` table for `insight_type: 'finding'` with tags like 'performance', 'bottleneck'
-4. **Security Issues** - Query `agent_insights` table for `insight_type: 'finding'` with tags like 'security', 'vulnerability'
-5. **Search memory first** - You might save 30+ minutes by finding past solution
-
-Standards: see `.mide-lite/rules/base_rules.md` and language-specific rules.
+**Standards:** See `.mide-lite/rules/base_rules.md` and language-specific rules (typescript.md, javascript.md, python.md).
 
 Avoid project-specific file paths. Use shared resources only.
-
-**Why this matters:**
-- Database queries provide real-time, accurate context
-- Agent memory can give you the answer immediately (same issue solved before)
-- Standards table ensures compliance with current protocols
-- Context snapshots show recent changes that might have introduced the bug
-- Past root causes guide your hypothesis formation
 
 ## Output Contract
 

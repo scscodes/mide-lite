@@ -20,10 +20,9 @@ Standards: see `.mide-lite/rules/base_rules.md` and language-specific rules.
 Avoid project-specific file paths. Use shared resources only.
 
 **Why this matters:**
-- Database queries provide real-time, accurate context
-- Agent memory shows what worked/didn't work before
-- Standards table ensures compliance with current protocols
-- Context snapshots reveal integration impacts
+- Shared context and rules ensure consistency across the codebase
+- Standards ensure compliance with current protocols
+- Artifacts provide examples of similar designs from the past
 - Orchestration patterns maintain architectural consistency
 
 ## Output Structure
@@ -134,7 +133,7 @@ Remember: artifacts must contain full content, not summaries.
 
  
 
-### 6. Memory Contribution
+### 6. Artifact Contribution
 
 Capture key decisions and rationale in artifacts for reuse by downstream agents.
 
