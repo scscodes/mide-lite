@@ -1,6 +1,66 @@
 # MIDE-Lite Supervisor Configuration
-# Controls how the supervisor synthesizes and presents workflow outputs
+# Controls workflow execution, cost/efficiency, and output synthesis
 
+# =============================================================================
+# EFFICIENCY PROFILE (Start Here!)
+# =============================================================================
+# Simple toggle that cascades to all settings below
+# - economy: Minimize tokens and API costs (50-80% reduction)
+# - standard: Balanced quality and efficiency (default)
+# - comprehensive: Maximize quality and thoroughness
+#
+# Individual settings below can override profile defaults
+
+efficiency_profile: "standard"
+
+# =============================================================================
+# EXECUTION LIMITS (Cost Control)
+# =============================================================================
+execution:
+  # Maximum agents participating in single workflow
+  # economy: 2, standard: 4, comprehensive: null (unlimited)
+  max_agents_per_workflow: 4
+
+  # Maximum agents running in parallel
+  # economy: 1, standard: 2, comprehensive: 4
+  max_parallel_agents: 2
+
+  # Maximum workflow iteration loops (quality gate retries)
+  # economy: 1, standard: 2, comprehensive: 3
+  max_iterations: 2
+
+  # Workflow timeout in minutes
+  # economy: 10, standard: 15, comprehensive: 30
+  timeout_minutes: 15
+
+  # Agent selection controls
+  # null = all agents enabled, or specify list to restrict
+  enabled_agents: null
+    # Example: Disable expensive agents in economy mode:
+    # - supervisor
+    # - architect
+    # - implementer
+    # - reviewer
+    # - debugger
+    # Disabled: security-specialist, performance-engineer, devops-engineer
+
+  # Workflow complexity enforcement
+  complexity_enforcement:
+    # Use workflow complexity_hint to enforce limits
+    enable: true
+
+    # Map complexity_hint to allowed efficiency profiles
+    simple: ["economy", "standard", "comprehensive"]
+    moderate: ["standard", "comprehensive"]
+    high: ["comprehensive"]
+
+    # Behavior when workflow complexity exceeds profile
+    # warn = show warning, downgrade = use simpler variant, block = prevent execution
+    on_exceed: "warn"
+
+# =============================================================================
+# SUPERVISOR CONFIGURATION
+# =============================================================================
 supervisor:
   # Output verbosity mode
   # - minimal: Executive summary only, no artifact content
@@ -35,6 +95,7 @@ supervisor:
   # Synthesis strategy
   synthesis:
     # Maximum artifacts to show in expanded form
+    # economy: 2, standard: 3, comprehensive: 5
     max_promoted_artifacts: 3
 
     # Always promote artifacts/findings with these severity levels
@@ -46,16 +107,64 @@ supervisor:
     # Preserve technical specifics (file paths, line numbers, API names)
     preserve_technical_details: true
 
-    # Quality gates for synthesis
-    quality_gates:
-      # If agent promotes >50% of artifacts, apply filtering
+    # Artifact budget enforcement (PREVENTS generation, not just filters)
+    artifact_budget:
+      # Maximum artifacts each agent can create (pre-generation limit)
+      # economy: 2, standard: 5, comprehensive: null (unlimited)
+      max_per_agent: 5
+
+      # Maximum total artifacts per workflow
+      # economy: 6, standard: 15, comprehensive: null
+      max_per_workflow: 15
+
+      # Maximum artifact size in KB
+      # economy: 20, standard: 50, comprehensive: 200
+      max_artifact_size_kb: 50
+
+      # Enforcement strategy
+      # strict = block creation, warn = log warning, log = silent logging
+      enforcement: "strict"
+
+      # What to do when budget exceeded
+      on_exceed:
+        action: "truncate"  # truncate | skip | error
+        message: "Artifact budget exceeded. Review efficiency_profile setting."
+
+      # Auto-filter if agent over-promotes (moved from quality_gates)
+      auto_filter_on_over_promotion: true
       over_promotion_threshold: 0.5
 
+    # Quality gates for synthesis
+    quality_gates:
       # Size threshold for auto-demotion (KB)
       large_artifact_threshold_kb: 10
 
       # Confidence threshold for full context preservation
       low_confidence_threshold: 0.6
+
+      # Early termination when confidence high (saves tokens)
+      early_termination:
+        # Enable early termination
+        # economy: true, standard: false, comprehensive: false
+        enable: false
+
+        # Confidence threshold for early termination
+        # economy: 0.75, standard: 0.85, comprehensive: null (never)
+        confidence_threshold: 0.85
+
+        # Skip optional workflow phases when confidence high
+        skip_optional_phases:
+          enable: false  # economy: true
+          phases:
+            - "additional-review"
+            - "extended-testing"
+            - "performance-analysis"
+
+      # Skip review step if implementer confidence very high
+      skip_review_on_high_confidence:
+        enable: false  # economy: true, standard: false
+        confidence_threshold: 0.95
+        only_for_simple_workflows: true
 
   # Interactive prompts
   interactive:
@@ -81,6 +190,75 @@ supervisor:
 
     # Apply type-based overrides when agents mis-tag
     apply_type_overrides: true
+
+  # Agent context optimization (token reduction)
+  context_optimization:
+    # Compress agent prompts (reduces context window)
+    # economy: true, standard: false, comprehensive: false
+    enable_compression: false
+
+    # Skip loading full contracts when not needed
+    # economy: true, standard: false, comprehensive: false
+    lazy_load_contracts: false
+
+    # Truncate long file contents
+    truncate_long_files:
+      enable: false  # economy: true
+      max_lines: 500  # economy: 200, standard: 500, comprehensive: 1000
+
+    # Summarize previous agent outputs instead of full content
+    summarize_handoffs:
+      enable: false  # economy: true
+      max_summary_lines: 50  # economy: 20, standard: 50, comprehensive: 100
+
+    # Skip loading optional rules
+    skip_optional_rules: false  # economy: true
+
+  # Cost tracking and transparency
+  cost_tracking:
+    # Enable cost estimation and tracking
+    enable: true
+
+    # Estimated tokens per workflow (for reference)
+    workflow_estimates:
+      bug-fix:
+        min_tokens: 2000
+        typical_tokens: 4000
+        max_tokens: 8000
+
+      feature-development:
+        min_tokens: 5000
+        typical_tokens: 10000
+        max_tokens: 20000
+
+      parallel-code-review:
+        min_tokens: 8000
+        typical_tokens: 15000
+        max_tokens: 30000
+
+    # Pre-flight warnings
+    warnings:
+      # Warn if estimated tokens exceed threshold
+      # economy: 5000, standard: 10000, comprehensive: null (no warning)
+      token_threshold: 10000
+
+      # Require confirmation for expensive workflows
+      # economy: 8000, standard: 15000, comprehensive: null
+      require_confirmation_above: 15000
+
+      # Show estimate before execution
+      # economy: true, standard: false, comprehensive: false
+      show_estimate: false
+
+    # Post-execution reporting
+    reporting:
+      # Show actual token usage after workflow
+      # economy: true, standard: false, comprehensive: false
+      show_usage: false
+
+      # Log usage to file for tracking
+      log_to_file: false
+      log_location: "traces/token-usage.log"
 
 # Artifact type rules (supervisor applies these overrides)
 artifact_type_rules:
@@ -160,3 +338,75 @@ output_templates:
 
       ### References
       {all_references}
+
+# =============================================================================
+# EFFICIENCY PROFILE REFERENCE
+# =============================================================================
+# Quick reference for what each profile applies to all settings above
+#
+# ECONOMY MODE (efficiency_profile: "economy")
+# - Best for: API cost basis, simple tasks, quick iterations
+# - Token savings: 50-80% compared to standard
+# - Settings applied:
+#   * output_mode: minimal
+#   * max_agents_per_workflow: 2
+#   * max_parallel_agents: 1
+#   * max_iterations: 1
+#   * max_artifacts_per_agent: 2
+#   * max_per_workflow: 6
+#   * max_artifact_size_kb: 20
+#   * enable_compression: true
+#   * truncate_long_files: true (max 200 lines)
+#   * summarize_handoffs: true (max 20 lines)
+#   * early_termination: true (threshold 0.75)
+#   * skip_optional_phases: true
+#   * skip_review_on_high_confidence: true
+#   * show_estimate: true
+#   * show_usage: true
+#
+# STANDARD MODE (efficiency_profile: "standard") - DEFAULT
+# - Best for: Most workflows, balanced quality/cost
+# - Token usage: baseline
+# - Settings: As configured above (current values)
+#
+# COMPREHENSIVE MODE (efficiency_profile: "comprehensive")
+# - Best for: Critical work, security audits, complex refactors
+# - Token usage: 150-200% of standard
+# - Settings applied:
+#   * output_mode: full
+#   * max_agents_per_workflow: null (unlimited)
+#   * max_parallel_agents: 4
+#   * max_iterations: 3
+#   * max_artifacts_per_agent: null (unlimited)
+#   * max_per_workflow: null (unlimited)
+#   * max_artifact_size_kb: 200
+#   * enable_compression: false
+#   * truncate_long_files: false
+#   * summarize_handoffs: false
+#   * early_termination: false
+#   * All limits disabled for maximum quality
+#
+# HOW TO USE:
+# 1. Set efficiency_profile at top of file (line 14)
+# 2. All settings automatically cascade
+# 3. Override individual settings below if needed
+# 4. Test with your workflows
+# 5. Adjust based on your cost/quality requirements
+#
+# EXAMPLES:
+#
+#   # Minimize costs for simple bug fixes
+#   efficiency_profile: "economy"
+#
+#   # Balanced for most work (default)
+#   efficiency_profile: "standard"
+#
+#   # Maximum quality for security audits
+#   efficiency_profile: "comprehensive"
+#
+#   # Custom: economy base with more agents
+#   efficiency_profile: "economy"
+#   execution:
+#     max_agents_per_workflow: 3  # override economy's 2
+#
+# See CONFIG_IMPROVEMENTS.md for detailed analysis and ROI data

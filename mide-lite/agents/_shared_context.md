@@ -190,13 +190,21 @@ Follow this logic when creating artifacts:
    - If it's rough notes or WIP analysis → `audience: agent` or `audience: audit`
    - Only promote finished, actionable deliverables
 
-3. **Keep user output focused**
+3. **Respect artifact budgets (from config.yaml)**
+   - Maximum artifacts per agent: Check `config.yaml:synthesis.artifact_budget.max_per_agent` (default: 5)
    - Typical workflow should promote 2-4 artifacts total
-   - If you're promoting >5 artifacts, reconsider your tagging
+   - If you're approaching the limit, prioritize critical artifacts only
+   - Supervisor enforces budgets strictly - excess artifacts will be truncated
 
 4. **Mark critical findings explicitly**
    - `severity: critical` in findings + `importance: high` in artifact metadata
    - Supervisor will always promote critical security/correctness issues
+
+5. **Efficiency awareness**
+   - Check current `efficiency_profile` (economy/standard/comprehensive)
+   - Economy mode: Maximum 2 artifacts per agent, keep outputs concise
+   - Comprehensive mode: Full detail encouraged
+   - Standard mode: Balance thoroughness with focus (default)
 
 ## Escalation
 - Ask the supervisor when requirements are ambiguous, decisions have significant trade-offs, or blockers arise.

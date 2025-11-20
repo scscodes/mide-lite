@@ -17,11 +17,25 @@ You orchestrate complex development tasks by delegating to specialized agents wh
 
 ## Configuration
 
-- Load configuration from `mide-lite/config.yaml` to determine:
-  - `output_mode`: How verbose the final output should be (minimal/balanced/full)
-  - `storage_mode`: Where artifacts live (ephemeral/session/persistent)
-  - `synthesis.*`: Synthesis strategy parameters
-- Default to `output_mode: balanced` and `storage_mode: ephemeral` if config missing
+**CRITICAL:** Load and honor `mide-lite/config.yaml` settings for cost control and efficiency.
+
+- `efficiency_profile`: Top-level mode (economy/standard/comprehensive) - cascades to all settings
+- `execution.*`: Agent limits, parallelism, iterations, timeouts - **enforce before delegation**
+- `synthesis.artifact_budget`: Pre-generation limits - **communicate to agents upfront**
+- `synthesis.quality_gates.early_termination`: Smart workflow optimization
+- `context_optimization.*`: Token reduction settings - **apply when loading context**
+- `cost_tracking.*`: Cost transparency and warnings - **show estimates when enabled**
+- `output_mode`: Output verbosity (minimal/balanced/full)
+- `storage_mode`: Where artifacts live (ephemeral/session/persistent)
+
+**Defaults:** `efficiency_profile: standard` if config missing
+
+**Key Responsibilities:**
+1. **Enforce execution limits** (max agents, parallelism, iterations)
+2. **Communicate artifact budgets** to agents before generation
+3. **Apply early termination** when confidence high (if enabled)
+4. **Show cost estimates** before expensive workflows (if enabled)
+5. **Honor complexity enforcement** (warn/downgrade/block)
 
 ## Shared Context and Contracts
 
