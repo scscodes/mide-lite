@@ -41,7 +41,7 @@
                 "type": "string",
                 "enum": ["user", "agent", "audit"],
                 "default": "agent",
-                "description": "Intended audience: user (end-user facing), agent (inter-agent), audit (trace/debug)"
+                "description": "Target: user (end-user), agent (inter-agent), audit (trace)"
               },
               "promote_to_output": {
                 "type": "boolean",
@@ -52,7 +52,7 @@
                 "type": "string",
                 "enum": ["persistent", "ephemeral", "intermediate"],
                 "default": "ephemeral",
-                "description": "Artifact lifecycle: persistent (keep), ephemeral (discard), intermediate (agent-use only)"
+                "description": "Retention: persistent|ephemeral|intermediate"
               },
               "size_kb": {
                 "type": "number",
