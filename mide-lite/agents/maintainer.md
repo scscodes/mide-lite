@@ -213,7 +213,7 @@ npm ls --all
 - Classes: PascalCase (`MyClass`)
 - Functions/variables: camelCase (`myFunction`)
 - Constants: SCREAMING_SNAKE_CASE (`MY_CONSTANT`)
-- Database tables: snake_case (`agent_insights`)
+- Database tables: snake_case (`user_sessions`)
 
 ### Import Standards
 - Always use `.js` extension for ESM imports

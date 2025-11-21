@@ -12,6 +12,7 @@
     "summary": { "type": "string" },
     "workflow": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "name": { "type": "string" },
         "reason": { "type": "string" },
@@ -25,6 +26,7 @@
     },
     "execution_summary": {
       "type": "object",
+      "additionalProperties": false,
       "description": "Execution metadata",
       "properties": {
         "agents_used": {
@@ -91,7 +93,7 @@
         "required": ["id", "type", "title"]
       }
     },
-    "promoted_artifacts_count": {
+    "promoted_artifact_count": {
       "type": "integer",
       "description": "Count of artifacts with promote_to_output=true in final output"
     },
@@ -135,10 +137,10 @@
     "next_steps": { "type": "array", "items": { "type": "string" } },
     "blockers": { "type": "array", "items": { "type": "string" } },
     "references": { "type": "array", "items": { "type": "string" } },
-    "synthesis_mode": {
+    "output_mode": {
       "type": "string",
       "enum": ["minimal", "balanced", "full"],
-      "description": "Output synthesis mode used"
+      "description": "Output verbosity mode used"
     },
     "storage_mode": {
       "type": "string",
@@ -147,6 +149,7 @@
     },
     "cost_tracking": {
       "type": "object",
+      "additionalProperties": false,
       "description": "Token/cost tracking summary",
       "properties": {
         "estimated_tokens": { "type": "integer" },

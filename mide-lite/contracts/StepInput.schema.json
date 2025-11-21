@@ -60,10 +60,11 @@
     },
     "artifact_budget_remaining": {
       "type": "object",
+      "additionalProperties": false,
       "description": "Remaining artifact budget for this workflow",
       "properties": {
         "remaining_artifacts": { "type": "integer" },
-        "max_size_kb": { "type": "number" }
+        "max_artifact_size_kb": { "type": "integer" }
       }
     },
     "parallel_with": {

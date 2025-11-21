@@ -29,14 +29,19 @@
     },
     "artifact_budget": {
       "type": "object",
+      "additionalProperties": false,
       "description": "Artifact limits to enforce during generation",
       "properties": {
         "max_per_agent": {
           "type": "integer",
           "description": "Maximum artifacts this agent can create"
         },
-        "max_size_kb": {
-          "type": "number",
+        "max_per_workflow": {
+          "type": "integer",
+          "description": "Maximum artifacts for entire workflow"
+        },
+        "max_artifact_size_kb": {
+          "type": "integer",
           "description": "Maximum size per artifact in KB"
         }
       }

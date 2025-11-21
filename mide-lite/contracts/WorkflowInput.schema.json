@@ -45,6 +45,7 @@
     },
     "execution_limits": {
       "type": "object",
+      "additionalProperties": false,
       "description": "Per-workflow execution limits (override config defaults)",
       "properties": {
         "max_iterations": { "type": "integer" },
@@ -54,6 +55,7 @@
     },
     "artifact_budget": {
       "type": "object",
+      "additionalProperties": false,
       "description": "Artifact limits for this workflow",
       "properties": {
         "max_per_agent": { "type": "integer" },
@@ -61,10 +63,10 @@
         "max_artifact_size_kb": { "type": "integer" }
       }
     },
-    "required_output_mode": {
+    "output_mode": {
       "type": "string",
       "enum": ["minimal", "balanced", "full"],
-      "description": "Required output verbosity"
+      "description": "Required output verbosity level"
     }
   },
   "required": ["workflow_id", "name", "reason"]

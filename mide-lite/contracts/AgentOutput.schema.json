@@ -125,5 +125,5 @@
     "references": { "type": "array", "items": { "type": "string" } },
     "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
   },
-  "required": ["agent_name", "summary", "artifacts", "references", "confidence"]
+  "required": ["agent_name", "workflow_id", "summary", "artifacts", "references", "confidence"]
 }

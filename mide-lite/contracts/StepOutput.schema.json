@@ -123,5 +123,5 @@
     },
     "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
   },
-  "required": ["summary", "artifacts", "references", "confidence"]
+  "required": ["workflow_id", "step_id", "summary", "artifacts", "references", "confidence"]
 }
