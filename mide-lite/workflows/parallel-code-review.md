@@ -10,10 +10,6 @@ Comprehensive code review with multiple agents examining code from different per
 
 Use contracts: `mide-lite/contracts/StepOutput.schema.json` (per step) and `mide-lite/contracts/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates.
 
-## Overview
-
-This workflow leverages multiple specialized agents to review code from different angles simultaneously, providing comprehensive coverage and diverse perspectives on code quality.
-
 ## When to Use
 
 - Major feature implementations
@@ -53,14 +49,6 @@ This workflow leverages multiple specialized agents to review code from differen
 - Component interaction
 - System integration
 - Future extensibility
-
-## Expected Outcomes
-
-- **Comprehensive Coverage**: All aspects of code quality reviewed
-- **Prioritized Issues**: Issues ranked by severity and impact
-- **Diverse Perspectives**: Multiple expert viewpoints
-- **Unified Action Plan**: Coordinated improvement strategy
-- **Quality Metrics**: Quantified code quality assessment
 
 ## Phases
 

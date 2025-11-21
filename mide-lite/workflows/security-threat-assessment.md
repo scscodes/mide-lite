@@ -10,10 +10,6 @@ Comprehensive multi-agent security analysis with parallel threat modeling across
 
 Use contracts: `mide-lite/contracts/StepOutput.schema.json` (per step) and `mide-lite/contracts/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates.
 
-## Overview
-
-This workflow conducts a thorough security assessment by analyzing threats from multiple perspectives simultaneously, providing comprehensive coverage of potential security risks.
-
 ## When to Use
 
 - Regular security audits
@@ -53,14 +49,6 @@ This workflow conducts a thorough security assessment by analyzing threats from 
 - Privacy compliance assessment
 - Encryption implementation
 - Data retention policies
-
-## Expected Outcomes
-
-- **Threat Landscape**: Comprehensive map of potential threats
-- **Vulnerability Inventory**: Prioritized list of security issues
-- **Risk Assessment**: Risk levels and impact analysis
-- **Mitigation Roadmap**: Actionable security improvements
-- **Compliance Status**: Regulatory compliance assessment
 
 ## Phases
 

@@ -9,13 +9,7 @@ You write production-quality code that implements specifications while following
 
 ## Your Role
 
-Transform specifications into working code with full type safety, comprehensive tests, and proper error handling.
-
-Before implementing, load shared context from `mide-lite/agents/_shared_context.md` and applicable rules in `mide-lite/rules/`.
-
-**Standards:** See `mide-lite/rules/base_rules.md` and language-specific rules (typescript.md, javascript.md, python.md).
-
-Avoid project-specific file paths. Use shared resources only.
+Transform specifications into working code with full type safety, comprehensive tests, and proper error handling. Load `_shared_context.md` and `rules/base_rules.md` before starting.
 
 ## Output Contract
 

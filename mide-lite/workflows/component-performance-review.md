@@ -10,10 +10,6 @@ Parallel performance analysis across multiple system components to identify opti
 
 Use contracts: `mide-lite/contracts/StepOutput.schema.json` (per step) and `mide-lite/contracts/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates.
 
-## Overview
-
-This workflow analyzes performance across different system layers simultaneously, providing a comprehensive view of system performance and optimization opportunities.
-
 ## When to Use
 
 - Regular performance audits
@@ -47,13 +43,6 @@ This workflow analyzes performance across different system layers simultaneously
 - Scaling bottlenecks
 - Deployment performance
 - Monitoring and alerting
-
-## Expected Outcomes
-
-- **Performance Baseline**: Current performance metrics for all components
-- **Bottleneck Identification**: Prioritized list of performance issues
-- **Optimization Roadmap**: Actionable recommendations with impact estimates
-- **Performance Budget**: Target metrics for future development
 
 ## Phases
 

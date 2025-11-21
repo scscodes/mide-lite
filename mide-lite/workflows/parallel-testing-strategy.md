@@ -10,10 +10,6 @@ Comprehensive testing strategy development with multiple agents working on diffe
 
 Use contracts: `mide-lite/contracts/StepOutput.schema.json` (per step) and `mide-lite/contracts/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates.
 
-## Overview
-
-This workflow leverages multiple specialized agents to develop a comprehensive testing strategy from different perspectives, ensuring thorough test coverage and quality assurance.
-
 ## When to Use
 
 - New feature development
@@ -53,14 +49,6 @@ This workflow leverages multiple specialized agents to develop a comprehensive t
 - Usability testing
 - User scenario testing
 - End-to-end testing
-
-## Expected Outcomes
-
-- **Comprehensive Strategy**: All testing aspects covered
-- **Test Coverage Analysis**: Gaps identified and addressed
-- **Testing Roadmap**: Phased testing implementation plan
-- **Quality Metrics**: Testing success criteria defined
-- **Automation Strategy**: Test automation recommendations
 
 ## Phases
 

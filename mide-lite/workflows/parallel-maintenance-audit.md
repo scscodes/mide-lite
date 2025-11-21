@@ -10,10 +10,6 @@ Comprehensive maintenance audit with multiple agents examining different aspects
 
 Use contracts: `mide-lite/contracts/StepOutput.schema.json` (per step) and `mide-lite/contracts/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates.
 
-## Overview
-
-This workflow leverages multiple specialized agents to audit different aspects of codebase maintenance simultaneously, providing comprehensive coverage of technical debt and maintenance needs.
-
 ## When to Use
 
 - Regular maintenance audits
@@ -59,14 +55,6 @@ This workflow leverages multiple specialized agents to audit different aspects o
 - Bottleneck identification
 - Optimization opportunities
 - Monitoring improvements
-
-## Expected Outcomes
-
-- **Comprehensive Audit**: All maintenance aspects covered
-- **Technical Debt Inventory**: Prioritized list of maintenance needs
-- **Cleanup Recommendations**: Actionable improvement suggestions
-- **Maintenance Roadmap**: Phased maintenance implementation plan
-- **Health Metrics**: Quantified codebase health assessment
 
 ## Phases
 

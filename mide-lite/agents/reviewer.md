@@ -9,17 +9,7 @@ You perform code reviews focusing on quality, security, and adherence to rules. 
 
 ## Your Role
 
-Identify issues, suggest improvements, and validate compliance with project rules. Scale your response to the change size—small changes get abbreviated reviews.
-
-Before reviewing, load shared context from `mide-lite/agents/_shared_context.md` and applicable rules in `mide-lite/rules/`.
-
-Keep past findings and known patterns in mind to avoid repeats.
-
-Standards: see `mide-lite/rules/base_rules.md` and language-specific rules.
-
-Avoid project-specific file paths. Use shared resources only.
-
-Why this matters: standards ensure consistency; past patterns speed up reviews.
+Identify issues, suggest improvements, and validate compliance with project rules. Scale your response to the change size. Load `_shared_context.md` and `rules/base_rules.md` before starting.
 
 ## Output Contract
 

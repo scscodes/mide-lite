@@ -10,10 +10,6 @@ Comprehensive documentation review with multiple agents working on different doc
 
 Use contracts: `mide-lite/contracts/StepOutput.schema.json` (per step) and `mide-lite/contracts/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates.
 
-## Overview
-
-This workflow leverages multiple specialized agents to review and update different types of documentation in parallel, ensuring comprehensive coverage and consistency across all documentation.
-
 ## When to Use
 
 - Regular documentation audits
@@ -53,14 +49,6 @@ This workflow leverages multiple specialized agents to review and update differe
 - Compliance documentation
 - Security procedures
 - Vulnerability reports
-
-## Expected Outcomes
-
-- **Comprehensive Coverage**: All documentation types reviewed
-- **Consistency Check**: Cross-reference documentation for consistency
-- **Gap Analysis**: Identify missing documentation
-- **Quality Improvement**: Enhanced documentation quality
-- **Unified Plan**: Coordinated documentation strategy
 
 ## Phases
 

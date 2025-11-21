@@ -41,16 +41,12 @@ tags: [python]
 - Prefix private members with underscore
 
 ## Data Structures
-- `dataclasses` for simple DTOs without validation
-- Pydantic models for validation, API schemas, configuration
-- `typing.NamedTuple` for immutable records
-- `typing.TypedDict` for structured dicts
+- `dataclasses` for simple DTOs; Pydantic for validation/API schemas
+- `typing.NamedTuple` for immutable records; `TypedDict` for structured dicts
 - Never pass `dict[str, Any]` - create proper types
 
 ## Dependency Injection
-- Pass dependencies to `__init__`, never use globals
-- Use protocols for dependency interfaces
-- Make dependencies explicit in signatures
+- Pass dependencies to `__init__`, use protocols for interfaces
 - Keep dependency graphs shallow (3 levels max)
 
 ## Testing
@@ -65,21 +61,12 @@ tags: [python]
 - Group routes by feature; centralize error handling
 - Use dependency injection mechanisms where available
 
-## Critical Anti-Patterns
-
-### Never Do This
+## Anti-Patterns (Never)
 - Mutable default arguments (`def func(items: list = [])`)
-- Bare except clauses (`except:` catches KeyboardInterrupt)
+- Bare except clauses; wildcard imports; `# type: ignore`
 - String concatenation in loops (use `join()`)
-- Using `os.path` instead of `pathlib`
-- Wildcard imports (`from module import *`)
-- Ignoring type errors with `# type: ignore`
-
-### Common Mistakes
-- Missing dependencies in function that references external variable
-- Creating classes with only `__init__` and one method (use function)
-- Not using context managers for file/connection handling
-- Mixing `Optional[T]` with `= None` redundantly (just use `T | None = None`)
+- `os.path` instead of `pathlib`
+- Classes with only `__init__` and one method (use function)
 
 ## Tooling
 - **Ruff**: Primary linter (replaces flake8, isort)
@@ -88,21 +75,7 @@ tags: [python]
 - Run in pre-commit hooks and CI
 
 ## Configuration
-Use `pyproject.toml` for centralized tool configuration:
-- ruff: line-length, select rules
-- mypy: strict mode, python version
-- pytest: asyncio mode, test paths
+Use `pyproject.toml` for centralized tool config (ruff, mypy, pytest).
 
-## Security (see base)
-- Use settings management for config; never commit secrets
-- Parameterize SQL; avoid string concatenation
-
-## Performance (see base)
-- Prefer comprehensions/generators; avoid quadratic loops
-- Cache pure functions with clear invalidation; avoid blocking the event loop
-
-## When in Doubt
-1. Check Python docs and PEPs
-2. Run mypy strict - it catches most mistakes
-3. Follow PEP 8 for style
-4. Optimize for readability over cleverness
+## Security & Performance
+See `base_rules.md`. Key: parameterized SQL, async I/O, comprehensions over loops.

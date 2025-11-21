@@ -10,10 +10,6 @@ Multi-agent approach to complex issue diagnosis with parallel analysis and corre
 
 Use contracts: `mide-lite/contracts/StepOutput.schema.json` (per step) and `mide-lite/contracts/WorkflowOutput.schema.json` (final aggregation). Supervisor orchestrates.
 
-## Overview
-
-This workflow leverages multiple specialized agents to analyze the same issue from different perspectives simultaneously, then correlates their findings to identify the true root cause.
-
 ## When to Use
 
 - Complex bugs affecting multiple components
@@ -47,13 +43,6 @@ This workflow leverages multiple specialized agents to analyze the same issue fr
 - Component interaction issues
 - Data flow problems
 - Integration failures
-
-## Expected Outcomes
-
-- **Comprehensive Coverage**: All potential causes examined
-- **Correlated Findings**: Cross-referenced analysis results
-- **Confidence Scoring**: Prioritized issues with confidence levels
-- **Actionable Insights**: Clear next steps for resolution
 
 ## Phases
 
