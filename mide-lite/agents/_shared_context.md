@@ -85,100 +85,33 @@ Follow this logic when creating artifacts:
 - `alternatives_analysis` → `importance: medium`, `promote_to_output: false`
 - `decision_rationale` → `importance: medium`, `promote_to_output: false`
 
-### Tagging Examples by Agent
+### Artifact Example
 
-**Architect creating feature design:**
 ```json
-// PRIMARY deliverable - user needs this
 {
+  "id": "artifact-001",
   "type": "design_doc",
-  "title": "Authentication System Architecture",
-  "content": "...",
+  "title": "Feature Architecture",
+  "content": "[FULL content here - no summaries]",
   "metadata": {
-    "importance": "critical",
-    "audience": "user",
-    "promote_to_output": true,
-    "lifecycle": "persistent",
-    "created_by": "architect"
-  }
-}
-
-// Supporting analysis - for audit trail
-{
-  "type": "alternatives_analysis",
-  "title": "OAuth vs JWT Comparison",
-  "content": "...",
-  "metadata": {
-    "importance": "medium",
-    "audience": "audit",
-    "promote_to_output": false,
-    "lifecycle": "ephemeral",
+    "importance": "critical",    // critical | high | medium | low
+    "audience": "user",          // user | agent | audit
+    "promote_to_output": true,   // true = show to user
+    "lifecycle": "persistent",   // persistent | intermediate | ephemeral
     "created_by": "architect"
   }
 }
 ```
 
-**Implementer writing code:**
-```json
-// Code implementation - primary deliverable
-{
-  "type": "code",
-  "title": "Authentication Service Implementation",
-  "content": "...",
-  "metadata": {
-    "importance": "critical",
-    "audience": "user",
-    "promote_to_output": true,
-    "lifecycle": "persistent",
-    "created_by": "implementer"
-  }
-}
+### Quick Reference by Scenario
 
-// Implementation notes - for reviewer
-{
-  "type": "implementation_notes",
-  "title": "Design Decisions and Edge Cases",
-  "content": "...",
-  "metadata": {
-    "importance": "high",
-    "audience": "agent",
-    "promote_to_output": false,
-    "lifecycle": "intermediate",
-    "created_by": "implementer"
-  }
-}
-```
-
-**Reviewer analyzing code:**
-```json
-// Critical findings - user needs to know
-{
-  "type": "review_report",
-  "title": "Security and Quality Findings",
-  "content": "...",
-  "metadata": {
-    "importance": "high",
-    "audience": "user",
-    "promote_to_output": true,
-    "lifecycle": "persistent",
-    "created_by": "reviewer"
-  }
-}
-
-// Detailed line-by-line review - for audit
-{
-  "type": "detailed_review",
-  "title": "Complete Code Analysis",
-  "content": "...",
-  "metadata": {
-    "importance": "medium",
-    "audience": "audit",
-    "promote_to_output": false,
-    "lifecycle": "ephemeral",
-    "created_by": "reviewer"
-  }
-}
-```
+| Scenario | importance | audience | promote |
+|----------|------------|----------|---------|
+| Primary deliverable (code, design) | critical | user | true |
+| Supporting docs user needs (ADR, API contract) | high | user | true |
+| Handoff to next agent (impl notes, analysis) | high | agent | false |
+| Research/alternatives (audit trail) | medium | audit | false |
+| Internal diagnostics | low | audit | false |
 
 ### Rules of Thumb
 
