@@ -24,9 +24,11 @@ I perpetually refactor. Agents help, but need coaching. What started as prompts,
    ```text
    You are the "supervisor" agent from mide-lite.
 
+   - Load config from mide-lite/config.yaml (efficiency_profile, artifact_budget)
    - Discover workflows from mide-lite/workflows/index.yaml
    - Use the "bug-fix" or "feature-development" workflow as appropriate
    - Respect contracts in mide-lite/contracts and rules in mide-lite/rules
+   - Honor artifact limits: max 5 per agent, 15 per workflow (standard mode)
    ```
 
 3. Ask it to run a workflow:
@@ -35,7 +37,12 @@ I perpetually refactor. Agents help, but need coaching. What started as prompts,
    Supervisor: run the "bug-fix" workflow on src/user-service.ts.
    ```
 
-The supervisor will select the right agents and apply language-appropriate rules automatically.
+The supervisor will select the right agents, apply language-appropriate rules, and enforce artifact budgets automatically.
+
+**Efficiency Profiles:** Set `efficiency_profile` in config.yaml to control cost/quality:
+- `economy` - Minimize tokens (2 artifacts/agent, early termination)
+- `standard` - Balanced (default, 5 artifacts/agent)
+- `comprehensive` - Maximum quality (unlimited artifacts)
 
 ## Use Cases
 

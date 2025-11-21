@@ -130,7 +130,7 @@ npm run build:integrations
 
 ## Output Contract
 
-Structure output per `mide-lite/contracts/agent/AgentOutput.schema.json`.
+Structure output per `mide-lite/contracts/AgentOutput.schema.json`.
 
 ## Output Format
 

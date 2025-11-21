@@ -19,7 +19,7 @@ Avoid project-specific file paths. Use shared resources only.
 
 ## Output Contract
 
-Structure output per `mide-lite/contracts/agent/AgentOutput.schema.json`.
+Structure output per `mide-lite/contracts/AgentOutput.schema.json`.
 
 ## Output Format
 

@@ -23,46 +23,61 @@ Why this matters: standards ensure consistency; past patterns speed up reviews.
 
 ## Output Contract
 
-Structure output per `mide-lite/contracts/agent/AgentOutput.schema.json`.
+Structure output per `mide-lite/contracts/AgentOutput.schema.json`.
 
-**Artifacts:**
+```json
+{
+  "agent_name": "reviewer",
+  "workflow_id": "{from StepInput.workflow_id}",
+  "summary": "Review summary (max 200 words)",
+  "artifacts": [
+    {
+      "id": "rev-001",
+      "type": "review_report",
+      "title": "Code Review Findings",
+      "content": "COMPLETE review with all findings",
+      "description": "Full review report",
+      "metadata": {
+        "importance": "high",
+        "audience": "user",
+        "promote_to_output": true,
+        "lifecycle": "persistent",
+        "created_by": "reviewer"
+      }
+    }
+  ],
+  "promoted_artifact_count": 1,
+  "findings": [
+    {
+      "severity": "high",
+      "category": "security",
+      "description": "SQL injection vulnerability",
+      "location": "src/api/users.ts:45",
+      "recommendation": "Use parameterized queries",
+      "status": "pending"
+    }
+  ],
+  "references": ["src/api/users.ts"],
+  "confidence": 0.9
+}
+```
+
+**Required fields:** `agent_name`, `workflow_id`, `summary`, `artifacts`, `references`, `confidence`
+
+**Artifact requirements:**
+- Each artifact needs `id`, `type`, `title`, `content`, `metadata`
+- Metadata needs `importance`, `audience`, `promote_to_output`, `created_by`
+- See `mide-lite/agents/_shared_context.md` for tagging decision tree
+
+**Artifact tagging:**
+- `review_report` with critical findings → `importance: high, audience: user, promote_to_output: true`
+- `review_report` with no critical findings → `importance: medium, audience: agent, promote_to_output: false`
+- `detailed_review` (line-by-line) → `importance: high, audience: agent, promote_to_output: false`
+
+**Artifact guidance:**
 - ✅ COMPLETE review reports (all findings, not summaries)
 - ✅ COMPLETE recommendations with code examples
 - ❌ NO abbreviated findings or "various issues"
-
-**Artifact Tagging (Critical):**
-All artifacts MUST include `metadata` with proper tags. See `mide-lite/agents/_shared_context.md` for full decision tree.
-
-**User-facing artifacts** (user needs to act on):
-- `review_report` with critical findings → `importance: high, audience: user, promote_to_output: true`
-- `security_findings` → `importance: critical, audience: user, promote_to_output: true`
-
-**Agent-internal artifacts** (for implementer to fix):
-- `detailed_review` (line-by-line) → `importance: high, audience: agent, promote_to_output: false`
-- `code_suggestions` (specific fixes) → `importance: high, audience: agent, promote_to_output: false`
-
-**Audit trail artifacts** (for debugging/history):
-- `review_trace` (full analysis) → `importance: medium, audience: audit, promote_to_output: false`
-
-**Context-sensitive tagging:**
-- If 0 critical findings → `review_report` can be `audience: agent, promote_to_output: false`
-- If 1+ critical findings → `review_report` must be `audience: user, promote_to_output: true`
-
-**Example tagged artifact:**
-```json
-{
-  "type": "review_report",
-  "title": "Security and Quality Review",
-  "content": "[COMPLETE findings here]",
-  "metadata": {
-    "importance": "high",
-    "audience": "user",
-    "promote_to_output": true,
-    "lifecycle": "persistent",
-    "created_by": "reviewer"
-  }
-}
-```
 
 ## Review Aids (Optional)
 

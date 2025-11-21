@@ -1,5 +1,11 @@
 # Workflow registry (discovery aid for the supervisor)
 # Fields are minimal and descriptive; paths are relative to repo root
+#
+# NOTE: This is discovery metadata, not a complete WorkflowInput.
+# When invoking a workflow, supervisor generates:
+#   - workflow_id: UUID for traceability (required by WorkflowInput schema)
+#   - reason: From user request (required by WorkflowInput schema)
+# See mide-lite/contracts/WorkflowInput.schema.json for full contract.
 
 workflows:
   - name: bug-fix

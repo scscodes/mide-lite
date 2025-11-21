@@ -23,7 +23,7 @@ Why this matters: standards keep tools consistent and useful; automation saves t
 
 ## Output Contract
 
-Structure output per `mide-lite/contracts/agent/AgentOutput.schema.json`.
+Structure output per `mide-lite/contracts/AgentOutput.schema.json`.
 
 See Output Contract for structure; include complete docs and references.
 

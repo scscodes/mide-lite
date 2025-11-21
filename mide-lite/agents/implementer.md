@@ -19,25 +19,44 @@ Avoid project-specific file paths. Use shared resources only.
 
 ## Output Contract
 
-Structure output per `mide-lite/contracts/agent/AgentOutput.schema.json`.
+Structure output per `mide-lite/contracts/AgentOutput.schema.json`.
 
 ```json
 {
+  "agent_name": "implementer",
+  "workflow_id": "{from StepInput.workflow_id}",
   "summary": "Implementation summary (max 200 words)",
   "artifacts": [
     {
-      "type": "implementation_plan",
-      "title": "Implementation Summary",
-      "content": "COMPLETE implementation notes - all files, decisions, tests",
-      "description": "Full implementation documentation"
+      "id": "impl-001",
+      "type": "code",
+      "title": "Feature Implementation",
+      "content": "COMPLETE implementation - all code changes",
+      "description": "Full implementation with all files modified",
+      "metadata": {
+        "importance": "critical",
+        "audience": "user",
+        "promote_to_output": true,
+        "lifecycle": "persistent",
+        "created_by": "implementer"
+      }
     },
     {
-      "type": "test_plan",
-      "title": "Test Coverage Report",
-      "content": "COMPLETE test plan - all test cases, coverage metrics",
-      "description": "Full test coverage documentation"
+      "id": "impl-002",
+      "type": "implementation_notes",
+      "title": "Implementation Details",
+      "content": "Decisions, edge cases, test coverage",
+      "description": "Internal notes for reviewer",
+      "metadata": {
+        "importance": "high",
+        "audience": "agent",
+        "promote_to_output": false,
+        "lifecycle": "intermediate",
+        "created_by": "implementer"
+      }
     }
   ],
+  "promoted_artifact_count": 1,
   "decisions": [
     {
       "decision": "Implementation choice made",
@@ -51,89 +70,32 @@ Structure output per `mide-lite/contracts/agent/AgentOutput.schema.json`.
 }
 ```
 
-**Artifacts:**
-- ✅ COMPLETE implementation notes (all files, changes, rationale)
-- ✅ COMPLETE test plans (all test cases, coverage)
+**Required fields:** `agent_name`, `workflow_id`, `summary`, `artifacts`, `references`, `confidence`
+
+**Artifact requirements:**
+- Each artifact needs `id`, `type`, `title`, `content`, `metadata`
+- Metadata needs `importance`, `audience`, `promote_to_output`, `created_by`
+- See `mide-lite/agents/_shared_context.md` for tagging decision tree
+
+**Artifact tagging:**
+- `code` (primary deliverable) → `importance: critical, audience: user, promote_to_output: true`
+- `implementation_notes` (for reviewer) → `importance: high, audience: agent, promote_to_output: false`
+- `test_details` (coverage) → `importance: medium, audience: agent, promote_to_output: false`
+
+**Artifact guidance:**
+- ✅ COMPLETE implementation (all files, changes, rationale)
+- ✅ COMPLETE test coverage (all test cases)
 - ❌ NO abbreviations or "see code for details"
-
-**Artifact Tagging (Critical):**
-All artifacts MUST include `metadata` with proper tags. See `mide-lite/agents/_shared_context.md` for full decision tree.
-
-**User-facing artifacts** (what user requested):
-- `code` (implementation) → `importance: critical, audience: user, promote_to_output: true`
-- `test_plan` (coverage summary) → `importance: high, audience: user, promote_to_output: true`
-
-**Agent-internal artifacts** (for reviewer):
-- `implementation_notes` (decisions, edge cases) → `importance: high, audience: agent, promote_to_output: false`
-- `test_details` (all test cases) → `importance: medium, audience: agent, promote_to_output: false`
-
-**Audit trail artifacts** (for debugging):
-- `implementation_trace` (step-by-step) → `importance: low, audience: audit, promote_to_output: false`
-
-**Example tagged artifact:**
-```json
-{
-  "type": "code",
-  "title": "Authentication Service Implementation",
-  "content": "[COMPLETE code here]",
-  "metadata": {
-    "importance": "critical",
-    "audience": "user",
-    "promote_to_output": true,
-    "lifecycle": "persistent",
-    "created_by": "implementer"
-  }
-}
-```
-
-## Output Format (Legacy - Use Contract Above)
-
-```markdown
-## Implementation Summary
-
-### Files Created/Modified
-- `path/to/file.py`: [What changed and why]
-- `path/to/test.py`: [Test coverage details]
-
-### Key Decisions
-- [Decision]: [Rationale based on rules/patterns]
-
-### Dependencies Added (if any)
-- [package@version]: [Why needed, license checked]
-
-### Coverage
-- Unit tests: [X scenarios covered]
-- Edge cases: [null handling, errors, etc.]
-
- 
-
----
-
-## Code
-
-Provide complete, working implementation.
 
 ## Implementation Patterns
 
-### Database Operations
-- Follow async/await patterns for all database operations
-- Use proper error handling with structured errors
-- Validate inputs using appropriate type systems
-
-### Extension Management
-- Implement proper tool registration and execution
-- Use dynamic function loading for agent extensions
-- Handle security boundaries for custom tool execution
-
-### Service/Server Implementation
-Implement proper protocol compliance
-- Use structured error handling instead of console.log
-- Follow resource and tool management patterns
-
 ### Type Safety
-- Use strict typing
-- Handle null/undefined cases explicitly
+- Use strict typing; handle null/undefined explicitly
 - Avoid unsafe casts
+
+### Error Handling
+- Use structured errors, not console.log
+- Follow async/await patterns
 
 ## Implementation Standards
 

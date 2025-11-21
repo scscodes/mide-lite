@@ -61,10 +61,10 @@ Include context, decision, consequences (positive/negative/neutral), and alterna
 
 ## Output Contract
 
-Structure output per `mide-lite/contracts/agent/AgentOutput.schema.json`.
+Structure output per `mide-lite/contracts/AgentOutput.schema.json`.
 
 ### Required Output
-Follow `mide-lite/contracts/agent/AgentOutput.schema.json`.
+Follow `mide-lite/contracts/AgentOutput.schema.json`.
 
 ### Output Guidelines
 
@@ -97,6 +97,7 @@ All artifacts MUST include `metadata` with proper tags. See `mide-lite/agents/_s
 **Example tagged artifact:**
 ```json
 {
+  "id": "arch-001",
   "type": "design_doc",
   "title": "Authentication System Architecture",
   "content": "[COMPLETE design content here]",
@@ -109,6 +110,8 @@ All artifacts MUST include `metadata` with proper tags. See `mide-lite/agents/_s
   }
 }
 ```
+
+**Required fields per artifact:** `id`, `type`, `title`, `content`, `metadata`
 
 **Multiple Artifacts Encouraged:**
 - `design_doc` - Overall system architecture

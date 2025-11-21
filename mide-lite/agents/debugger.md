@@ -19,27 +19,39 @@ Avoid project-specific file paths. Use shared resources only.
 
 ## Output Contract
 
-Structure output per `mide-lite/contracts/agent/AgentOutput.schema.json`.
+Structure output per `mide-lite/contracts/AgentOutput.schema.json`.
 
 ```json
 {
+  "agent_name": "debugger",
+  "workflow_id": "{from StepInput.workflow_id}",
   "summary": "Diagnostic summary (max 200 words)",
   "artifacts": [
     {
-      "type": "markdown",
-      "title": "Diagnostic Report",
+      "id": "diag-001",
+      "type": "diagnostic_report",
+      "title": "Root Cause Analysis",
       "content": "COMPLETE diagnostic - root cause, analysis, solution",
-      "description": "Full diagnostic report with all details"
+      "description": "Full diagnostic report with all details",
+      "metadata": {
+        "importance": "high",
+        "audience": "agent",
+        "promote_to_output": false,
+        "lifecycle": "intermediate",
+        "created_by": "debugger"
+      }
     }
   ],
+  "promoted_artifact_count": 0,
   "findings": [
     {
-      "severity": "critical | high | medium | low",
-      "category": "bug | performance | configuration",
+      "severity": "critical",
+      "category": "bug",
       "description": "Root cause identified",
       "location": "file.ts:123",
       "recommendation": "How to fix",
-      "impact": "What's affected"
+      "impact": "What's affected",
+      "status": "pending"
     }
   ],
   "references": ["src/file.ts", "logs/error.log"],
@@ -47,90 +59,21 @@ Structure output per `mide-lite/contracts/agent/AgentOutput.schema.json`.
 }
 ```
 
-**Artifacts:**
+**Required fields:** `agent_name`, `workflow_id`, `summary`, `artifacts`, `references`, `confidence`
+
+**Artifact requirements:**
+- Each artifact needs `id`, `type`, `title`, `content`, `metadata`
+- Metadata needs `importance`, `audience`, `promote_to_output`, `created_by`
+- See `mide-lite/agents/_shared_context.md` for tagging decision tree
+
+**Artifact guidance:**
 - ✅ COMPLETE diagnostic reports (full analysis, not summaries)
 - ✅ COMPLETE solutions with code examples
 - ❌ NO abbreviated analysis or "see logs"
+- Default: `audience: agent` (implementer needs this to fix)
+- Promote only if user explicitly requested diagnosis
 
-## Output Format (Legacy - Use Contract Above)
 
-```markdown
-## Diagnostic Report
-
-**Type**: Bug | Performance | Configuration | Integration
-**Severity**: Critical | High | Medium | Low
-**Root Cause**: [Clear one-line summary]
-
----
-
-## The Problem
-
-[What's actually wrong - the root cause, not the symptom]
-
-**Why It Happens**:
-1. [Step 1 in causal chain]
-2. [Step 2 in causal chain]
-3. [Result: the observed error]
-
----
-
-## Evidence
-
-**Stack Trace**: Include the first failing frame with brief annotations.
-
-**Problematic Code** (`file.py:123`):
-[Show problematic code with inline annotations]
-
-**Logs**: Include only the minimal lines that prove the cause.
-
----
-
-## Solution
-
-**Fix**:
-[Show corrected code]
-
-**Why This Works**: [Explanation]
-
-**Side Effects**: [Any behavior changes]
-
----
-
-## Reproduction
-
-**Steps**:
-1. Reproduce
-2. Isolate
-3. Validate fix
-
-**Frequency**: Always | Often | Sometimes | Rare
-**Conditions**: [What makes it more/less likely]
-
----
-
-## Debugging Patterns
-
-### Environment/Type Safety
-- Ensure strict null/undefined handling
-- Verify proper interface/type usage
-- Avoid unsafe assertions/casts
-
-## Prevention
-
-**Regression Test**:
-Add a test that fails before the fix and passes after.
-
-**Monitoring**:
-- Track: [Relevant metric]
-- Alert: [Threshold]
-- Dashboard: [What to monitor]
-
-**Safeguards**:
-Add guardrails (timeouts, retries, input validation) where relevant.
-
----
-
- 
 
 ## Diagnostic Process
 
