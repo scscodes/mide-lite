@@ -5,6 +5,14 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
+    "agent_name": {
+      "type": "string",
+      "description": "Name of the agent that produced this output"
+    },
+    "workflow_id": {
+      "type": "string",
+      "description": "Parent workflow ID for traceability"
+    },
     "summary": { "type": "string" },
     "artifacts": {
       "type": "array",
@@ -12,6 +20,10 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique artifact ID for cross-referencing"
+          },
           "type": { "type": "string" },
           "title": { "type": "string" },
           "content": { "type": "string" },
@@ -55,11 +67,21 @@
                 "format": "date-time",
                 "description": "ISO 8601 timestamp"
               }
-            }
+            },
+            "required": ["importance", "audience", "promote_to_output", "created_by"]
           }
         },
-        "required": ["type", "title", "content"]
+        "required": ["id", "type", "title", "content", "metadata"]
       }
+    },
+    "promoted_artifact_count": {
+      "type": "integer",
+      "description": "Count of artifacts with promote_to_output=true"
+    },
+    "efficiency_profile_applied": {
+      "type": "string",
+      "enum": ["economy", "standard", "comprehensive"],
+      "description": "Which efficiency profile was applied"
     },
     "decisions": {
       "type": "array",
@@ -80,12 +102,20 @@
       "items": {
         "type": "object",
         "properties": {
-          "severity": { "type": "string" },
+          "severity": {
+            "type": "string",
+            "enum": ["critical", "high", "medium", "low"]
+          },
           "category": { "type": "string" },
           "description": { "type": "string" },
           "location": { "type": "string" },
           "recommendation": { "type": "string" },
-          "impact": { "type": "string" }
+          "impact": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "in-progress", "resolved", "rejected"],
+            "default": "pending"
+          }
         },
         "required": ["severity", "description"]
       }
@@ -95,6 +125,5 @@
     "references": { "type": "array", "items": { "type": "string" } },
     "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
   },
-  "required": ["summary", "artifacts", "references", "confidence"]
+  "required": ["agent_name", "summary", "artifacts", "references", "confidence"]
 }
-

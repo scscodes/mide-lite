@@ -5,11 +5,57 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
-    "task": { "type": "string" },
-    "constraints": { "type": "array", "items": { "type": "string" } },
-    "references": { "type": "array", "items": { "type": "string" } },
-    "expected_output": { "const": "AgentOutput" }
+    "agent_name": {
+      "type": "string",
+      "description": "Name of the agent being delegated to"
+    },
+    "workflow_id": {
+      "type": "string",
+      "description": "Parent workflow ID for traceability"
+    },
+    "task": {
+      "type": "string",
+      "description": "Task description for the agent"
+    },
+    "efficiency_profile": {
+      "type": "string",
+      "enum": ["economy", "standard", "comprehensive"],
+      "description": "Efficiency mode to apply - controls verbosity and artifact limits"
+    },
+    "output_mode": {
+      "type": "string",
+      "enum": ["minimal", "balanced", "full"],
+      "description": "Expected output verbosity level"
+    },
+    "artifact_budget": {
+      "type": "object",
+      "description": "Artifact limits to enforce during generation",
+      "properties": {
+        "max_per_agent": {
+          "type": "integer",
+          "description": "Maximum artifacts this agent can create"
+        },
+        "max_size_kb": {
+          "type": "number",
+          "description": "Maximum size per artifact in KB"
+        }
+      }
+    },
+    "complexity_hint": {
+      "type": "string",
+      "enum": ["simple", "moderate", "high"],
+      "description": "Workflow complexity level for adaptive behavior"
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Constraints to apply during execution"
+    },
+    "references": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Reference files/paths for context"
+    }
   },
-  "required": ["task", "references"]
+  "required": ["agent_name", "task", "references"]
 }
-

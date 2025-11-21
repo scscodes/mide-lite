@@ -5,18 +5,67 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
-    "name": { "type": "string" },
-    "reason": { "type": "string" },
+    "workflow_id": {
+      "type": "string",
+      "description": "Unique workflow identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Workflow name"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Reason for running this workflow"
+    },
+    "complexity_hint": {
+      "type": "string",
+      "enum": ["simple", "moderate", "high"],
+      "description": "Workflow complexity for execution limits"
+    },
+    "efficiency_profile": {
+      "type": "string",
+      "enum": ["economy", "standard", "comprehensive"],
+      "description": "Override default efficiency profile"
+    },
     "triggers": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "keywords": { "type": "array", "items": { "type": "string" } },
-        "tags": { "type": "array", "items": { "type": "string" } }
+        "keywords": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Keywords that trigger this workflow"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Tags associated with this workflow"
+        }
       }
     },
-    "expected_output": { "const": "WorkflowOutput" }
+    "execution_limits": {
+      "type": "object",
+      "description": "Per-workflow execution limits (override config defaults)",
+      "properties": {
+        "max_iterations": { "type": "integer" },
+        "timeout_minutes": { "type": "integer" },
+        "max_parallel_agents": { "type": "integer" }
+      }
+    },
+    "artifact_budget": {
+      "type": "object",
+      "description": "Artifact limits for this workflow",
+      "properties": {
+        "max_per_agent": { "type": "integer" },
+        "max_per_workflow": { "type": "integer" },
+        "max_artifact_size_kb": { "type": "integer" }
+      }
+    },
+    "required_output_mode": {
+      "type": "string",
+      "enum": ["minimal", "balanced", "full"],
+      "description": "Required output verbosity"
+    }
   },
-  "required": ["name", "reason"]
+  "required": ["workflow_id", "name", "reason"]
 }
-

@@ -5,24 +5,159 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
+    "workflow_id": {
+      "type": "string",
+      "description": "Unique workflow identifier"
+    },
     "summary": { "type": "string" },
     "workflow": {
       "type": "object",
       "properties": {
         "name": { "type": "string" },
-        "reason": { "type": "string" }
+        "reason": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["success", "partial", "failed"]
+        },
+        "duration_seconds": { "type": "number" }
       },
       "required": ["name"]
     },
-    "steps": { "type": "array" },
-    "artifacts": { "type": "array" },
-    "decisions": { "type": "array" },
-    "findings": { "type": "array" },
+    "execution_summary": {
+      "type": "object",
+      "description": "Execution metadata",
+      "properties": {
+        "agents_used": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "iterations_completed": { "type": "integer" },
+        "max_iterations_allowed": { "type": "integer" },
+        "parallel_execution_used": { "type": "boolean" },
+        "duration_seconds": { "type": "number" },
+        "efficiency_profile_used": {
+          "type": "string",
+          "enum": ["economy", "standard", "comprehensive"]
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "description": "Completed workflow steps",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step_id": { "type": "string" },
+          "step_name": { "type": "string" },
+          "summary": { "type": "string" },
+          "artifacts_count": { "type": "integer" },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+        },
+        "required": ["step_name", "summary"]
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "description": "Aggregated artifacts from all steps",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "title": { "type": "string" },
+          "content": { "type": "string" },
+          "description": { "type": "string" },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "importance": {
+                "type": "string",
+                "enum": ["critical", "high", "medium", "low"]
+              },
+              "audience": {
+                "type": "string",
+                "enum": ["user", "agent", "audit"]
+              },
+              "promote_to_output": { "type": "boolean" },
+              "lifecycle": {
+                "type": "string",
+                "enum": ["persistent", "ephemeral", "intermediate"]
+              },
+              "created_by": { "type": "string" },
+              "created_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        },
+        "required": ["id", "type", "title"]
+      }
+    },
+    "promoted_artifacts_count": {
+      "type": "integer",
+      "description": "Count of artifacts with promote_to_output=true in final output"
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "decision": { "type": "string" },
+          "rationale": { "type": "string" },
+          "alternatives_rejected": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "trade_offs": { "type": "string" }
+        },
+        "required": ["decision", "rationale"]
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "severity": {
+            "type": "string",
+            "enum": ["critical", "high", "medium", "low"]
+          },
+          "category": { "type": "string" },
+          "description": { "type": "string" },
+          "location": { "type": "string" },
+          "recommendation": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "in-progress", "resolved", "rejected"]
+          }
+        },
+        "required": ["severity", "description"]
+      }
+    },
     "next_steps": { "type": "array", "items": { "type": "string" } },
     "blockers": { "type": "array", "items": { "type": "string" } },
     "references": { "type": "array", "items": { "type": "string" } },
+    "synthesis_mode": {
+      "type": "string",
+      "enum": ["minimal", "balanced", "full"],
+      "description": "Output synthesis mode used"
+    },
+    "storage_mode": {
+      "type": "string",
+      "enum": ["ephemeral", "session", "persistent"],
+      "description": "Where artifacts are stored"
+    },
+    "cost_tracking": {
+      "type": "object",
+      "description": "Token/cost tracking summary",
+      "properties": {
+        "estimated_tokens": { "type": "integer" },
+        "actual_tokens": { "type": "integer" },
+        "warnings_issued": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
     "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
   },
-  "required": ["summary", "workflow", "references", "confidence"]
+  "required": ["workflow_id", "summary", "workflow", "references", "confidence"]
 }
-

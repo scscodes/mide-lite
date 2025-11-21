@@ -5,12 +5,72 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
-    "step": { "type": "string" },
-    "task": { "type": "string" },
-    "constraints": { "type": "array", "items": { "type": "string" } },
-    "references": { "type": "array", "items": { "type": "string" } },
-    "expected_output": { "const": "StepOutput" }
+    "workflow_id": {
+      "type": "string",
+      "description": "Parent workflow ID for traceability"
+    },
+    "step_name": {
+      "type": "string",
+      "description": "Step identifier within the workflow"
+    },
+    "phase": {
+      "type": "string",
+      "enum": ["planning", "design", "implementation", "review", "testing"],
+      "description": "Current workflow phase"
+    },
+    "agent_to_run": {
+      "type": "string",
+      "description": "Name of agent handling this step"
+    },
+    "task": {
+      "type": "string",
+      "description": "Task description for this step"
+    },
+    "efficiency_profile": {
+      "type": "string",
+      "enum": ["economy", "standard", "comprehensive"],
+      "description": "Efficiency mode to apply"
+    },
+    "complexity_hint": {
+      "type": "string",
+      "enum": ["simple", "moderate", "high"],
+      "description": "Workflow complexity level"
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Constraints to apply"
+    },
+    "references": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Reference files/paths"
+    },
+    "previous_steps": {
+      "type": "array",
+      "description": "Previous StepOutput objects for context",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step_name": { "type": "string" },
+          "summary": { "type": "string" },
+          "confidence": { "type": "number" }
+        }
+      }
+    },
+    "artifact_budget_remaining": {
+      "type": "object",
+      "description": "Remaining artifact budget for this workflow",
+      "properties": {
+        "remaining_artifacts": { "type": "integer" },
+        "max_size_kb": { "type": "number" }
+      }
+    },
+    "parallel_with": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Step names running in parallel"
+    }
   },
-  "required": ["step", "task", "references"]
+  "required": ["workflow_id", "step_name", "task", "references"]
 }
-

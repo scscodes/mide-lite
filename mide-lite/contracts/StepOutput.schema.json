@@ -5,6 +5,14 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
+    "workflow_id": {
+      "type": "string",
+      "description": "Parent workflow ID for traceability"
+    },
+    "step_id": {
+      "type": "string",
+      "description": "Unique step identifier"
+    },
     "summary": { "type": "string" },
     "artifacts": {
       "type": "array",
@@ -12,12 +20,75 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique artifact ID for cross-referencing"
+          },
           "type": { "type": "string" },
           "title": { "type": "string" },
           "content": { "type": "string" },
-          "description": { "type": "string" }
+          "description": { "type": "string" },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "importance": {
+                "type": "string",
+                "enum": ["critical", "high", "medium", "low"],
+                "default": "medium",
+                "description": "Importance level of this artifact"
+              },
+              "audience": {
+                "type": "string",
+                "enum": ["user", "agent", "audit"],
+                "default": "agent",
+                "description": "Intended audience: user (end-user facing), agent (inter-agent), audit (trace/debug)"
+              },
+              "promote_to_output": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether to include in final user-facing output (opt-in)"
+              },
+              "lifecycle": {
+                "type": "string",
+                "enum": ["persistent", "ephemeral", "intermediate"],
+                "default": "ephemeral",
+                "description": "Artifact lifecycle: persistent (keep), ephemeral (discard), intermediate (agent-use only)"
+              },
+              "size_kb": {
+                "type": "number",
+                "description": "Approximate size in kilobytes"
+              },
+              "created_by": {
+                "type": "string",
+                "description": "Agent that created this artifact"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time",
+                "description": "ISO 8601 timestamp"
+              }
+            },
+            "required": ["importance", "audience", "promote_to_output", "created_by"]
+          }
         },
-        "required": ["type", "title", "content"]
+        "required": ["id", "type", "title", "content", "metadata"]
+      }
+    },
+    "promoted_artifact_count": {
+      "type": "integer",
+      "description": "Count of artifacts with promote_to_output=true"
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "decision": { "type": "string" },
+          "rationale": { "type": "string" },
+          "alternatives_rejected": { "type": "array", "items": { "type": "string" } },
+          "trade_offs": { "type": "string" }
+        },
+        "required": ["decision", "rationale"]
       }
     },
     "findings": {
@@ -25,11 +96,19 @@
       "items": {
         "type": "object",
         "properties": {
-          "severity": { "type": "string" },
+          "severity": {
+            "type": "string",
+            "enum": ["critical", "high", "medium", "low"]
+          },
           "category": { "type": "string" },
           "description": { "type": "string" },
           "location": { "type": "string" },
-          "recommendation": { "type": "string" }
+          "recommendation": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "in-progress", "resolved", "rejected"],
+            "default": "pending"
+          }
         },
         "required": ["severity", "description"]
       }
@@ -37,8 +116,12 @@
     "next_steps": { "type": "array", "items": { "type": "string" } },
     "blockers": { "type": "array", "items": { "type": "string" } },
     "references": { "type": "array", "items": { "type": "string" } },
+    "efficiency_profile_applied": {
+      "type": "string",
+      "enum": ["economy", "standard", "comprehensive"],
+      "description": "Which efficiency profile was applied during execution"
+    },
     "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
   },
   "required": ["summary", "artifacts", "references", "confidence"]
 }
-
