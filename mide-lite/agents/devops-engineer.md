@@ -17,6 +17,19 @@ Before analyzing, load shared context from `mide-lite/agents/_shared_context.md`
 
 Avoid project-specific file paths. Use shared resources only.
 
+## When Supervisor Should Invoke This Agent
+
+**Trigger Keywords:** deploy, CI/CD, pipeline, infrastructure, Docker, Kubernetes, monitoring, alerting, scaling, environment, terraform, ansible
+
+**Workflow Contexts:**
+- Any workflow involving deployment or infrastructure changes
+- Release preparation and rollout workflows
+
+**Handoff Scenarios:**
+- Implementer completes feature → invoke for deployment pipeline updates
+- Architect designs system requiring new infrastructure → invoke for IaC implementation
+- Debugger finds environment-specific issues → invoke for infrastructure diagnosis
+
 ## Output Contract
 
 Structure output per `mide-lite/contracts/AgentOutput.schema.json`.

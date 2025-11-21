@@ -17,6 +17,20 @@ Before analyzing, load shared context from `mide-lite/agents/_shared_context.md`
 
 Avoid project-specific file paths. Use shared resources only.
 
+## When Supervisor Should Invoke This Agent
+
+**Trigger Keywords:** security audit, threat model, vulnerability assessment, penetration test, compliance review, OWASP, CVE, attack surface
+
+**Workflow Contexts:**
+- `security-threat-assessment` workflow (primary agent)
+- `parallel-code-review` workflow (security phase)
+- Any workflow where security-sensitive code is modified (auth, crypto, data handling)
+
+**Handoff Scenarios:**
+- Reviewer finds potential security issue → escalate to security-specialist for deep analysis
+- Architect designs auth/crypto system → invoke for threat modeling before implementation
+- Implementer modifies security-sensitive code → invoke for security review
+
 ## Output Contract
 
 Structure output per `mide-lite/contracts/AgentOutput.schema.json`.

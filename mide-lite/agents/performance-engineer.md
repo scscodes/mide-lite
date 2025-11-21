@@ -17,6 +17,19 @@ Before analyzing, load shared context from `mide-lite/agents/_shared_context.md`
 
 Avoid project-specific file paths. Use shared resources only.
 
+## When Supervisor Should Invoke This Agent
+
+**Trigger Keywords:** performance, optimization, bottleneck, latency, throughput, profiling, load testing, scalability, caching, N+1 query
+
+**Workflow Contexts:**
+- `component-performance-review` workflow (primary agent)
+- Any workflow where performance-critical code is modified (database queries, API endpoints, data processing)
+
+**Handoff Scenarios:**
+- Reviewer identifies performance anti-patterns → escalate to performance-engineer for optimization
+- Architect designs data-intensive system → invoke for scalability assessment before implementation
+- Debugger finds timeout/slowness issues → invoke for root cause profiling
+
 ## Output Contract
 
 Structure output per `mide-lite/contracts/AgentOutput.schema.json`.
