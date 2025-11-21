@@ -57,6 +57,7 @@ Structure output per `mide-lite/contracts/AgentOutput.schema.json`.
     }
   ],
   "promoted_artifact_count": 1,
+  "efficiency_profile_applied": "standard",
   "decisions": [
     {
       "decision": "Implementation choice made",

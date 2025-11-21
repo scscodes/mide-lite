@@ -43,6 +43,7 @@ Structure output per `mide-lite/contracts/AgentOutput.schema.json`.
     }
   ],
   "promoted_artifact_count": 0,
+  "efficiency_profile_applied": "standard",
   "findings": [
     {
       "severity": "critical",
