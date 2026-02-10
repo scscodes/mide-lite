@@ -1,0 +1,29 @@
+<workflow id="fix-findings">
+  <name>Fix Review Findings</name>
+  <trigger>fix these, fix findings, address issues, resolve findings, fix what critic found</trigger>
+  <description>Address findings from a prior review. User-facing wrapper around remediation.</description>
+  <mode>sequential</mode>
+  <precondition>A review_report must exist from a prior Critic step or be provided by the user.</precondition>
+  <steps>
+    <step sequence="1" agent="builder" receives="review_report">
+      <goal>
+        Address all critical and high-severity findings from the received review report.
+      </goal>
+      <output>code</output>
+    </step>
+    <step sequence="2" agent="critic" receives="code">
+      <goal>Verify all critical and high findings resolved. Document any remaining issues.</goal>
+      <output>review_report</output>
+    </step>
+  </steps>
+  <on_critical_findings max_iterations="2">
+    <step agent="builder" receives="review_report, code">
+      <goal>Address remaining critical and high-severity findings.</goal>
+      <output>code</output>
+    </step>
+    <step agent="critic" receives="code">
+      <goal>Verify all critical findings resolved.</goal>
+      <output>review_report</output>
+    </step>
+  </on_critical_findings>
+</workflow>

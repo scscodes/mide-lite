@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mide://contracts/Artifact.schema.json",
+  "title": "Artifact",
+  "description": "A discrete unit of work produced by an agent (Code, Design, Review, etc.)",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["code", "design_doc", "review_report", "test_plan", "adr", "notes"],
+      "description": "The classification of the artifact."
+    },
+    "title": {
+      "type": "string",
+      "description": "A concise title."
+    },
+    "content": {
+      "type": "string",
+      "description": "The full body content (Markdown, Code, etc.). NO summaries."
+    },
+    "language": {
+      "type": "string",
+      "description": "For code artifacts (ts, py, etc.)."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "final", "deprecated"],
+      "default": "final"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional context (tags, audience, importance).",
+      "properties": {
+        "audience": { "enum": ["user", "agent", "system"] },
+        "importance": { "enum": ["critical", "high", "medium", "low"] }
+      }
+    }
+  },
+  "required": ["type", "title", "content"]
+}

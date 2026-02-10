@@ -1,0 +1,32 @@
+<content_conventions>
+  <description>
+    All workflows produce artifacts per src/contracts/Artifact.schema.json.
+    Each artifact type has required content sections that agents must include.
+  </description>
+
+  <artifact type="design_doc">
+    <required_sections>Overview, Architecture/Design, Interfaces, Trade-offs</required_sections>
+  </artifact>
+
+  <artifact type="design_doc" mode="diagnostic">
+    <title_prefix>Diagnostic: </title_prefix>
+    <required_sections>Root Cause, Contributing Factors, Fault Boundary, Data Flow, Assessment</required_sections>
+  </artifact>
+
+  <artifact type="design_doc" mode="impact">
+    <title_prefix>Impact Analysis: </title_prefix>
+    <required_sections>Dependencies, Blast Radius, Rollback Plan, Risk Assessment</required_sections>
+  </artifact>
+
+  <artifact type="review_report">
+    <required_sections>Summary, Critical, High, Medium/Low</required_sections>
+  </artifact>
+
+  <artifact type="test_plan">
+    <required_sections>Scope, Test Cases, Coverage Targets</required_sections>
+  </artifact>
+
+  <artifact type="code">
+    <note>No required sections. Content is the code itself.</note>
+  </artifact>
+</content_conventions>

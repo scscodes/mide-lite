@@ -1,0 +1,20 @@
+<workflow id="parallel-review">
+  <name>Parallel Code Audit</name>
+  <trigger>comprehensive review, audit, full review, code audit</trigger>
+  <description>Concurrent multi-lens review for thorough code analysis.</description>
+  <mode>parallel</mode>
+  <steps>
+    <step sequence="1" agent="critic" lens="security">
+      <goal>Security audit (OWASP, Input Validation, Secrets).</goal>
+      <output>review_report</output>
+    </step>
+    <step sequence="1" agent="critic" lens="maintainability">
+      <goal>Code style, complexity, and maintainability check.</goal>
+      <output>review_report</output>
+    </step>
+    <step sequence="2" agent="supervisor" receives="review_report">
+      <goal>Synthesize findings into a single prioritized report.</goal>
+      <output>review_report</output>
+    </step>
+  </steps>
+</workflow>

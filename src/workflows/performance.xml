@@ -1,0 +1,42 @@
+<workflow id="performance">
+  <name>Performance Optimization</name>
+  <trigger>slow, optimize performance, efficiency, speed up, latency, throughput, bottleneck</trigger>
+  <description>Data-driven performance analysis and optimization.</description>
+  <mode>sequential</mode>
+  <steps>
+    <step sequence="1" agent="critic" lens="performance">
+      <goal>
+        Quantify current performance baseline (or document anecdotal evidence).
+        Profile and identify bottlenecks: CPU, memory, I/O, network.
+        Prioritize optimization targets by impact.
+      </goal>
+      <output>review_report</output>
+    </step>
+    <step sequence="2" agent="architect" receives="review_report">
+      <goal>
+        Design optimization strategy with expected gains.
+        Consider trade-offs: complexity, memory vs speed, caching implications.
+        Define measurable success criteria.
+      </goal>
+      <output>design_doc</output>
+    </step>
+    <step sequence="3" agent="builder" receives="design_doc, review_report">
+      <goal>Implement optimizations per design. Add performance regression tests.</goal>
+      <output>code, test_plan</output>
+    </step>
+    <step sequence="4" agent="critic" lens="performance" receives="code, design_doc">
+      <goal>Verify performance improvements meet success criteria. No functional regression.</goal>
+      <output>review_report</output>
+    </step>
+  </steps>
+  <on_critical_findings max_iterations="2">
+    <step agent="builder" receives="review_report, code">
+      <goal>Address critical and high-severity findings.</goal>
+      <output>code</output>
+    </step>
+    <step agent="critic" lens="performance" receives="code">
+      <goal>Verify all critical findings resolved.</goal>
+      <output>review_report</output>
+    </step>
+  </on_critical_findings>
+</workflow>

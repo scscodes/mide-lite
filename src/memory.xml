@@ -1,0 +1,30 @@
+<project_memory>
+  <meta>
+    <last_updated>2026-02-10</last_updated>
+    <status>active</status>
+  </meta>
+
+  <project_overview>
+    <name>Mide-Lite (Gen 2)</name>
+    <description>
+      XML-native multi-agent framework.
+    </description>
+  </project_overview>
+
+  <active_context>
+    <current_phase>stable</current_phase>
+    <focus>Index-driven architecture complete</focus>
+  </active_context>
+
+  <key_decisions>
+    <decision id="DEC-011">
+      Adopted index-driven architecture: AGENTS.md at root as thin router,
+      per-directory indexes (workflows/index.xml, rules/base_rules.md) as
+      sources of truth. Workflows split from monolith into 14 individual files.
+      Content conventions moved to src/contracts/content_conventions.xml.
+    </decision>
+  </key_decisions>
+
+  <roadmap>
+  </roadmap>
+</project_memory>

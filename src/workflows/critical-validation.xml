@@ -1,0 +1,39 @@
+<workflow id="critical-validation">
+  <name>Critical Logic Validation</name>
+  <trigger>critical review, sensitive logic, high risk, validate thoroughly, security sensitive, high stakes</trigger>
+  <description>Multi-lens deep validation for code with broad or impactful implications.</description>
+  <mode>parallel</mode>
+  <steps>
+    <step sequence="1" agent="critic" lens="security">
+      <goal>
+        Security audit: authentication, authorization, input validation.
+        Data exposure risks, injection vectors, OWASP compliance.
+      </goal>
+      <output>review_report</output>
+    </step>
+    <step sequence="1" agent="critic" lens="correctness">
+      <goal>
+        Logic correctness: edge cases, boundary conditions, invariants.
+        State management, race conditions, error propagation.
+      </goal>
+      <output>review_report</output>
+    </step>
+    <step sequence="1" agent="architect">
+      <goal>
+        Impact analysis: downstream dependencies, integration points.
+        Failure blast radius, rollback implications.
+        Data integrity and consistency guarantees.
+        Output as design_doc with "Impact Analysis: " title prefix.
+      </goal>
+      <output>design_doc</output>
+    </step>
+    <step sequence="2" agent="supervisor" receives="review_report, design_doc">
+      <goal>
+        Synthesize all findings into unified risk assessment.
+        Provide explicit APPROVE / CONDITIONAL / REJECT recommendation.
+        Document required remediations before approval (if conditional).
+      </goal>
+      <output>review_report</output>
+    </step>
+  </steps>
+</workflow>

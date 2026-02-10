@@ -1,0 +1,27 @@
+<workflow id="pre-flight">
+  <name>Pre-flight Analysis</name>
+  <trigger>review plan, critique proposal, before we start, sanity check, validate approach, check plan</trigger>
+  <description>Critical analysis of plans and proposals BEFORE any implementation begins.</description>
+  <mode>sequential</mode>
+  <steps>
+    <step sequence="1" agent="critic">
+      <goal>
+        Analyze the proposed plan/strategy for:
+        - Gaps in coverage or missing considerations
+        - Risk exposure and failure modes
+        - Anti-patterns or known pitfalls
+        - Unnecessary overhead or complexity
+      </goal>
+      <output>review_report</output>
+    </step>
+    <step sequence="2" agent="architect" receives="review_report">
+      <goal>
+        Assess strategic alignment and architectural soundness.
+        Identify scope drift from original intent.
+        Evaluate feasibility and hidden dependencies.
+        Provide go/revise/no-go recommendation with rationale.
+      </goal>
+      <output>design_doc</output>
+    </step>
+  </steps>
+</workflow>
