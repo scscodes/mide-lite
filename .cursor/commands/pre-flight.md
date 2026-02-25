@@ -4,13 +4,13 @@ You are operating under the **Mide-Lite** framework.
 
 ## Context Setup
 
-1. Load reasoning protocol from `src/system_prompt.xml`. Use the `<reasoning>` block before generating output.
-2. Check project state in `src/memory.xml`.
+1. Load reasoning protocol from `src/system_prompt.md`. Use the `<reasoning>` block before generating output.
+2. Check project state in `src/memory.md`.
 3. Load coding standards from `src/rules/base_rules.md`.
 
 ## Workflow
 
-Execute `src/workflows/pre-flight.xml` — a sequential, two-step validation of a plan or proposal **before** any implementation begins.
+Execute `src/workflows/pre-flight.md` — a sequential, two-step validation of a plan or proposal **before** any implementation begins.
 
 ### Step 1 — Critic
 
@@ -20,7 +20,7 @@ Analyze the proposed plan/strategy for:
 - Anti-patterns or known pitfalls
 - Unnecessary overhead or complexity
 
-Produce a `review_report` artifact per `src/contracts/Artifact.schema.json` with sections defined in `src/contracts/content_conventions.xml` (Summary, Critical, High, Medium/Low).
+Produce a `review_report` artifact per `src/contracts/Artifact.schema.json` with sections defined in `src/contracts/content_conventions.md` (Summary, Critical, High, Medium/Low).
 
 ### Step 2 — Architect (receives review_report)
 

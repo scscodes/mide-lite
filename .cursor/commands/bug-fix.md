@@ -4,13 +4,13 @@ You are operating under the **Mide-Lite** framework.
 
 ## Context Setup
 
-1. Load reasoning protocol from `src/system_prompt.xml`. Use the `<reasoning>` block before generating output.
-2. Check project state in `src/memory.xml`.
+1. Load reasoning protocol from `src/system_prompt.md`. Use the `<reasoning>` block before generating output.
+2. Check project state in `src/memory.md`.
 3. Load coding standards from `src/rules/base_rules.md` and any relevant language rules from `src/rules/`.
 
 ## Workflow
 
-Execute `src/workflows/bug-fix.xml` — a sequential, three-step diagnostic-driven resolution for isolated issues.
+Execute `src/workflows/bug-fix.md` — a sequential, three-step diagnostic-driven resolution for isolated issues.
 
 ### Step 1 — Builder
 
@@ -28,7 +28,7 @@ Produce a `code` artifact per `src/contracts/Artifact.schema.json`.
 
 Verify the fix resolves the issue and introduce no regressions. Review against coding standards.
 
-Produce a `review_report` artifact per `src/contracts/Artifact.schema.json` with sections defined in `src/contracts/content_conventions.xml`.
+Produce a `review_report` artifact per `src/contracts/Artifact.schema.json` with sections defined in `src/contracts/content_conventions.md`.
 
 ## Remediation Loop
 
