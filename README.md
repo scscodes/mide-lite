@@ -23,7 +23,7 @@ It succeeds the Gen 1 implementation by shifting from rigid Markdown templates t
 ## Quickstart
 
 1.  **Add this directory to your Cursor/LLM workspace.**
-2.  **Start a chat.** The framework loads via `AGENTS.md` → `src/system_prompt.xml`.
+2.  **Start a chat.** The framework loads via `AGENTS.md` → `src/system_prompt.md`.
 3.  **Engage an agent or workflow:**
 
 ### Direct Agent Invocation
@@ -62,13 +62,13 @@ Supervisor: Run "parallel-review" on the payment processing module.
 ## Key References
 
 - **Framework entry point:** `AGENTS.md` (routes to all components)
-- **Workflow catalog:** `src/workflows/index.xml`
-- **Agent definitions:** `src/agents/*.xml`
+- **Workflow catalog:** `src/workflows/index.md`
+- **Agent definitions:** `src/agents/*.md`
 - **Coding rules index:** `src/rules/base_rules.md`
-- **Artifact contracts:** `src/contracts/Artifact.schema.json` + `src/contracts/content_conventions.xml`
+- **Artifact contracts:** `src/contracts/Artifact.schema.json` + `src/contracts/content_conventions.md`
 
 ## Key Features
 
 -   **Cognition-First:** Agents must perform a `<reasoning>` block to plan strategies before generating code.
 -   **XML-Native:** Prompts are structured in XML to reduce "instruction bleeding" and improve adherence in modern models.
--   **Persistent Context:** `src/memory.xml` allows agents to track state across multiple turns/sessions.
+-   **Persistent Context:** `src/memory.md` allows agents to track state across multiple turns/sessions.

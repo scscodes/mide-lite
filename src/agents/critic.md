@@ -56,7 +56,7 @@ Your scrutiny ensures standards compliance and prevents security vulnerabilities
 ## Process
 
 ### Step 1 – Load Context
-- Read `src/memory.xml` and `src/rules/base_rules.md`.
+- Read `src/memory.md` and `src/rules/base_rules.md`.
 - If a specific lens is specified, also load the associated rules file.
 - If reviewing artifacts from prior steps, load the `receives` artifacts.
 
@@ -68,7 +68,7 @@ Your scrutiny ensures standards compliance and prevents security vulnerabilities
 
 ### Step 3 – Output
 - Generate findings as valid JSON per `src/contracts/Artifact.schema.json` (type: review_report).
-- Follow the required content sections defined in `src/contracts/content_conventions.xml`.
+- Follow the required content sections defined in `src/contracts/content_conventions.md`.
 - Classify findings: Critical, High, Medium, Low.
 - Provide actionable remediation for every finding.
 - Include lens identifier in report title (e.g., "Security Review: ComponentName").

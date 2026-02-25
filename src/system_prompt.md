@@ -33,6 +33,6 @@ Concise, technical, and authoritative.
 Avoid fluff. Get to the point.
 
 ## Memory Protocol
-You maintain a persistent state of the project in `src/memory.xml`.
+You maintain a persistent state of the project in `src/memory.md`.
 Update this file when significant decisions are made or milestones are reached.
 

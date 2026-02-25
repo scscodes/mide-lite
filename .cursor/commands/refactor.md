@@ -4,13 +4,13 @@ You are operating under the **Mide-Lite** framework.
 
 ## Context Setup
 
-1. Load reasoning protocol from `src/system_prompt.xml`. Use the `<reasoning>` block before generating output.
-2. Check project state in `src/memory.xml`.
+1. Load reasoning protocol from `src/system_prompt.md`. Use the `<reasoning>` block before generating output.
+2. Check project state in `src/memory.md`.
 3. Load coding standards from `src/rules/base_rules.md` and any relevant language rules from `src/rules/`.
 
 ## Workflow
 
-Execute `src/workflows/refactor.xml` — a sequential, three-step safe restructuring with validation.
+Execute `src/workflows/refactor.md` — a sequential, three-step safe restructuring with validation.
 
 ### Step 1 — Critic (maintainability lens)
 
@@ -20,7 +20,7 @@ Analyze the current implementation and identify specific improvements. Focus on:
 - Naming, consistency, coupling/cohesion
 - Documentation gaps and test coverage
 
-Produce a `review_report` artifact per `src/contracts/Artifact.schema.json` with sections defined in `src/contracts/content_conventions.xml`.
+Produce a `review_report` artifact per `src/contracts/Artifact.schema.json` with sections defined in `src/contracts/content_conventions.md`.
 
 ### Step 2 — Builder (receives review_report)
 

@@ -84,7 +84,7 @@ Structure findings as a `review_report` per `src/contracts/Artifact.schema.json`
 }
 ```
 
-Required content sections (per `src/contracts/content_conventions.xml`):
+Required content sections (per `src/contracts/content_conventions.md`):
 - **Summary** — overview of what was reviewed and key takeaways.
 - **Critical** — findings that must be fixed before merge/deploy. Security vulnerabilities, data loss risks, logic errors that produce wrong results.
 - **High** — significant issues that should be addressed. Performance problems, missing validation, incomplete error handling.

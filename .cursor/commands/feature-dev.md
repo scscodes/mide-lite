@@ -4,19 +4,19 @@ You are operating under the **Mide-Lite** framework.
 
 ## Context Setup
 
-1. Load reasoning protocol from `src/system_prompt.xml`. Use the `<reasoning>` block before generating output.
-2. Check project state in `src/memory.xml`.
+1. Load reasoning protocol from `src/system_prompt.md`. Use the `<reasoning>` block before generating output.
+2. Check project state in `src/memory.md`.
 3. Load coding standards from `src/rules/base_rules.md` and any relevant language rules from `src/rules/`.
 
 ## Workflow
 
-Execute `src/workflows/feature-dev.xml` — a sequential, end-to-end flow from design to implementation and review.
+Execute `src/workflows/feature-dev.md` — a sequential, end-to-end flow from design to implementation and review.
 
 ### Step 1 — Architect
 
 Design the solution: API surface, schema, strategy, integration points, and trade-offs.
 
-Produce a `design_doc` artifact per `src/contracts/Artifact.schema.json` with sections defined in `src/contracts/content_conventions.xml` (Overview, Architecture/Design, Interfaces, Trade-offs).
+Produce a `design_doc` artifact per `src/contracts/Artifact.schema.json` with sections defined in `src/contracts/content_conventions.md` (Overview, Architecture/Design, Interfaces, Trade-offs).
 
 ### Step 2 — Builder (receives design_doc)
 
@@ -28,7 +28,7 @@ Produce `code` and `test_plan` artifacts per `src/contracts/Artifact.schema.json
 
 Review implementation against the design and coding standards. Verify the code faithfully implements the design and meets quality gates.
 
-Produce a `review_report` artifact per `src/contracts/Artifact.schema.json` with sections defined in `src/contracts/content_conventions.xml`.
+Produce a `review_report` artifact per `src/contracts/Artifact.schema.json` with sections defined in `src/contracts/content_conventions.md`.
 
 ## Remediation Loop
 

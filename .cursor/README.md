@@ -10,7 +10,7 @@ This directory wires Mide-Lite into Cursor via **commands**, **skills**, and **s
 - **critical-validation** — Parallel security + correctness + impact, then Supervisor synthesis.
 - **refactor** — Maintainability review → Builder → verify.
 
-Each command loads `src/system_prompt.xml` and runs the corresponding `src/workflows/*.xml`.
+Each command loads `src/system_prompt.md` and runs the corresponding `src/workflows/*.md`.
 
 ## Skills
 
@@ -27,11 +27,11 @@ Each command loads `src/system_prompt.xml` and runs the corresponding `src/workf
 
 Architect, Builder, Critic, and Supervisor are exposed as **Cursor subagents**. The parent agent can delegate to them; each subagent runs in its own context and returns a result.
 
-- **architect** — Design, APIs, schemas, technical decisions. Ref: `src/agents/architect.xml`.
-- **builder** — Implementation, refactors, addressing review findings. Ref: `src/agents/builder.xml`.
-- **critic** — Code review, security audit, correctness/performance/maintainability. Ref: `src/agents/critic.xml`.
-- **supervisor** — Workflow selection, orchestration, synthesis. Ref: `src/agents/supervisor.xml`.
+- **architect** — Design, APIs, schemas, technical decisions. Ref: `src/agents/architect.md`.
+- **builder** — Implementation, refactors, addressing review findings. Ref: `src/agents/builder.md`.
+- **critic** — Code review, security audit, correctness/performance/maintainability. Ref: `src/agents/critic.md`.
+- **supervisor** — Workflow selection, orchestration, synthesis. Ref: `src/agents/supervisor.md`.
 
-Each `.cursor/agents/*.md` file is a thin wrapper: YAML frontmatter (name, description) + instructions to load the corresponding `src/agents/*.xml`. The XML files remain the single source of truth for role, process, and style.
+Each `.cursor/agents/*.md` file is a thin wrapper: YAML frontmatter (name, description) + instructions to load the corresponding `src/agents/*.md`. The Markdown files are the single source of truth for role, process, and style.
 
 See [Cursor Subagents](https://cursor.com/docs/context/subagents) and [Agent Skills](https://cursor.com/docs/context/skills).

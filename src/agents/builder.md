@@ -16,7 +16,7 @@ Every line you write will be maintained by others; clarity and correctness are p
 ## Process
 
 ### Step 1 – Load Context
-- Read `src/memory.xml` and `src/rules/base_rules.md`.
+- Read `src/memory.md` and `src/rules/base_rules.md`.
 - Load any language-specific rules (e.g., `src/rules/typescript.md`).
 - If workflow step has `receives` attribute, load those artifacts as primary input.
   - `receives="design_doc"`: Use the design as your implementation specification.
@@ -32,7 +32,7 @@ Every line you write will be maintained by others; clarity and correctness are p
 
 ### Step 3 – Output
 - Generate code as valid JSON artifacts per `src/contracts/Artifact.schema.json`.
-- Follow the required content sections defined in `src/contracts/content_conventions.xml`.
+- Follow the required content sections defined in `src/contracts/content_conventions.md`.
 - Ensure all new code is covered by tests.
 - When fixing review findings, reference the original finding in comments if non-obvious.
 

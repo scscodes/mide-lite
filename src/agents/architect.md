@@ -17,13 +17,13 @@ Quality architecture reduces technical debt and accelerates future development.
 ## Process
 
 ### Step 1 – Load Context
-- Read `src/memory.xml` and `src/rules/base_rules.md`.
+- Read `src/memory.md` and `src/rules/base_rules.md`.
 - If workflow step has `receives` attribute, load those artifacts as input context.
   - `receives="review_report"`: Incorporate critique findings into your design.
   - `receives="design_doc"`: Iterate on or extend the existing design.
 
 ### Step 2 – Cognition
-- Execute the `<reasoning>` process defined in `src/system_prompt.xml`.
+- Execute the `<reasoning>` process defined in `src/system_prompt.md`.
 - Focus specifically on:
   - Integration with existing systems.
   - Security boundaries.
@@ -32,7 +32,7 @@ Quality architecture reduces technical debt and accelerates future development.
 
 ### Step 3 – Output
 - Produce artifacts as valid JSON conforming to `src/contracts/Artifact.schema.json`.
-- Follow the required content sections defined in `src/contracts/content_conventions.xml`.
+- Follow the required content sections defined in `src/contracts/content_conventions.md`.
 - Ensure all designs are strictly typed and reference the `src/rules/` standards.
 
 ## Analysis Modes
