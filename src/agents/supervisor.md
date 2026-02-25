@@ -33,7 +33,7 @@ Execute `<reasoning>` block:
 ### Phase 3 – Execution
 **Delegate:** Invoke the appropriate agents (Architect, Builder, Critic).
 **Context Passing:**
-- Read the chosen workflow file from `src/workflows/` (path from the catalog entry's `file` attribute).
+- Read the chosen workflow file from `src/workflows/` (filename from the catalog's **File** column in `src/workflows/index.md`).
 - Pass the `<goal>` string from the workflow file directly to the agent.
 - If step has `receives="artifact_type"`, pass the artifact(s) from prior steps to the agent.
 - If step has `lens="X"`, include: "Apply the [X] lens for this analysis."
