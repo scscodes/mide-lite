@@ -8,7 +8,7 @@
 Mide-Lite (Gen 2)
 
 ### Description
-XML-native multi-agent framework.
+Markdown-native multi-agent framework.
 
 ## Active Context
 - current_phase: stable
@@ -18,9 +18,9 @@ XML-native multi-agent framework.
 
 ### DEC-011
 Adopted index-driven architecture: AGENTS.md at root as thin router,
-per-directory indexes (workflows/index.xml, rules/base_rules.md) as
+per-directory indexes (workflows/index.md, rules/base_rules.md) as
 sources of truth. Workflows split from monolith into 14 individual files.
-Content conventions moved to src/contracts/content_conventions.xml.
+Content conventions moved to src/contracts/content_conventions.md.
 
 ## Roadmap
 
