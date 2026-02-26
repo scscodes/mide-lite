@@ -11,8 +11,10 @@ It succeeds the Gen 1 implementation by shifting from ad-hoc prompt templates to
 ├── AGENTS.md              # Entry point: thin router to all framework components
 ├── README.md
 ├── src/
-│   ├── system_prompt.md   # Kernel: reasoning process, memory protocol
-│   ├── memory.md          # Project state
+│   ├── system_prompt.md   # Kernel: agents, orchestration, memory protocol, reasoning
+│   ├── memory/
+│   │   ├── context.md     # Working memory: current phase, focus, blockers
+│   │   └── decisions.md   # Append-only decision log
 │   ├── agents/            # Agent personas (Markdown). Read directly for roles/capabilities.
 │   ├── workflows/         # Workflow definitions. See index.md for catalog.
 │   ├── rules/             # Coding standards. See base_rules.md for rules index.
@@ -71,4 +73,4 @@ Supervisor: Run "parallel-review" on the payment processing module.
 
 -   **Cognition-First:** Agents must perform a `<reasoning>` block to plan strategies before generating code.
 -   **Structured Markdown:** Prompts and configuration are structured in Markdown to reduce instruction bleeding and improve adherence in modern models.
--   **Persistent Context:** `src/memory.md` allows agents to track state across multiple turns/sessions.
+-   **Persistent Context:** `src/memory/context.md` (working state) and `src/memory/decisions.md` (decision log) track state across sessions.

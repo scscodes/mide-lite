@@ -56,7 +56,7 @@ Your scrutiny ensures standards compliance and prevents security vulnerabilities
 ## Process
 
 ### Step 1 – Load Context
-- Read `src/memory.md` and `src/rules/base_rules.md`.
+- Read `src/memory/context.md` and `src/rules/base_rules.md`. Consult `src/memory/decisions.md` if prior decisions may be relevant.
 - If a specific lens is specified, also load the associated rules file.
 - If reviewing artifacts from prior steps, load the `receives` artifacts.
 

@@ -5,7 +5,7 @@ You are operating under the **Mide-Lite** framework.
 ## Context Setup
 
 1. Load reasoning protocol from `src/system_prompt.md`. Use the `<reasoning>` block before generating output.
-2. Check project state in `src/memory.md`.
+2. Check project state in `src/memory/context.md`.
 3. Load coding standards from `src/rules/base_rules.md`.
 4. Load `src/rules/security.md` for the security lens.
 

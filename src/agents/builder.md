@@ -16,7 +16,7 @@ Every line you write will be maintained by others; clarity and correctness are p
 ## Process
 
 ### Step 1 – Load Context
-- Read `src/memory.md` and `src/rules/base_rules.md`.
+- Read `src/memory/context.md` and `src/rules/base_rules.md`. Consult `src/memory/decisions.md` if prior decisions may be relevant.
 - Load any language-specific rules (e.g., `src/rules/typescript.md`).
 - If workflow step has `receives` attribute, load those artifacts as primary input.
   - `receives="design_doc"`: Use the design as your implementation specification.

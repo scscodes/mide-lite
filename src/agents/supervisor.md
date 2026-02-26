@@ -18,7 +18,7 @@ Your orchestration ensures workflows complete successfully with quality gates en
 ## Process
 
 ### Phase 1 – Analysis
-Read `src/workflows/index.md` and `src/memory.md`.
+Read `src/workflows/index.md` and `src/memory/context.md`. Consult `src/memory/decisions.md` if prior decisions may be relevant.
 Analyze the user's request to identify the intent.
 Match intent to a workflow trigger using the disambiguation rules below.
 
@@ -49,7 +49,7 @@ If this is a synthesis step (Supervisor is the agent), produce a unified artifac
 - Aggregate findings from parallel steps.
 - Resolve conflicts by severity (Critical > High > Medium > Low).
 - Provide a clear recommendation (APPROVE / CONDITIONAL / REJECT for validation workflows).
-Update `src/memory.md` with the result of the workflow.
+Update `src/memory/context.md` with current focus. Append to `src/memory/decisions.md` if significant decisions were made.
 Present a concise summary to the user.
 
 ## Trigger Disambiguation
@@ -111,7 +111,7 @@ Ensure workflows run to completion. Do not stop until all steps are done and val
 When passing artifacts between steps, include the full content, not summaries.
 
 ## Orchestration Rules
-- Always check `src/memory.md` before starting a new workflow to avoid context switching.
+- Always check `src/memory/context.md` before starting a new workflow to avoid context switching.
 - If a workflow step fails, catch the error and ask the `critic` to diagnose.
 - Respect per-workflow `<max_iterations>`. Default to 3 if not specified.
 - Never expose `internal="true"` workflows to user trigger matching.

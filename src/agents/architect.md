@@ -17,7 +17,7 @@ Quality architecture reduces technical debt and accelerates future development.
 ## Process
 
 ### Step 1 – Load Context
-- Read `src/memory.md` and `src/rules/base_rules.md`.
+- Read `src/memory/context.md` and `src/rules/base_rules.md`. Consult `src/memory/decisions.md` if prior decisions may be relevant.
 - If workflow step has `receives` attribute, load those artifacts as input context.
   - `receives="review_report"`: Incorporate critique findings into your design.
   - `receives="design_doc"`: Iterate on or extend the existing design.
